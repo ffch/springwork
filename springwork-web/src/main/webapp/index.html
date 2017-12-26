@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
+<script type="text/javascript" src="js/base64.js"></script>
+<title>SkyNet</title>
+</head>
+<script type="text/javascript">
+	
+	function ajaxTest() {
+		var type = "1001";
+		$.ajax({
+			type : "post",
+			url : "test/welCome",
+			dataType : "json",
+			data : {reqType : type} ,
+			success : function(data) {
+				$("#div1").html(data.uuid + "<br>" + 
+						data.welMsg + "<br>"+
+						data.dateTime);
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				alert(errorThrown);
+			}
+		});
+	}
+	
+	function ajaxTest1() {
+		var type = "1001";
+		var reqMsg = "<h2>ak测试</h2><br>禁止访问";
+		var ak = $.cookie('ak') ;
+		
+		$.ajax({
+			type : "post",
+			url : "api/map?access_token="+ak,
+			dataType : "json",
+			data : {"reqType" : type, "reqMsg" : reqMsg} ,
+			success : function(data) {
+				$("#div1").html(data.uuid + "<br>" + 
+						data.welMsg + "<br>"+
+						data.dateTime);
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				alert(errorThrown);
+			}
+		});
+	}
+	function ajaxTest2() {
+		$.cookie('ak', "");
+		$.cookie('code',"");
+	}
+	
+	function ajaxTest3() {
+		var clientId = "my-trusted-client";
+		var redirectUrl = "http://127.0.0.1:9080/index.html";
+		var para = prompt("clientId#redirectUrl","MwonYjDKBuPtLLlK#http://127.0.0.1:808/index.html");
+		var paraMap = para.split("#"); 
+		clientId = paraMap[0];
+		redirectUrl = paraMap[1];
+		console.log("参数：" + clientId + "---" + redirectUrl);
+		
+		window.location.href = "oauth/authorize?client_id="
+				+clientId+"&response_type=code&scope=read&redirect_uri="
+				+redirectUrl;
+	}
+	
+	function ajaxTest4() {
+		var para = prompt("clientId#redirectUrl","MwonYjDKBuPtLLlK#http://127.0.0.1:808/index.html");
+		var paraMap = para.split("#"); 
+		clientId = paraMap[0];
+		redirectUrl = paraMap[1];
+		var code = $.cookie('code');
+// 		var clientId = "my-trusted-client";
+// 		var redirectUrl = "http://127.0.0.1:9080/index.html";
+		var client_secret="secret";
+		var grant_type="authorization_code";
+		//var su="TXdvbllqREtCdVB0TExsSzpzZWNyZXQ=";
+		var b = new Base64();  
+        var su = b.encode(clientId+":"+client_secret); 
+        console.log(su);
+		$.ajax({
+			type : "post",
+			url : "oauth/token",
+			dataType : "json",
+			data : {"client_id" : clientId, "client_secret" : client_secret,"grant_type" : grant_type, "redirect_uri" : redirectUrl,"code":code} ,
+// 			beforeSend:function(xhr){
+// 				xhr.setRequestHeader('Authorization', "Basic "+ su);
+// 			},
+			success : function(data) {
+				$("#div4").html(data.access_token + "<br>" + 
+						data.refresh_token + "<br>"+
+						data.expires_in);
+				$.cookie('ak', data.access_token);
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				alert(errorThrown);
+			}
+		});
+	}
+	
+	function ajaxTest5() {
+		$.ajax({
+			type : "post",
+			url : "/logout",
+			dataType : "text",
+			success : function(data) {
+				$("#div2").html("已登出");
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				alert(errorThrown);
+			}
+		});
+	}
+</script>
+<body>
+	Hello World
+	<div id="div1"></div>
+	<div id="div2"></div>
+	<button type="button" onclick="ajaxTest()">Welcome</button>  <button type="button" onclick="ajaxTest5()">登出去</button>	<br><br>
+	<button type="button" onclick="ajaxTest1()">没授权测试</button>	<button type="button" onclick="ajaxTest2()">清除ak</button><br><br>
+	<button type="button" onclick="window.location.href='auth.jsp?clientId=bXktdHJ1c3RlZC1jbGllbnQ6c2VjcmV0'">用户名密码模式</button><br><br>
+	<button type="button" onclick="ajaxTest3()">授权码模式</button>
+	<button type="button" onclick="ajaxTest4()">拿token</button>
+	<br>
+	<div id="div3"></div>
+	<div id="div4"></div>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#div1").html("呵呵");
+			var searchStr = location.search.substr(1);  
+			if(searchStr){
+				var searchs = searchStr.split("&"); 
+				$("#div2").html("页面请求参数：" + searchs[0] + "和"+searchs[1] );
+				$.cookie('ak', searchs[0]);
+				$.cookie('rk', searchs[1]);
+				var code = searchs[0].split("="); 
+				if(code.length == 2){
+					$("#div3").html("<h3>大爷终于拿到授权码了：" + code[1] +"</h3>");
+					$.cookie('code', code[1]);
+					$.cookie('ak', "");
+					$.cookie('rk', "");
+				}
+			}
+			
+		});
+	</script>
+</body>
+</html>
