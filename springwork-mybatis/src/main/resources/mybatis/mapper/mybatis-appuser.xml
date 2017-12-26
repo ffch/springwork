@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cff.springwork.mybatis.mapper.AppUserMapper">
+	<resultMap id="BaseResultMap" type="com.cff.springwork.model.security.AppUser">
+		<result column="uuid" property="uuid" />
+		<result column="user_name" property="userName" />
+		<result column="passwd" property="password" />
+		<result column="user_type" property="userType" />
+		<result column="user_no" property="userNo" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		uuid, user_name, passwd, user_type,user_no
+	</sql>
+	<select id="getAppUser" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from se_app_user
+		where user_no = #{userNo}
+	</select>
+	
+	<select id="getAppUserByUserName" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from se_app_user
+		where user_name = #{userName}
+	</select>
+	
+	<insert id="save" parameterType="com.cff.springwork.model.security.AppUser">
+		insert into se_app_user(uuid, user_name, passwd, user_type,user_no) 
+			value(
+			#{uuid},
+			#{userName},
+			#{password},
+			#{userType},
+			#{userNo}
+			)
+	</insert>
+
+</mapper>  
