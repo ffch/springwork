@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+                    http://www.springframework.org/schema/beans
+                    http://www.springframework.org/schema/beans/spring-beans.xsd
+                    http://www.springframework.org/schema/aop 
+                    http://www.springframework.org/schema/aop/spring-aop.xsd
+                    http://www.springframework.org/schema/context      
+                    http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:annotation-config />
+	<context:component-scan base-package="com.cff.springwork">
+	</context:component-scan>
+
+	<bean id="tokenStore"
+		class="org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore">
+	</bean>
+
+	<!-- <bean id="tokenStore" -->
+	<!-- class="org.springframework.security.oauth2.provider.token.store.JdbcTokenStore"> -->
+	<!-- <constructor-arg index="0" ref="dataSource" /> -->
+	<!-- </bean> -->
+
+	<bean id="authorizationCodeServices"
+		class="com.cff.springwork.security.service.InMemoryAuthorizationCodeServices">
+	</bean>
+
+	<bean id="myClientDetailsService"
+		class="org.springframework.security.oauth2.provider.client.InMemoryClientDetailsService">
+		<property name="clientDetailsStore">
+			<map>
+				<entry key="MwonYjDKBuPtLLlK" value-ref="clientDetails" />
+				<entry key="VJUpAlhdWPbvkpPy" value-ref="clientDetails1" />
+			</map>
+		</property>
+
+	</bean>
+
+	<bean id="clientDetails"
+		class="org.springframework.security.oauth2.provider.client.BaseClientDetails">
+		<property name="clientId" value="MwonYjDKBuPtLLlK" />
+		<property name="clientSecret" value="secret" />
+		<property name="accessTokenValiditySeconds" value="120" />
+		<property name="refreshTokenValiditySeconds" value="600" />
+		<property name="scope">
+			<set>
+				<value>read</value>
+				<value>write</value>
+				<value>trust</value>
+			</set>
+		</property>
+		<property name="authorizedGrantTypes">
+			<set>
+				<value>password</value>
+				<value>authorization_code</value>
+				<value>refresh_token</value>
+				<value>implicit</value>
+			</set>
+		</property>
+		<property name="authorities">
+			<list>
+				<bean
+					class="org.springframework.security.core.authority.SimpleGrantedAuthority">
+					<constructor-arg type="java.lang.String" value="ROLE_CLIENT"></constructor-arg>
+				</bean>
+				<bean
+					class="org.springframework.security.core.authority.SimpleGrantedAuthority">
+					<constructor-arg type="java.lang.String" value="ROLE_TRUSTED_CLIENT"></constructor-arg>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="clientDetails1"
+		class="org.springframework.security.oauth2.provider.client.BaseClientDetails">
+		<property name="clientId" value="VJUpAlhdWPbvkpPy" />
+		<property name="clientSecret" value="secret" />
+		<property name="accessTokenValiditySeconds" value="120" />
+		<property name="refreshTokenValiditySeconds" value="600" />
+		<property name="scope">
+			<set>
+				<value>read</value>
+				<value>write</value>
+				<value>trust</value>
+			</set>
+		</property>
+		<property name="authorizedGrantTypes">
+			<set>
+				<value>password</value>
+				<value>authorization_code</value>
+				<value>refresh_token</value>
+				<value>implicit</value>
+			</set>
+		</property>
+		<property name="authorities">
+			<list>
+				<bean
+					class="org.springframework.security.core.authority.SimpleGrantedAuthority">
+					<constructor-arg type="java.lang.String" value="ROLE_CLIENT"></constructor-arg>
+				</bean>
+				<bean
+					class="org.springframework.security.core.authority.SimpleGrantedAuthority">
+					<constructor-arg type="java.lang.String" value="ROLE_TRUSTED_CLIENT"></constructor-arg>
+				</bean>
+			</list>
+		</property>
+	</bean>
+</beans>
