@@ -238,5 +238,7 @@
 		<module>springwork-common</module>
 		<module>springwork-mybatis</module>
     <module>springwork-ldap</module>
+    <module>springwork-dubbo-produce</module>
+    <module>springwork-dubbo-consume</module>
   </modules>
 </project>
