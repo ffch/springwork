@@ -1,0 +1,11 @@
+CREATE DEFINER = `cff`@`%` FUNCTION `NewProc`(sequence_name VARCHAR(50))
+ RETURNS int(11)
+BEGIN  
+  DECLARE value INTEGER;  
+  SET value = 0;  
+  SELECT current_value INTO value  
+  FROM sequence  
+  WHERE seq_name = sequence_name;  
+  RETURN value;  
+END;
+

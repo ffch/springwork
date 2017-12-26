@@ -1,0 +1,12 @@
+CREATE DEFINER = `cff`@`%` FUNCTION `NewProc`(seq_name VARCHAR(50))
+ RETURNS int(11)
+BEGIN  
+   declare current integer;
+    set current = 0;
+    
+    select t.value into current from sequence t where t.sequence_name = sequence_name for update;
+    update sequence t set t.value = t.value + 1 where t.sequence_name = sequence_name;
+    set current = current + 1;
+
+    return current;
+END;
