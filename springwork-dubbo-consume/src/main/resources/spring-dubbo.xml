@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+                    http://www.springframework.org/schema/beans
+                    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                    http://www.springframework.org/schema/aop 
+                    http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+                    http://code.alibabatech.com/schema/dubbo 
+					http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+                    http://www.springframework.org/schema/context      
+                    http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+	<context:annotation-config />
+	<context:component-scan base-package="com.cff.springwork">
+	</context:component-scan>
+
+
+	<bean id="annotationPropertyConfigurerDubboConsume"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="order" value="1" />
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+		<property name="locations">
+			<list>
+				<value>classpath:dubbo.properties</value>
+			</list>
+		</property>
+	</bean>
+
+
+	<dubbo:application name="springwork" />
+	<dubbo:registry address="${registry_address}" />
+	<dubbo:protocol name="dubbo" port="${dubbo_port}" />
+	
+	<dubbo:reference id="commonService" interface="com.cff.springwork.dubbo.inter.CommonService"/>		
+
+</beans>
