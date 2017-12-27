@@ -31,5 +31,7 @@
 	</bean>
 	<import resource="classpath*:spring-db.xml"/>
 	<import resource="classpath*:spring-security.xml"/>
+<!-- 	<import resource="classpath*:spring-jms.xml"/> -->
+<!-- 	<import resource="classpath*:spring-dubbo.xml"/> -->
 <!-- 	<import resource="classpath:spring/spring-ehcache.xml"/> -->
 </beans>

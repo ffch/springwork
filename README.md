@@ -15,3 +15,10 @@ springwork，在spring中整合关键技术。
 	
 5.springwork-web
 	web项目，简单提供了个页面。
+	
+6.springwork-dubbo-produce
+	dubbo提供方
+	
+7.springwork-dubbo-consume
+	dubbo-consume
+	
