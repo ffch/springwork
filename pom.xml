@@ -246,5 +246,6 @@
     <module>springwork-dubbo-produce</module>
     <module>springwork-dubbo-consume</module>
     <module>springwork-activemq</module>
+    <module>springwork-netty</module>
   </modules>
 </project>
