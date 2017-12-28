@@ -12,18 +12,21 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.approval.ApprovalStore;
 import org.springframework.security.oauth2.provider.approval.TokenApprovalStore;
 import org.springframework.security.oauth2.provider.approval.TokenStoreUserApprovalHandler;
-import org.springframework.security.oauth2.provider.error.OAuth2AuthenticationEntryPoint;
 import org.springframework.security.oauth2.provider.request.DefaultOAuth2RequestFactory;
 import org.springframework.security.oauth2.provider.token.TokenStore;
-import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
+import org.springframework.security.web.authentication.logout.LogoutHandler;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
+import com.cff.springwork.security.ajax.AjaxAuthFailHandler;
+import com.cff.springwork.security.ajax.AjaxAuthSuccessHandler;
+import com.cff.springwork.security.ajax.AjaxLogoutSuccessHandler;
+import com.cff.springwork.security.ajax.UnauthorizedEntryPoint;
 import com.cff.springwork.security.service.OauthAuthenticationProvider;
 
 
@@ -52,8 +55,10 @@ public class OAuth2SecurityConfiguration extends WebSecurityConfigurerAdapter {
     	SimpleUrlAuthenticationFailureHandler hander = new SimpleUrlAuthenticationFailureHandler();
     	hander.setUseForward(true);
     	hander.setDefaultFailureUrl("/authlogin.jsp");
-    	
+
 		http
+		.exceptionHandling().authenticationEntryPoint(new UnauthorizedEntryPoint())
+		.and()
 		.csrf().disable()
 	  	.authorizeRequests()
 	  	.antMatchers("/oauth/token")
@@ -61,9 +66,14 @@ public class OAuth2SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	  	.formLogin().loginPage("/authlogin.jsp")
 	  	.usernameParameter("userName").passwordParameter("userPwd")
 	  	.authenticationDetailsSource(authenticationDetailsSource)
-//	  	.loginProcessingUrl("/login").failureUrl("/index1.jsp")
-	  	.loginProcessingUrl("/login").failureHandler(hander)
-	  	.and().logout().logoutUrl("/logout");
+	  	.loginProcessingUrl("/login")
+	  	.successHandler(new AjaxAuthSuccessHandler())
+        .failureHandler(new AjaxAuthFailHandler())//failureHandler(hander).defaultSuccessUrl("/index_v2.jsp")
+//        .loginProcessingUrl("/ajaxlogin")
+//        .successHandler(new AjaxAuthSuccessHandler())
+//        .failureHandler(new AjaxAuthFailHandler())
+	  	.and().logout().logoutUrl("/logout").logoutSuccessHandler(new AjaxLogoutSuccessHandler());
+
 		http.authorizeRequests().antMatchers("/user/**").authenticated();
     }
 

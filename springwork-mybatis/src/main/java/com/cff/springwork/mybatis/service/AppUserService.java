@@ -32,6 +32,9 @@ public class AppUserService {
 
 	public AppUser findByName(String userName) {
 		List<AppUser> appusers = appUserMapper.getAppUserByUserName(userName);
-		return appusers == null ? null : appusers.get(0);
+		if(appusers == null || appusers.size() < 1){
+			return null;
+		}
+		return appusers.get(0);
 	}
 }

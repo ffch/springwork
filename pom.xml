@@ -247,5 +247,6 @@
     <module>springwork-dubbo-consume</module>
     <module>springwork-activemq</module>
     <module>springwork-netty</module>
+    <module>springwork-activiti</module>
   </modules>
 </project>

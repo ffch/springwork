@@ -10,6 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import com.cff.springwork.security.detail.OauthAddUserDetails;
 import com.cff.springwork.security.detail.OauthUserDetails;
@@ -24,15 +25,17 @@ public class OauthAuthenticationProvider implements AuthenticationProvider {
 	 */
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-		//验证码等校验
+		// 验证码等校验
 		OauthAddUserDetails details = (OauthAddUserDetails) authentication.getDetails();
 
 		System.out.println(details.getToken() + "+++++++++++++++++" + details.getSessionToken());
-		if (!details.getToken().equalsIgnoreCase(details.getSessionToken())) {
-			throw new BadCredentialsException("验证码错误。");
+		if (!details.getIsAjax() && !StringUtils.isEmpty(details.getSessionToken())) {
+			if (!details.getToken().equalsIgnoreCase(details.getSessionToken())) {
+				throw new BadCredentialsException("验证码错误。");
+			}
 		}
-		
-		//用户名密码校验
+
+		// 用户名密码校验
 		OauthUserDetails oauthUserDetails = (OauthUserDetails) oauthUserDetailsService
 				.loadUserByUsername(authentication.getName());
 		System.out.println(authentication.getName() + "+++++++++++++++++" + authentication.getCredentials());
