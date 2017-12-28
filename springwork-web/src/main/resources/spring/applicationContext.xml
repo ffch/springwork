@@ -20,17 +20,18 @@
 	</context:component-scan>
 
 
-	<bean id="annotationPropertyConfigurer"
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="locations">
-			<list>
+<!-- 	<bean id="annotationPropertyConfigurer" -->
+<!-- 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> -->
+<!-- 		<property name="locations"> -->
+<!-- 			<list> -->
 <!-- 				<value>classpath:properties/config-${env}.properties</value> -->
-				<value>classpath:properties/db-config.properties</value>
-			</list>
-		</property>
-	</bean>
+<!-- 				<value>classpath:properties/db-config.properties</value> -->
+<!-- 			</list> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
 	<import resource="classpath*:spring-db.xml"/>
 	<import resource="classpath*:spring-security.xml"/>
+	<import resource="classpath*:spring-activiti.xml"/>
 <!-- 	<import resource="classpath*:spring-jms.xml"/> -->
 <!-- 	<import resource="classpath*:spring-dubbo.xml"/> -->
 <!-- 	<import resource="classpath:spring/spring-ehcache.xml"/> -->

@@ -27,7 +27,7 @@
 				contentType: 'application/json',
 				url : "<%=baseUrl%>/pub/register",
 				dataType : "json",
-				data : "{userName : \""+userName+"\",password:\""+passwd+"\"}",
+				data : "{\"userName\":\""+userName+"\",\"password\":\""+passwd+"\"}",
 				success : function(data) {
 					
 				},

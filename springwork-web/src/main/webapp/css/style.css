@@ -1,0 +1,266 @@
+ul{
+    list-style: none;
+    padding-left: 0;
+}
+#sidebar{
+    width: 35px;
+    background-color: #e1e1e1;
+    padding-top: 200px;
+    /*设置高度100%都是相对父元素的100%，fixed使该元素脱离流，相对屏幕的100%，即全屏*/
+    position: fixed;
+    min-height:100%;
+    z-index: 100;
+}
+
+.item{
+    font-size: 14px;
+    font-family: 'Microsoft New Tai Lue';
+    text-align: center;
+    margin-top: 9px;
+}
+
+#closeBar{
+    position: absolute;
+    bottom: 30px;
+    width: 35px;
+    text-align: center;
+    /*提示别人是个按钮 手的样式*/
+    cursor: pointer;
+}
+
+.nav-content{
+    width: 200px;
+    position: fixed;
+    min-height: 100%;
+    background-color: #e1e1e1;
+    /*调试代码时经常使用border，帮我们定位到div的一个区域*/
+    border: 1px solid black;
+    z-index: 99;
+    /*使用透明度为0来隐藏元素*/
+    opacity: 0;
+    left: -170px;
+}
+
+.nav-con-close{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+.sidebar-move-left{
+    -webkit-animation:sml;
+    -o-animation:sml;
+    animation:sml;
+    /*持续时间*/
+    -webkit-animation-duration: 1s;
+    -moz-animation-duration: 1s;
+    -o-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-iteration-count: 1;
+    -moz-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    /*执行方向，动画执行结束时保持在它结束时的状态*/
+    animation-fill-mode: forwards;
+    -moz-animation-fill-mode: forwards;
+    -o-animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+
+}
+
+@keyframes sml {
+    from{
+
+    }
+    to{
+        transform: translateX(-120px);
+    }
+}
+.closebar-move-right{
+    -webkit-animation:cmr;
+    -o-animation:cmr;
+    animation:cmr;
+    /*持续时间*/
+    -webkit-animation-duration: 1s;
+    -moz-animation-duration: 1s;
+    -o-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-iteration-count: 1;
+    -moz-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    /*执行方向，动画执行结束时保持在它结束时的状态*/
+    animation-fill-mode: forwards;
+    -moz-animation-fill-mode: forwards;
+    -o-animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+
+@keyframes cmr {
+    from{
+
+    }
+    to{
+        transform: translateX(160px) rotate(405deg) scale(1.5);
+    }
+}
+
+.sidebar-move-right{
+    -webkit-animation:smr;
+    -o-animation:smr;
+    animation:smr;
+    /*持续时间*/
+    -webkit-animation-duration: 1s;
+    -moz-animation-duration: 1s;
+    -o-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-iteration-count: 1;
+    -moz-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    /*执行方向，动画执行结束时保持在它结束时的状态*/
+    animation-fill-mode: forwards;
+    -moz-animation-fill-mode: forwards;
+    -o-animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+
+@keyframes smr {
+    from{
+
+    }
+    to{
+        transform: translateX(120px);
+    }
+}
+.closebar-move-left{
+    -webkit-animation:cml;
+    -moz-animation-name: cml;
+    -o-animation:cml;
+    animation:cml;
+    /*持续时间*/
+    -webkit-animation-duration: 1s;
+    -moz-animation-duration: 1s;
+    -o-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-iteration-count: 1;
+    -moz-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    /*执行方向，动画执行结束时保持在它结束时的状态*/
+    animation-fill-mode: forwards;
+    -moz-animation-fill-mode: forwards;
+    -o-animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+
+@keyframes cml {
+    from{
+        transform: scale(1.5);
+    }
+    to{
+        transform:translateX(-160px) rotate(-405deg) scale(1);
+    }
+}
+
+.menuContent-move-right{
+    -webkit-animation:mmr;
+    -moz-animation-name: mmr;
+    -o-animation:mmr;
+    animation:mmr;
+    /*持续时间*/
+    -webkit-animation-duration: .5s;
+    -moz-animation-duration: .5s;
+    -o-animation-duration: .5s;
+    animation-duration: .5s;
+    -webkit-animation-iteration-count: 1;
+    -moz-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    /*执行方向，动画执行结束时保持在它结束时的状态*/
+    animation-fill-mode: forwards;
+    -moz-animation-fill-mode: forwards;
+    -o-animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+
+@keyframes mmr {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+        transform:translateX(120px);
+    }
+
+}
+
+.menuContent-move-left{
+    -webkit-animation:mml;
+    -moz-animation-name: mml;
+    -o-animation:mml;
+    animation:mml;
+    /*持续时间*/
+    -webkit-animation-duration: 1s;
+    -moz-animation-duration: 1s;
+    -o-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-iteration-count: 1;
+    -moz-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    /*执行方向，动画执行结束时保持在它结束时的状态*/
+    animation-fill-mode: forwards;
+    -moz-animation-fill-mode: forwards;
+    -o-animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+    left: -10px;
+}
+
+@keyframes mml {
+    from{
+        opacity: 1;
+    }
+    to{
+        opacity: 0;
+        transform:translateX(-120px);
+    }
+
+}
+
+.menuContent-move-up{
+    -webkit-animation:mmu;
+    -moz-animation-name: mmu;
+    -o-animation:mmu;
+    animation:mmu;
+    /*持续时间*/
+    -webkit-animation-duration: 1s;
+    -moz-animation-duration: 1s;
+    -o-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-iteration-count: 1;
+    -moz-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    /*执行方向，动画执行结束时保持在它结束时的状态*/
+    animation-fill-mode: forwards;
+    -moz-animation-fill-mode: forwards;
+    -o-animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+
+@keyframes mmu {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+        transform:translateY(-250px);
+    }
+
+}
+
+.qqconnect{
+	top:5px;
+	margin:20px;
+}

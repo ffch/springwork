@@ -11,4 +11,6 @@ public interface AppUserMapper {
 	
 	public void save(AppUser appUser);
 	
+	public void modify(AppUser appUser);
+	
 }

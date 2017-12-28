@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/usertest")
 public class TestLoginController {
 	
 	@RequestMapping("/test")

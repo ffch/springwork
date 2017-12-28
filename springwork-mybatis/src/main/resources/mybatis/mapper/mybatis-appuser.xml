@@ -35,5 +35,13 @@
 			#{userNo}
 			)
 	</insert>
+	
+	<update id="modifyPasswd" parameterType="com.cff.springwork.model.security.AppUser">
+		update se_app_user
+		<set>
+			<if test="passwd != null">password=#{password}</if>
+		</set>
+		where userName=#{userName}
+	</update>
 
 </mapper>  

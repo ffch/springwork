@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.cff</groupId>
+		<artifactId>springwork</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>springwork-activiti</artifactId>
+	<packaging>jar</packaging>
+	<name>springwork-activiti</name>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<activiti.version>5.17.0</activiti.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>com.cff</groupId>
+			<artifactId>springwork-model</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.cff</groupId>
+			<artifactId>springwork-common</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.cff</groupId>
+			<artifactId>springwork-mybatis</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<!-- activiti -->
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-engine</artifactId>
+			<version>${activiti.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-spring</artifactId>
+			<version>${activiti.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-rest</artifactId>
+			<version>${activiti.version}</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<finalName>springwork-activiti</finalName>
+	</build>
+</project>

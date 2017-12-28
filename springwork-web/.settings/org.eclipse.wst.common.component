@@ -16,6 +16,9 @@
         <dependent-module archiveName="springwork-mybatis-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/springwork-mybatis/springwork-mybatis">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="springwork-activiti-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/springwork-activiti/springwork-activiti">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="java-output-path" value="/springwork-web/target/classes"/>
         <property name="context-root" value="springwork-web"/>
     </wb-module>

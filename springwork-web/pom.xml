@@ -35,6 +35,11 @@
 			<artifactId>springwork-mybatis</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.cff</groupId>
+			<artifactId>springwork-activiti</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 <!-- 		<dependency> -->
 <!-- 			<groupId>com.cff</groupId> -->
 <!-- 			<artifactId>springwork-dubbo-produce</artifactId> -->

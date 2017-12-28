@@ -18,11 +18,11 @@ import com.cff.springwork.mybatis.mapper.AppUserMapper;
 public class AppUserService {
 	@Autowired
 	AppUserMapper appUserMapper;
-	
+
 	@Autowired
 	AppSeqService appSeqService;
-	
-	public void save(AppUser appUser){
+
+	public void save(AppUser appUser) {
 		String uuid = UUID.randomUUID().toString().replace("-", "");
 		appUser.setUuid(uuid);
 		appUser.setUserNo(appSeqService.nextSeq(Constant.USERSEQ));
@@ -32,9 +32,19 @@ public class AppUserService {
 
 	public AppUser findByName(String userName) {
 		List<AppUser> appusers = appUserMapper.getAppUserByUserName(userName);
-		if(appusers == null || appusers.size() < 1){
+		if (appusers == null || appusers.size() < 1) {
 			return null;
 		}
 		return appusers.get(0);
+	}
+
+	public boolean modify(AppUser user) {
+		try {
+			appUserMapper.modify(user);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 }
