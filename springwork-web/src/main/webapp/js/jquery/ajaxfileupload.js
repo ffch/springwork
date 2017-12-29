@@ -235,5 +235,5 @@
 });
  
 $.handleError = function(a,b,c,e){
-	alert('文件提交错误，请关闭重试');
+	//alert('文件提交错误，请关闭重试');
 }

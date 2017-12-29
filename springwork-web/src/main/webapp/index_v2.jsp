@@ -178,13 +178,14 @@
 		type : "post",
 		url : "${ctx}/pub/getUser",
 		data : {} ,
-		dataType : "text",
+		dataType : "json",
 		success : function(data) {
 			console.log(data);
-			if(data != null && data != ""){
-				loginRemide = data;
+			var userId = data.userName;
+			if(userId != null && userId != ""){
+				loginRemide = userId;
 				loginflag = true;
-				typeUser = "1001";
+				typeUser = data.userType;
 				if(!loginflag){
 			    	$("#loginRemide").text(loginRemide);
 			    	$("#loginRemide").attr("href",loginUrl);
@@ -277,22 +278,22 @@
 			});
 	}
 	
-// 	$.ajax({
-// 		type : "post",
-// 		url : "${ctx}/user/usertype",
-// 		data : {userType : "1001"} ,
-// 		dataType : "json",
-// 		success : function(data) {
-// 			var users = data.users;
-// 			if(users != null && users.length != 0){
-// 				var size = users.length;
-// 				var content = "";
-// 				for (var i = 0; i < size; i++) {
-// 					content += "<a class=\"qqconnect\" href=\"${ctx}/jsp_v2/websocket/websocketchatcommon.jsp?specialUser="+ users[i].userId +"&num=" + (i+1) +"\">语聊客服"+(i+1)+"<\/a><br><br>";
-// 				}
-// 				$("#recomindUsers").html(content);
-// 			}
-// 		}
-// 	});
+	$.ajax({
+		type : "post",
+		url : "${ctx}/pub/getSpecialUser",
+		data : {userType : "2001"} ,
+		dataType : "json",
+		success : function(data) {
+			var users = data;
+			if(users != null && users.length != 0){
+				var size = users.length;
+				var content = "";
+				for (var i = 0; i < size; i++) {
+					content += "<a class=\"qqconnect\" href=\"${ctx}/jsp_v2/websocket/websocketchatcommon.jsp?specialUser="+ users[i].userName +"&num=" + (i+1) +"\">语聊客服"+users[i].userName+"<\/a><br><br>";
+				}
+				$("#recomindUsers").html(content);
+			}
+		}
+	});
 </script>
 </html>

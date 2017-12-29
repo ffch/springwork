@@ -32,10 +32,15 @@ public class UserControllor {
 	private AppUserService appUserService;
 	
 	@RequestMapping("/getUser")
-	public String getUserName(){
+	public AppUser getUserName(){
+		AppUser user = new AppUser();
 		String userName = SecurityContextHolder.getContext().getAuthentication().getName();
-		
-		return userName;
+		if(!StringUtils.isEmpty(userName)){
+			AppUser userTmp = appUserService.findByName(userName);
+			user.setUserType(userTmp.getUserType());
+		}
+		user.setUserName(userName);
+		return user;
 	}
 	
 	@RequestMapping(value="/modifypasswd")

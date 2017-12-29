@@ -1,6 +1,7 @@
 package com.cff.springwork.web.endpoint.pub;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,8 +11,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.cff.springwork.common.constant.Constant;
 import com.cff.springwork.model.security.AppUser;
@@ -59,11 +62,23 @@ public class PublicController {
 	}
 	
 	@RequestMapping("/getUser")
-	public String getUserName(HttpServletRequest request){
+	public AppUser getUserName(HttpServletRequest request){
+		AppUser user = new AppUser();
+
 		String userName = SecurityContextHolder.getContext().getAuthentication().getName();
 		if(userName == null || "".equals(userName) || "anonymousUser".equals(userName)){
 			userName = "";
-		}else request.getSession(false).setAttribute("userName", userName);
-		return userName;
+		}else{
+			AppUser userTmp = appUserService.findByName(userName);
+			user.setUserType(userTmp.getUserType());
+		}
+		user.setUserName(userName);
+		return user;
+	}
+	
+	@RequestMapping("/getSpecialUser")
+	public List<AppUser> getSpecialUser(@RequestParam String userType){
+		List<AppUser> users = appUserService.findByType(userType);
+		return users;	
 	}
 }

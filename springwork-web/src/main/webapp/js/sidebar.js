@@ -25,7 +25,7 @@ var sideBar = {} 会造成全局污染，sideBar赋给Windows，作为windows的
                 	window.location.href= appUrl + "/login_v2.jsp?operatype=login";
                 	return;
                 }
-                if(targetId=="webchat" && typeUser == "1001"){
+                if(targetId=="webchat" && typeUser == "2001"){
                 	window.location.href= appUrl + "/jsp_v2/websocket/websocketchat.jsp";
                 	return;
                 }

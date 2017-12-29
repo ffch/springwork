@@ -31,13 +31,6 @@ function replace_em(str){
 }
 
 function connect(ws) { 
-	var url = getUrl();
-    //alert("url:"+url);  
-    if (!url) {  
-        return;  
-    }  
-
-    ws = new WebSocket(url);  
 
     ws.onopen = function () {  
     	$("#ChatContent").append("<small>连接成功。。。</small><br>");
@@ -50,39 +43,13 @@ function connect(ws) {
 	    	console.log('dataAll:'+dataAll);
 	    	if(msgType == "0000"){
 	    		webid = dataAll.substring(indexMsgType+1,dataAll.length);
-	    		$.ajax({
-	    			url : contextPath + "/webSocket/weblogin",
-	    			data : {
-	    				"webid" :webid,
-	    			},
-	    			dataType : "text",
-	    			timeout : 5000,
-	    			error : function(XMLHttpRequest,
-	    					textStatus, errorThrown) {
-	    				$("#ChatContent").append(
-	    						"消息发送失败，请检查网络！"
-	    								+ "<br/>");
-	    			},
-	    			success : function(data, textStatus) {
-	    				console.log('rsp:'+data);
-	    				if(data == "100"){
-	    					$("#ChatContent").append(
-		    						"消息发送失败，请检查网络！"
-		    								+ "<br/>");
-	    				}else if(data == "101"){
-	    					$("#ChatContent").append(
-		    						"请重新进入语聊"
-		    								+ "<br/>");
-	    				}else{
-		    				$("#RandomContent").html("欢迎您,"+webid);
-	    				}
-	    			}
-	    		});
+	    		$("#RandomContent").html("欢迎您,"+webid);
+	    		nickName = webid;
 	    	}else{
 	    		var data = dataAll.substring(indexMsgType+1,dataAll.length);
 		    	var index = data.indexOf("|");
 		    	var userId = data.substring(0,index);
-		    	var msg = data.substring(index+1,data.length);
+		    	var msg = decodeURI(data.substring(index+1,data.length));
 		    	var result = replace_em(msg);
 		    	if(document.getElementById(userId)){
 		    		document.getElementById(userId).setAttribute('src', contextPath+'/img/msgget.gif');

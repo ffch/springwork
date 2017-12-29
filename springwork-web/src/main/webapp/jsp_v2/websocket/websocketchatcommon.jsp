@@ -3,10 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <%@ include file="/common/head.jsp"%>
-<%-- <%@ page import="com.cff.domain.User" %> --%>
-<%-- <% --%>
-// 	User userInfo = (User)request.getSession().getAttribute("userInfo");
-<!-- %> -->
+
 <!-- <script src="http://www.jq22.com/js/jq.js"></script> -->
 <script type="text/javascript" src="${ctx}/js/jquery/jquery-3.2.1.min.js" ></script>
 <script src="${ctx}/js/websocket/websocketcommon.js"></script>
@@ -45,6 +42,10 @@ var nickName ="15607110725";
 var contextPath = '${ctx}';
 var imgName = null;
 var fileImgSize = 0;
+window.onbeforeunload = function()
+{
+	disconnect(ws);
+}
 function ChatSetUser(user,userId) {
 	msgUser = user;
 	muserId = userId;
@@ -84,7 +85,7 @@ function ChatShow() {
 }
 function ChatClose() {
 	gs("main").display = "none";
-	//disconnect(ws);
+	disconnect(ws);
 }
 function ChatNew() {
 	gs("main").display = "";
@@ -117,29 +118,12 @@ function ChatSend(obj) {
 		var number = $("#ChatContent").scrollTop();
     	number += 16;
     	$("#ChatContent").scrollTop(number);
-		$.ajax({
-			url : "${ctx}/webSocket/send",
-			data : {
-				"userId" :muserId,
-				"msg" : encodeURI(o.value)
-			},
-			dataType : "text",
-			timeout : 5000,
-			error : function(XMLHttpRequest,
-					textStatus, errorThrown) {
-				$("#ChatContent").append(
-						"消息发送失败，请检查网络！"
-								+ o.value
-								+ "<br/>");
-			},
-			success : function(data, textStatus) {
-				if(data == "100"){
-					$("#ChatContent").append(
-    						"请重新进入语聊！"
-    								+ "<br/>");
-				}
-			}
-		});
+    	console.log("正在发送");
+    	debugger;
+    	if(ws!=null){
+    		console.log("ws不为空");
+    		ws.send("0001" + "|" + muserId + "|" + encodeURI(o.value));
+    	}
 		o.value = '';
 	}
 	
@@ -153,8 +137,8 @@ function ChatSend(obj) {
 		//alert(fileImgSize);
 		$.ajaxFileUpload({
 			//处理文件上传操作的服务器端地址(可以传参数,已亲测可用)
-			url:'${ctx}/webSocket/fileUpload?userName='+muserId,
-			secureuri:false,                       //是否启用安全提交,默认为false 
+			url:'${ctx}/webSocket/fileUpload?userId='+muserId,
+			secureuri:true,                       //是否启用安全提交,默认为false 
 			fileElementId:'ChatFile',           //文件选择框的id属性
 			dataType:'text',                       //服务器返回的格式,可以是json或xml等
 			success:function(data, status){        //服务器响应成功时的处理函数
@@ -165,8 +149,36 @@ function ChatSend(obj) {
 				imgName = msgUser;
 			}
 		});
+
+		
+// 		var formData = new FormData();
+// 			var name = muserId;
+// 			formData.append("myfiles", $("#ChatFile")[0].files[0]);
+// 			formData.append("userId", name);
+// 			$.ajax({
+// 				url : '${ctx}/webSocket/fileUpload',
+// 				type : 'POST',
+// 				data : formData,
+// 				// 告诉jQuery不要去处理发送的数据
+// 				processData : false,
+// 				// 告诉jQuery不要去设置Content-Type请求头
+// 				contentType : false,
+// 				beforeSend : function() {
+// 					console.log("正在进行，请稍候");
+// 				},
+// 				success : function(responseStr) {
+// 					if (responseStr.status === 0) {
+// 						console.log("成功" + responseStr);
+// 					} else {
+// 						console.log("失败");
+// 					}
+// 				},
+// 				error : function(responseStr) {
+// 					console.log("error");
+// 				}
+// 			});
+		}
 	}
-}
 	if (document.getElementById) {
 		(function() {
 			if (window.opera) {
@@ -233,19 +245,39 @@ function ChatSend(obj) {
 		})();
 	}
 
-	$(function() {
-		if (ws == null) {
-			connect(ws);
-		}
- 		ChatSetUser("语聊客服" + <%=request.getParameter("num")%>,<%=request.getParameter("specialUser")%>);
+	function toIndex() {
+		window.location.href = contextPath + "/index_v2.jsp";
+	}
+
+	$(
+			function() {
+				if (ws == null) {
+					var url = getUrl();
+					//alert("url:"+url);  
+					if (!url) {
+						return;
+					}
+
+					ws = new WebSocket(url);
+					connect(ws);
+				}
+				ChatSetUser("语聊客服" +
+<%=request.getParameter("num")%>,"<%=request.getParameter("specialUser")%>");
 	})
 </script>
 </head>
 
 <body>
-	
+	<div>
+		<div style="display: inline;">
+			<img style="width: 5%;margin-left: 100px;" alt="" src="${ctx}/img/logo.png" onclick="toIndex()"/>
+		</div>
+		<div style="display: inline; float: right">
+			<img style="width: 220px;display:block;margin-top: 15px;margin-right: 200px;"  alt="" src="${ctx}/img/logoright.png"/>
+		</div>
+	</div>
 	<div id="main" class="dragclass" onclick="ChatRead()" style="left: 400px; top: 200px;">
-		<div id="ChatUsers" style="width:60px; padding:3px; font-size:13px;float:left; display:inline"></div>
+		<div id="ChatUsers" style="width:100px; padding:3px; font-size:13px;float:left; display:inline"></div>
 		<div id="ChatHead">
 			<a href="#" onclick="ChatHidden();">-</a> <a href="#"
 				onclick="ChatShow();">+</a> <a href="#" onclick="ChatClose();">x</a>
@@ -265,7 +297,7 @@ function ChatSend(obj) {
 			</div>
 		</div>
 	</div>
-	<div align="left">
+	<div align="left" style="margin-top: 50px;margin-left: 20px;">
 		<p id=RandomContent>欢迎您，15607110725</p>
 		<p id=content></p>
 	</div>

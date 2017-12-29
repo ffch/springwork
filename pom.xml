@@ -248,5 +248,6 @@
     <module>springwork-activemq</module>
     <module>springwork-netty</module>
     <module>springwork-activiti</module>
+    <module>springwork-websocket</module>
   </modules>
 </project>
