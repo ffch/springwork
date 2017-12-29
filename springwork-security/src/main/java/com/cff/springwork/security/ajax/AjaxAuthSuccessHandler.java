@@ -21,6 +21,7 @@ public class AjaxAuthSuccessHandler extends SavedRequestAwareAuthenticationSucce
 	
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
+    	request.getSession().setAttribute("userName", authentication.getName());
     	if(isAjaxRequest(request)){
     		response.setStatus(HttpServletResponse.SC_OK);
     	}else{
