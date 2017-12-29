@@ -37,6 +37,14 @@ public class AppUserService {
 		}
 		return appusers.get(0);
 	}
+	
+	public List<AppUser> findByType(String userType) {
+		List<AppUser> appusers = appUserMapper.getAppUserByType(userType);
+		if (appusers == null || appusers.size() < 1) {
+			return null;
+		}
+		return appusers;
+	}
 
 	public boolean modify(AppUser user) {
 		try {

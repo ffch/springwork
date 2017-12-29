@@ -7,6 +7,8 @@ import com.cff.springwork.model.security.AppUser;
 public interface AppUserMapper {
 	public List<AppUser> getAppUser(String userNo);
 	
+	public List<AppUser> getAppUserByType(String userType);
+	
 	public List<AppUser> getAppUserByUserName(String userName);
 	
 	public void save(AppUser appUser);

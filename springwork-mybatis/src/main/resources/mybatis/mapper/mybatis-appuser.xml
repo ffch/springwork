@@ -18,6 +18,13 @@
 		where user_no = #{userNo}
 	</select>
 	
+	<select id="getAppUserByType" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from se_app_user
+		where user_type = #{userType}
+	</select>
+	
 	<select id="getAppUserByUserName" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
