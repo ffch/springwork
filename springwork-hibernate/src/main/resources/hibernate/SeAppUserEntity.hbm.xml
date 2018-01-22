@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.cff.springwork.dictionary.entity.SeAppUserEntity" table="se_app_user" schema="cff">
+        <id name="userNo">
+            <column name="user_no" sql-type="varchar(16)" length="16"/>
+        </id>
+        <property name="uuid">
+            <column name="uuid" sql-type="varchar(32)" length="32"/>
+        </property>
+        <property name="userName">
+            <column name="user_name" sql-type="varchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="passwd">
+            <column name="passwd" sql-type="varchar(32)" length="32" not-null="true"/>
+        </property>
+        <property name="userType">
+            <column name="user_type" sql-type="varchar(4)" length="4" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.cff.springwork.dictionary.entity.ActEvtLogEntity" table="act_evt_log" schema="cff">
+        <id name="logNr">
+            <column name="LOG_NR_" sql-type="bigint(20)"/>
+        </id>
+        <property name="type">
+            <column name="TYPE_" sql-type="varchar(64)" length="64" not-null="true"/>
+        </property>
+        <property name="procDefId">
+            <column name="PROC_DEF_ID_" sql-type="varchar(64)" length="64" not-null="true"/>
+        </property>
+        <property name="procInstId">
+            <column name="PROC_INST_ID_" sql-type="varchar(64)" length="64" not-null="true"/>
+        </property>
+        <property name="executionId">
+            <column name="EXECUTION_ID_" sql-type="varchar(64)" length="64" not-null="true"/>
+        </property>
+        <property name="taskId">
+            <column name="TASK_ID_" sql-type="varchar(64)" length="64" not-null="true"/>
+        </property>
+        <property name="timeStamp">
+            <column name="TIME_STAMP_" sql-type="timestamp"/>
+        </property>
+        <property name="userId">
+            <column name="USER_ID_" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="data">
+            <column name="DATA_" sql-type="longblob" not-null="true"/>
+        </property>
+        <property name="lockOwner">
+            <column name="LOCK_OWNER_" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="lockTime">
+            <column name="LOCK_TIME_" sql-type="timestamp" not-null="true"/>
+        </property>
+        <property name="isProcessed">
+            <column name="IS_PROCESSED_" sql-type="tinyint(4)" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

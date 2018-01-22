@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.cff.springwork.dictionary.entity.SequenceEntity" table="sequence" schema="cff" >
+        <id name="sequenceName">
+            <column name="sequence_name" sql-type="varchar(64)" length="64"/>
+        </id>
+        <property name="value">
+            <column name="value" sql-type="int(11)" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!--<property name="connection.url">jdbc:mysql://rm-uf664wu2lfctsrtczo.mysql.rds.aliyuncs.com:3306/cff</property>-->
+        <!--<property name="connection.driver_class">com.mysql.jdbc.Driver</property>-->
+
+        <!-- DB schema will be updated if needed -->
+        <property name="hbm2ddl.auto">update</property>
+        <property name="connection.url">jdbc:mysql://rm-uf664wu2lfctsrtczo.mysql.rds.aliyuncs.com:3306/cff</property>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.username">cff</property>
+        <property name="connection.password">2EJAoxIWi1H56Svy</property>
+
+        <mapping class="com.cff.springwork.dictionary.entity.ActEvtLogEntity"/>
+        <mapping resource="hibernate/ActEvtLogEntity.hbm.xml"/>
+
+        <mapping class="com.cff.springwork.dictionary.entity.SeAppUserEntity"/>
+        <mapping resource="hibernate/SeAppUserEntity.hbm.xml"/>
+
+        <mapping class="com.cff.springwork.dictionary.entity.SequenceEntity"/>
+        <mapping resource="hibernate/SequenceEntity.hbm.xml"/>
+    </session-factory>
+</hibernate-configuration>

@@ -27,3 +27,6 @@ springwork，在spring中整合关键技术。
 	
 9.springwork-netty
 	netty服务器，配置启动，责任链handler。
+
+10.springwork-hibernate
+    一个简单的hibernate demo

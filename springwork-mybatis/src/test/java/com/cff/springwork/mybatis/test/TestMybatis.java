@@ -31,7 +31,7 @@ public class TestMybatis {
 		testService.save(appUser);
 	}
 	
-	//@Test
+	@Test
 	public void testSeq(){
 		//System.out.println(appSeqService.nextSeq("userseq"));
 		System.out.println(String.format("%06d", 123456));
