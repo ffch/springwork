@@ -251,6 +251,7 @@
         <module>springwork-activiti</module>
         <module>springwork-websocket</module>
         <module>springwork-hibernate</module>
-        <module>springwork-algorithm</module>
+        <module>springwork-test</module>
+        <module>springwork-mail</module>
     </modules>
 </project>
