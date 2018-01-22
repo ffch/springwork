@@ -1,4 +1,4 @@
-package com.trie.demo;
+package com.cff.springwork.test.trie;
 
 import org.apache.commons.collections4.trie.PatriciaTrie;
 import org.junit.Test;

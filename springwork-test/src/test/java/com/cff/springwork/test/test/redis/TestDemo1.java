@@ -1,4 +1,4 @@
-package com.demo.test.redis;
+package com.cff.springwork.test.test.redis;
 
 import java.util.HashMap;
 import java.util.Iterator;
