@@ -36,7 +36,7 @@ var sideBar = {} 会造成全局污染，sideBar赋给Windows，作为windows的
                 if(self.state === 'allClosed'){ 
                     console.log('open'+menuContentEl.id);
                     
-                    menuContentEl.style.top = '0';
+                    menuContentEl.style.top = '60';
                     menuContentEl.style.left = '-85px';
                     menuContentEl.className = 'nav-content';
                     menuContentEl.classList.add('menuContent-move-right');
@@ -48,14 +48,14 @@ var sideBar = {} 会造成全局污染，sideBar赋给Windows，作为windows的
                     console.log('closed'+self.currentOpenMenuContent.id);
                     console.log('open'+menuContentEl.id);
                     self.currentOpenMenuContent.className = 'nav-content';
-                    self.currentOpenMenuContent.style.top = '0';
+                    self.currentOpenMenuContent.style.top = '60';
                     self.currentOpenMenuContent.style.left = '-10px';
                     self.currentOpenMenuContent.classList.add('menuContent-move-left');
                     self.state = 'allClosed';
                 	curIndex = targetId;
                     if(curIndex != self.targetId){
 	                    menuContentEl.className='nav-content';
-	                    menuContentEl.style.top = '250px';
+	                    menuContentEl.style.top = '310px';
 	                    menuContentEl.style.left = '35px';
 	                    menuContentEl.classList.add('menuContent-move-up');
 	                    self.state='hasOpened';
@@ -71,7 +71,7 @@ var sideBar = {} 会造成全局污染，sideBar赋给Windows，作为windows的
             this.menuContentList[i].addEventListener('click',function (e) {
                 var menuContent = e.currentTarget.parentNode;
                 menuContent.className = 'nav-content';
-                menuContent.style.top = '0';
+                menuContent.style.top = '60';
                 menuContent.style.left ='35px';
                 menuContent.classList.add('menuContent-move-left');
                 this.state='allClosed';

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>  
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >  
-<mapper namespace="com.cff.springwork.mybatis.mapper.SuggestMapper">  
-    <resultMap id="BaseResultMap" type="com.cff.springwork.model.activi.UserTask">  
+<mapper namespace="com.cff.springwork.mybatis.mapper.ProductMapper">  
+    <resultMap id="BaseResultMap" type="com.cff.springwork.model.activi.ProductTask">  
         <result column="taskid" property="taskid" />  
         <result column="userid" property="userid" /> 
         <result column="title" property="title" />
@@ -12,39 +12,40 @@
         <result column="email" property="email" />  
         <result column="mobile" property="mobile" /> 
         <result column="curviewer" property="curviewer" />
+        <result column="money" property="money" />
         <result column="status" property="status" />  
     </resultMap>  
   	<sql id="Base_Column_List" >  
-    	taskid, userid, title, type, tasktype, content, name, email, mobile, curviewer, status
+    	taskid, userid, title, type, tasktype, content, name, email, mobile, curviewer, money, status
   	</sql>  
 	<select id="getUserTask" resultMap="BaseResultMap" parameterType="java.lang.String" >  
 	   select   
 	   <include refid="Base_Column_List" />  
-	   from se_user_task  
+	   from se_product_task  
 	   where userid = #{userid,jdbcType=VARCHAR}  
 	</select>  
 	
 	<select id="getUserTaskByTaskId" resultMap="BaseResultMap" parameterType="java.lang.String" >  
 	   select   
 	   <include refid="Base_Column_List" />  
-	   from se_user_task  
+	   from se_product_task  
 	   where taskid = #{taskid,jdbcType=VARCHAR}  
-	</select> 
+	</select>  
 	
 	<select id="getUserTaskByCurrentViwer" resultMap="BaseResultMap" parameterType="java.lang.String" >  
 	   select   
 	   <include refid="Base_Column_List" />  
-	   from se_user_task  
+	   from se_product_task  
 	   where curviewer = #{curviewer,jdbcType=VARCHAR}  
 	</select>   
 	
-	<insert id="save" parameterType="com.cff.springwork.model.activi.UserTask">
-	  insert into se_user_task(taskid, userid, title, type, tasktype, content, name, email, mobile) 
-	  		values(#{taskid}, #{userid}, #{title}, #{type}, #{tasktype}, #{content}, #{name}, #{email}, #{mobile})
+	<insert id="save" parameterType="com.cff.springwork.model.activi.ProductTask">
+	  insert into se_product_task(taskid, userid, title, type, tasktype, content, name, email, mobile,money) 
+	  		values(#{taskid}, #{userid}, #{title}, #{type}, #{tasktype}, #{content}, #{name}, #{email}, #{mobile}, #{money})
 	</insert>
 	
-	<update id="updateStatus" parameterType="com.cff.springwork.model.activi.UserTask">
-		update se_user_task
+	<update id="updateStatus" parameterType="com.cff.springwork.model.activi.ProductTask">
+		update se_product_task
 		<set>
 			<if test="status != null">status=#{status}</if>,
 			<if test="curviewer != null">curviewer=#{curviewer}</if>

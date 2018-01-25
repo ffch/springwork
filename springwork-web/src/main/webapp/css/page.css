@@ -23,14 +23,22 @@ li{
 }
 
 .frontindex{
+	margin-top: 60px;
 	min-width: 1200px;
 	height: 788px;
 }
 
 .imglogo{
-	margin: 5px 250px;
-	width: 120px;
+	margin: 5px 10px 5px 250px;
+	width: 50px;
 	height: 50px;
+}
+
+.textlogo{
+	font-size: 20px;
+    line-height: 40px;
+    color: #fff;
+    font-weight:bold;
 }
 
 .imglogocm{
@@ -177,6 +185,47 @@ li{
     margin: 0 auto;
 }
 
+.shinmenu {
+    height: 40px;
+    line-height: 40px;
+    background: #9cf1e4;
+    position: relative;
+    font-size: 16px;
+}
+
+.shinmenu li {
+    float: left;
+    margin: 0 8px;
+}
+
+.shinmenu li a {
+	text-decoration:none;
+	
+    -webkit-transition: all 0.3s linear;
+    display: block;
+    text-align: center;
+    color: #fff;
+    width: 120px;
+}
+
+.shinmenu li a:hover, .shinmenu li.on a {
+    background: #f35e0b;
+}
+
+.shinmenu li a:link {
+    background: #c0c0c0;
+}
+
+.shinmenu li.off a {
+    background: #c0c0c0;
+}
+
+.shinmenuw1170 {
+    position: relative;
+    width: 1170px;
+    margin: 0 auto;
+}
+
 #content {
     width: 1170px;
     border: 1px solid #dcdcdc;
@@ -302,4 +351,105 @@ li{
 .error{
 	color: #FF0000;
 	float: left;
+}
+
+.bs-btn-red {
+    background: #fe0000 !important;
+    color: #fff !important;
+}
+
+.experience-btn {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    color: #CE6A10;
+    padding: 2px 15px;
+    border-radius: 20px;
+    background: #FFD440;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.experience-btn_2 {
+    color: #CE6A10;
+    padding: 2px 15px;
+    border-radius: 20px;
+    background: #FFD440;
+    text-decoration: none;
+    cursor: pointer;
+        width:50%;
+}
+
+.s1 {
+    bottom: 100px;
+    left: 120px;
+
+}
+
+.bs-btn-blue {
+    background: #00a0ea !important;
+    border-color: #00a0ea !important;
+    color: #fff !important;
+    font-size: 20px;
+}
+
+.bs-btn-green {
+    background: #60dbb6!important;
+    border-color: #60dbb6!important;
+    color: #fff !important;
+    font-size: 20px;
+}
+
+.baidu-header__navbar {
+    position: absolute;
+    right: 150px;
+    top: 0;
+    margin-right: 50px;
+}
+
+.baidu-header__navbar ul{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+li.prodli{
+    padding: 0 10 0 0;
+    margin: 9px;
+    float:left;
+    list-style: none;
+    font-size: 20px;
+    line-height: 40px;
+    color: #fff;
+}
+.prodlitext{
+	color: #fff;
+}
+
+.item_bg_02 {
+    width: 1200px;
+    height: 560px;
+    margin: 0 auto;
+}
+.bs_item-bg_02 {
+    background: none !important;
+    height: 660px !important;
+}
+
+.bs-s1-bg {
+    float:left;
+	width:50%;
+    display: inline;
+}
+
+.textsolution{
+	font-size: 20px;
+    line-height: 40px;
+    color: #000000;
+    font-weight:bold;
+}
+.bs-s2-bg_btn{
+	float: left;
+	width:50%;
+	display: inline;
 }

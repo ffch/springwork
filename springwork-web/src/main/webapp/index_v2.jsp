@@ -17,9 +17,15 @@
 
 <script type="text/javascript"
 	src="${ctx}/js/jquery/jquery-3.2.1.min.js"></script>
+<script type="text/javascript"
+	src="${ctx}/js/product/product.js"></script>
 <title>模板网站</title>
+<script type="text/javascript">
+var passportUrl = '${ctx}';	
+</script>
 </head>
 <body>
+	<a name="indexPage"></a>
 	<div>
 		<script type="text/javascript" color="0,0,255" opacity="0.7"
 			zindex="-2" count="99" src="${ctx}/js/canvas/canvas-nest.min.js">
@@ -27,7 +33,7 @@
 	</div>
 	<div>
 		<div id="sidebar">
-			<ul>
+			<ul style="margin-top: -129px;">
 				<li id="prof" class="item"><span
 					class="glyphicon glyphicon-user"></span>
 					<div>我</div></li>
@@ -61,7 +67,8 @@
 			<div>我</div>
 			<br> <a class="qqconnect"
 				href="${ctx}/jsp_v2/suggestion/applylist.jsp">我的申请</a> <br> <br>
-			<a class="qqconnect" href="${ctx}/jsp_v2/suggestion/watinglist.jsp">我的待办</a>
+			<a class="qqconnect" href="${ctx}/jsp_v2/suggestion/watinglist.jsp">我的待办</a><br> <br>
+			<a class="qqconnect" href="${ctx}/jsp_v2/suggestion/managelist.jsp">我的审批</a><br> <br>
 		</div>
 		<div class="nav-content" id="asset-content">
 			<div class="nav-con-close">
@@ -91,8 +98,7 @@
 			<br> <a class="qqconnect"
 				href="tencent://Message/?Uin=528904035&websiteName=q-zone.qq.com&Menu=yes"><img
 				border="0" SRC="http://wpa.qq.com/pa?p=1:1360011:14" alt="点击这里给我发消息"></a>
-			<br>
-			<br> <a class="qqconnect" target="_blank"
+			<br> <br> <a class="qqconnect" target="_blank"
 				href="http://wpa.qq.com/msgrd?v=3&uin=528904035&site=qq&menu=yes"><img
 				border="0" src="http://wpa.qq.com/pa?p=2:123456789:51"
 				alt="点击这里给我发消息" title="点击这里给我发消息" /></a>
@@ -113,15 +119,15 @@
 		</div>
 	</div>
 	<div>
-		<div>
+		<div
+			style="background: #007979; position: fixed; width: 100%; height: 60px; top: 0; z-index: 99999;">
 			<div style="display: inline">
-				<img class="imglogo" alt="" src="${ctx}/img/logo.png">
+				<img class="imglogo" alt="" src="${ctx}/img/logo.png"> <span
+					class="textlogo">IT服务站</span>
 			</div>
-			<!-- 			<div style="display:inline;float:right"> -->
-			<%-- 				<p><span style="font-size:14px"><a id="loginRemide" href="${ctx}/jsp/user/login.jsp?operatype=login">已有账号？登陆</a></span></p> --%>
-			<!-- 			</div> -->
 			<div id="lr_systembtn" class="lr_systembtn">
-				<a href="#" class="lr_abtn" id="loginRemide"><span>为您提供</span></a>
+				<a href="#" class="experience-btn bs-btn-red" id="loginRemide"
+					onmouseover="this.style.textDecoration='none';"><span>为您提供</span></a>
 				<div id="lr_menu" class="lr_menu">
 					<dl>
 						<dt>
@@ -135,11 +141,15 @@
 					</dl>
 				</div>
 			</div>
-			<div style="display: inline; float: right">
-				<img class="imglogoright" alt="" src="${ctx}/img/logoright.png">
-			</div>
-			<div style="display: inline; float: right">
-				<img class="imglogoright" alt="" src="${ctx}/img/logoright.png">
+			<div style="display: inline; float: right; margin-right: 50px;"
+				id="prod">
+				<ul class="baidu-header__navbar">
+					<li class="prodli"><a class="prodlitext" href="#indexPage">首页</a></li>
+					<li class="prodli"><a class="prodlitext" href="#solutionPage">解决方案</a></li>
+					<li class="prodli"><a class="prodlitext" href="#superiority">优势</a></li>
+					<li class="prodli"><a class="prodlitext" href="#safety">安全保障</a></li>
+					<li class="prodli"><a class="prodlitext" href="#choice_ikcrm">我们的客户</a></li>
+				</ul>
 			</div>
 		</div>
 		<div class="frontindex">
@@ -159,11 +169,45 @@
 					<img class="bgfront" alt="" src="${ctx}/img/index1001.png">
 				</div>
 			</div>
-
+			<div>
+				
+				<div id= "solutionPage" class="item_bg_02 bs_item-bg_02">
+					<div class="bs-s1-bg">
+						<span class="textsolution">就位</span>
+						<ul >
+							<li>这是一个it服务站。</li>
+							<li>这是一个全方位的服务站。</li>
+							<li>您提需求，我来解决。</li>
+							<li>您开价格，我来动手。</li>
+							<li>您可以主动联系我们，也可以留下您的足迹。</li>
+							<li></li>
+							<li></li>
+						</ul>
+					</div>
+					<div class="bs-s2-bg">
+						<span class="textsolution">亲友贷</span>
+						<ul >
+							<li>服务大众，解决您的资金问题。</li>
+							<li>不低于余额宝的收益。</li>
+							<li>您的钱，只会给有需要的亲朋。</li>
+							<li>我们不是第三方支付，我们只是大自然的搬运工。</li>
+							<li>留下您的需求，我们会为你们牵线搭桥。</li>
+							<li></li>
+							<li></li>
+						</ul>
+					</div>
+					<br/><br/>
+					<div class="bs-s2-bg_btn">
+						<a href="javascript:;" onmouseover="this.style.textDecoration='none';" class="s1 experience-btn_2 bs-btn-blue" onclick="gotoJiuwei()">立即体验</a>
+					</div>
+					<div class="bs-s2-bg_btn">
+						<a href="javascript:;" onmouseover="this.style.textDecoration='none';" class="s2 experience-btn_2 bs-btn-green" onclick="gotoQinyou()">立即体验</a>
+					</div>
+				</div>
 		</div>
-
+		</div>
+		
 	</div>
-
 
 	<script type="text/javascript" src="${ctx}/js/sidebar.js"></script>
 </body>
@@ -183,7 +227,7 @@
 			console.log(data);
 			var userId = data.userName;
 			if(userId != null && userId != ""){
-				loginRemide = userId;
+				loginRemide = "欢迎您，" + userId;
 				loginflag = true;
 				typeUser = data.userType;
 				if(!loginflag){
@@ -220,13 +264,13 @@
     	$("#loginRemide").text(loginRemide);
     	$("#loginRemide").attr("href",loginUrl);
     }else{
-    	loginUrl = appUrl + "/index.jsp";
+    	loginUrl = appUrl + "/index_v2.jsp";
     	$("#loginRemide").text(loginRemide);
     	$("#loginRemide").attr("href",loginUrl);
     }
     
 	function register(){
-		window.location.href="${ctx}/login.jsp";
+		window.location.href="${ctx}/login_v2.jsp";
 	}
 	
 	if(loginflag){

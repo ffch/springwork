@@ -21,13 +21,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import com.cff.springwork.common.user.UserInfoManager;
+import com.cff.springwork.model.activi.ProductTask;
 import com.cff.springwork.model.activi.UserTask;
 import com.cff.springwork.model.security.AppUser;
-import com.cff.springwork.mybatis.mapper.SuggestMapper;
+import com.cff.springwork.mybatis.mapper.ProductMapper;
 import com.cff.springwork.mybatis.service.AppUserService;
 
 @Service
-public class SuggestService {
+public class ProductService {
 protected Logger logger = LoggerFactory.getLogger(getClass());
 	
 	@Autowired
@@ -43,12 +44,12 @@ protected Logger logger = LoggerFactory.getLogger(getClass());
 	private HistoryService historyService;
 	
 	@Autowired
-	SuggestMapper suggestMapper;
+	ProductMapper productMapper;
 	
 	@Autowired
 	AppUserService appUserService;
 	
-	public void genTask(UserTask userTask){
+	public void genTask(ProductTask userTask){
 		ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("productAdvice");
 		Task tmp = taskService.createTaskQuery().processInstanceId(processInstance.getProcessInstanceId()).singleResult();
 		String tmpTaskType = convertType(userTask.getTasktype());
@@ -61,30 +62,30 @@ protected Logger logger = LoggerFactory.getLogger(getClass());
 	    taskService.complete(tmp.getId());
 	    
 	    userTask.setUserid(userid);
-	    suggestMapper.save(userTask);
+	    productMapper.save(userTask);
 	}
 	
-	public List<UserTask> applyList() throws Exception{
+	public List<ProductTask> applyList() throws Exception{
 		String userid = UserInfoManager.getInstance().getUserName();
-		List<UserTask> tasks = suggestMapper.getUserTask(userid);
+		List<ProductTask> tasks = productMapper.getUserTask(userid);
 		for(int i =0 ;i < tasks.size();i++){
-			UserTask tmp = tasks.get(i);
+			ProductTask tmp = tasks.get(i);
 			tmp.setTasktype(convertToType(tmp.getTasktype()));
 			tmp.setCurviewer(tmp.getCurviewer() == null ? "" : tmp.getCurviewer());
 		}
 		return tasks;
 	}
 	
-	public List<UserTask> waitList() throws Exception{
+	public List<ProductTask> waitList() throws Exception{
 		String userid = UserInfoManager.getInstance().getUserName();
 		
 		String  userType = findTaskType(userid);
 		logger.info("准备查询userType为{}的任务",userType);
 		System.out.println("准备查询userType为"+userType+"的任务");
 		List<Task> tasks = taskService.createTaskQuery().taskName(userType).orderByTaskCreateTime().asc().list();
-		List<UserTask> utasks = new ArrayList<UserTask>();
+		List<ProductTask> utasks = new ArrayList<ProductTask>();
 		for(int i=0;i<tasks.size(); i++){
-			UserTask userTaskTmp = suggestMapper.getUserTaskByTaskId(tasks.get(i).getProcessInstanceId());
+			ProductTask userTaskTmp = productMapper.getUserTaskByTaskId(tasks.get(i).getProcessInstanceId());
 			if(userTaskTmp!=null){
 				userTaskTmp.setRealTaskId(tasks.get(i).getId());
 				utasks.add(userTaskTmp);
@@ -94,23 +95,16 @@ protected Logger logger = LoggerFactory.getLogger(getClass());
 		return utasks;
 	}
 	
-	public List<UserTask> manageList() {
-		String userid = UserInfoManager.getInstance().getUserName();
-		List<UserTask> utasks = suggestMapper.getUserTaskByCurrentViwer(userid);
-			
-		return utasks;
-	}
-	
 	public synchronized Boolean processCommit(String taskid, String processid ) throws Exception{
 		logger.info("审批taskid：{},processid:{}",taskid,processid);
 		String userid = UserInfoManager.getInstance().getUserName();
 		try{
-			UserTask userTask = suggestMapper.getUserTaskByTaskId(processid);
+			ProductTask userTask = productMapper.getUserTaskByTaskId(processid);
 			int tmpStatus = Integer.parseInt(userTask.getStatus());
 			taskService.complete(taskid);
 			userTask.setStatus((tmpStatus+1)+"");
 			userTask.setCurviewer(userid);
-			suggestMapper.updateStatus(userTask);
+			productMapper.updateStatus(userTask);
 		}catch(Exception e){
 			return false;
 		}
@@ -170,5 +164,10 @@ protected Logger logger = LoggerFactory.getLogger(getClass());
 		
 	}
 
-	
+	public List<ProductTask> manageList() {
+		String userid = UserInfoManager.getInstance().getUserName();
+		List<ProductTask> utasks = productMapper.getUserTaskByCurrentViwer(userid);
+			
+		return utasks;
+	}
 }

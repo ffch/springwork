@@ -13,4 +13,6 @@ public interface SuggestMapper {
 	public UserTask getUserTaskByTaskId(String taskid);
 	
 	public void updateStatus(UserTask userTask);
+
+	public List<UserTask> getUserTaskByCurrentViwer(String userid);
 }
