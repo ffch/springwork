@@ -42,7 +42,7 @@ var passportUrl = '${ctx}';
 		document.getElementById("resultdivDetail").style.display="";
 	}
 	
-	function taskServiceDetail(taskid,tasktype,content,name,email,mobile,title,curviewer,money,status){
+	function taskServiceDetail(taskid,tasktype,content,name,email,mobile,title,curviewer,money,address,status){
 		var contentReult = "<table border=\"1\" style=\"margin:20px;margin-left: 27px;border-collapse: collapse;border:1px solid #E0E0E0\">";
 		var contentReultInline = contentReult;
 		contentReult += "<tr><td width=\"120px\">任务id</td><td width=\"400px\">"+ taskid 
@@ -56,6 +56,7 @@ var passportUrl = '${ctx}';
 		+ "</td></tr><tr><td width=\"120px\">内容</td><td width=\"400px\">"+ content 
 		+ "</td></tr><tr><td width=\"120px\">标题</td><td width=\"400px\">" + title 
 		+ "</td></tr><tr><td width=\"120px\">出价</td><td width=\"400px\">" + money
+		+ "</td></tr><tr><td width=\"120px\">地址</td><td width=\"400px\">" + address
 		+ "</td><tr></table></td></tr>";
 		contentReult +="</table><a href=\"javascript:closeDetailWindows();\">确定</a>";
 		$("#resultdivDetail").html(contentReult);
@@ -113,10 +114,10 @@ var passportUrl = '${ctx}';
 						var tmp = taskList[i];
 						content += "<tr><td>"+ tmp.taskid + "</td><td>" + tmp.title + "</td><td>" 
 								+ tmp.curviewer + "</td><td>" + tmp.tasktype 
-								+ "</td><td><a href='javascript:taskDetail(\""+tmp.taskid+"\",\""
+								+ "</td><td><a href='javascript:taskServiceDetail(\""+tmp.taskid+"\",\""
 								+ tmp.tasktype+"\",\"" + tmp.content+"\",\"" + tmp.name+"\",\""
 								+ tmp.email+"\",\""+ tmp.mobile+"\",\""+ tmp.title+"\",\""+ tmp.curviewer+"\",\""
-								+ tmp.money+"\",\""
+								+ tmp.money+"\",\""+ tmp.address+"\",\""
 								+ tmp.status + "\");'>查看</a>";
 					}
 					$("#applytable").append(content)

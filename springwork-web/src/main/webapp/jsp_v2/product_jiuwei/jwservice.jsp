@@ -3,6 +3,7 @@
 <%@ include file="/common/head.jsp"%>
 <%@ page language="java" pageEncoding="UTF-8"%> 
 <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
 <title>产品申请</title>
 <meta name="keywords" content="产品申请">
 <meta name="description" content="提供在线产品申请会议">
@@ -11,6 +12,9 @@
 <link href="${ctx}/css/page.css" type="text/css" rel="stylesheet"/> 
 <script type="text/javascript" src="${ctx}/js/jquery/jquery-3.2.1.min.js" ></script>
 <script type="text/javascript" src="${ctx}/js/jquery/jquery.validate.min.js" ></script>
+<link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>
+<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.3&key=608d75903d29ad471362f8c58c550daf"></script>
+<script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
 </head>
 <body>
 
@@ -73,7 +77,7 @@
 	
     <form id="theform" method="post" action="${ctx}/product/createtask" onsubmit="return false">
 	<div class="section section-suggest-type">
-    <input name="type" type="hidden" value="建议">
+    <input name="tasktype" type="hidden" value="">
     <div class="section section-question-type">
     	<div class="title"><h2>选择服务类型</h2></div>
         <div class="radio-box">
@@ -85,13 +89,14 @@
         	</ul>
         </div>
     </div>
-    <input name="tasktype" type="hidden" value="基础服务">
+    </div>
+    <input name="type" type="hidden" value="1">
 	<div class="section">
         <div class="title"><h2>问题描述</h2></div>
         <div class="fm-wrapper">
             <div class="fm-item"><input placeholder="需求" class="fm-text" name="title" id="title" type="text" style="color:#888;" value="标题" onfocus="if(value == defaultValue){value=&#39;&#39;;this.style.color=&#39;#888&#39;}" onblur="if(value==&#39;&#39;){value = defaultValue;this.style.color=&#39;#888&#39;}" onkeydown="this.style.color=&#39;#666&#39;"><span class="fm-need">*</span></div>
         
-        	<div class="fm-item"><textarea name="content" id="content" cols="" rows="" class="fm-textarea" placeholder="请尽量详细描述问题（大于10个汉字）" style="width:825px; height:90px; color:#888;" onfocus="if(value == defaultValue){value=&#39;&#39;;this.style.color=&#39;#888&#39;}" onblur="if(value == &#39;&#39;){value = defaultValue;this.style.color=&#39;#888&#39;}" onkeydown="this.style.color=&#39;#666&#39;">请尽量详细描述问题（大于10个汉字）</textarea></div>
+        	<div class="fm-item"><textarea name="content" id="content" cols="" rows="" class="fm-textarea" placeholder="请尽量详细描述问题（大于10个汉字）" style="height:90px; color:#888;" onfocus="if(value == defaultValue){value=&#39;&#39;;this.style.color=&#39;#888&#39;}" onblur="if(value == &#39;&#39;){value = defaultValue;this.style.color=&#39;#888&#39;}" onkeydown="this.style.color=&#39;#666&#39;">请尽量详细描述问题（大于10个汉字）</textarea></div>
             
             <div class="fm-item"><input placeholder="期望价格" class="fm-text" name="money" id=""money"" type="text" style="color:#888;" value="期望价格" onfocus="if(value == defaultValue){value=&#39;&#39;;this.style.color=&#39;#888&#39;}" onblur="if(value==&#39;&#39;){value = defaultValue;this.style.color=&#39;#888&#39;}" onkeydown="this.style.color=&#39;#666&#39;"><span class="fm-need">*</span></div>
             
@@ -100,21 +105,79 @@
             <div class="fm-item"><input placeholder="您的邮箱地址" class="fm-text" name="email" id="email" type="text" style="color:#888;" value="您的邮箱地址" onfocus="if(value == defaultValue){value=&#39;&#39;;this.style.color=&#39;#888&#39;}" onblur="if(value==&#39;&#39;){value = defaultValue;this.style.color=&#39;#888&#39;}" onkeydown="this.style.color=&#39;#666&#39;"><span class="fm-need">*</span></div>
 
             <div class="fm-item"><input placeholder="您的手机号码" class="fm-text" name="mobile" id="mobile" type="text" style="color:#888;" value="您的手机号码" onfocus="if(value == defaultValue){value=&#39;&#39;;this.style.color=&#39;#888&#39;}" onblur="if(value==&#39;&#39;){value = defaultValue;this.style.color=&#39;#888&#39;}" onkeydown="this.style.color=&#39;#666&#39;"><span class="fm-need">*</span></div>
+             <div class="fm-item"><input placeholder="您的地址" class="fm-text" name="address" id="address" type="text" style="color:#888;" value="您的地址" onfocus="if(value == defaultValue){value=&#39;&#39;;this.style.color=&#39;#888&#39;}" onblur="if(value==&#39;&#39;){value = defaultValue;this.style.color=&#39;#888&#39;}" onkeydown="this.style.color=&#39;#666&#39;"><span class="fm-need">*</span></div>
+            
             <div class="fm-item"><input name="" type="submit" class="btn btn-primary" value="提交"></div>
         </div>
     </div>
     </form>
+    <div id='container' style="width:400px;height:400px;top: 40%;left: 60%;"></div>
 </div>
 <!-- end 内容部分-->
 <script type="text/javascript">
+	var map, geolocation;
+	//加载地图，调用浏览器定位服务
+	map = new AMap.Map('container', {
+	    resizeEnable: true
+	});
+	map.plugin('AMap.Geolocation', function() {
+	    geolocation = new AMap.Geolocation({
+	        enableHighAccuracy: true,//是否使用高精度定位，默认:true
+	        timeout: 10000,          //超过10秒后停止定位，默认：无穷大
+	        buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+	        zoomToAccuracy: true,      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+	        buttonPosition:'RB'
+	    });
+	    map.addControl(geolocation);
+	    geolocation.getCurrentPosition();
+	    AMap.event.addListener(geolocation, 'complete', onComplete);//返回定位信息
+	    AMap.event.addListener(geolocation, 'error', onError);      //返回定位出错信息
+	});
+	//解析定位结果
+	function onComplete(data) {
+	    var str=['定位成功'];
+	    str.push('经度：' + data.position.getLng());
+	    str.push('纬度：' + data.position.getLat());
+	    if(data.accuracy){
+	         str.push('精度：' + data.accuracy + ' 米');
+	    }//如为IP精确定位结果则没有精度信息
+	    str.push('是否经过偏移：' + (data.isConverted ? '是' : '否'));
+// 	    alert(data.formattedAddress);
+		var addr = getAddress(data.position.getLng(),data.position.getLat());
+	    $("#address").val(addr);
+// 	    document.getElementById('tip').innerHTML = str.join('<br>');
+	    
+	}
+	//解析定位错误信息
+	function onError(data) {
+// 	    document.getElementById('tip').innerHTML = '定位失败';
+	}
+	
+	function getAddress(lng,lat){
+		var addr ="";
+		$.ajax({
+			type : "post",
+			async: false,
+			url : "${ctx}/pub/getLocation",
+			data : {lng : lng, lat:lat} ,
+			dataType : "json",
+			success : function(data) {
+				console.log(data);
+				addr = data;
+			}
+		});
+		return addr;
+
+	}
+
     $(".section-suggest-type li").click(function(){
         $(this).addClass("current").siblings().removeClass("current");
-        $('input[name="type"]').val($(this).text());
+        $('input[name="tasktype"]').val($(this).text());
     });
 
     $(".section-question-type li").click(function(){
         $(this).addClass("current").siblings().removeClass("current");
-        $('input[name="questiontype"]').val($(this).text());
+        $('input[name="tasktype"]').val($(this).text());
     });
 
     // 显示提示文字
@@ -245,7 +308,7 @@
                 email : true
             },
             content : {
-                required: true,
+                required: false,
                 contentDefault : true,
                 minlength : 10,
                 maxlength : 500

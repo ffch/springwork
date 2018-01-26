@@ -13,10 +13,11 @@
         <result column="mobile" property="mobile" /> 
         <result column="curviewer" property="curviewer" />
         <result column="money" property="money" />
-        <result column="status" property="status" />  
+        <result column="status" property="status" /> 
+        <result column="address" property="address" /> 
     </resultMap>  
   	<sql id="Base_Column_List" >  
-    	taskid, userid, title, type, tasktype, content, name, email, mobile, curviewer, money, status
+    	taskid, userid, title, type, tasktype, content, name, email, mobile, curviewer, money, status, address
   	</sql>  
 	<select id="getUserTask" resultMap="BaseResultMap" parameterType="java.lang.String" >  
 	   select   
@@ -40,8 +41,8 @@
 	</select>   
 	
 	<insert id="save" parameterType="com.cff.springwork.model.activi.ProductTask">
-	  insert into se_product_task(taskid, userid, title, type, tasktype, content, name, email, mobile,money) 
-	  		values(#{taskid}, #{userid}, #{title}, #{type}, #{tasktype}, #{content}, #{name}, #{email}, #{mobile}, #{money})
+	  insert into se_product_task(taskid, userid, title, type, tasktype, content, name, email, mobile,money,address) 
+	  		values(#{taskid}, #{userid}, #{title}, #{type}, #{tasktype}, #{content}, #{name}, #{email}, #{mobile}, #{money}, #{address})
 	</insert>
 	
 	<update id="updateStatus" parameterType="com.cff.springwork.model.activi.ProductTask">

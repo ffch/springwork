@@ -19,6 +19,7 @@ public class ProductTask implements Serializable{
 	String title;
 	String curviewer;
 	int money;
+	String address;
 	String status;
 	String realTaskId;
 	public String getTaskid() {
@@ -50,6 +51,12 @@ public class ProductTask implements Serializable{
 	}
 	public void setTasktype(String tasktype) {
 		this.tasktype = tasktype;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	public String getContent() {
 		return content;
@@ -99,7 +106,12 @@ public class ProductTask implements Serializable{
 	public void setRealTaskId(String realTaskId) {
 		this.realTaskId = realTaskId;
 	}
-	public String toString(){
-		return taskid + "---" + userid + "----" +title+"---"+ type+"--" +tasktype+ "--" +content+ "---" +name + "--" +email+ "--" +mobile;
+	@Override
+	public String toString() {
+		return "ProductTask [taskid=" + taskid + ", userid=" + userid + ", type=" + type + ", tasktype=" + tasktype
+				+ ", content=" + content + ", name=" + name + ", email=" + email + ", mobile=" + mobile + ", title="
+				+ title + ", curviewer=" + curviewer + ", money=" + money + ", address=" + address + ", status="
+				+ status + ", realTaskId=" + realTaskId + "]";
 	}
+	
 }

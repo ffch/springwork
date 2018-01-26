@@ -157,15 +157,16 @@ input.btn-small,button.btn-small{height:32px;width:120px;}
 .side-menu ul{list-style-type:none;padding:0 0 0 44px;margin:0;}
 .side-menu a{display:block;height:40px;line-height:40px;text-decoration:none;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
 .side-menu a:hover,.side-menu .current a,.side-menu a.current{color:#ff0042;}
-.fm-text,.fm-textarea,.fm-select{border:1px solid #dfdfdf;outline:none;padding:3px 5px;line-height:24px;width:320px;height:24px;box-sizing:content-box;}
+.fm-text,.fm-textarea,.fm-select{border:1px solid #dfdfdf;outline:none;padding:3px 5px;line-height:24px;width:40%;height:24px;box-sizing:content-box;}
 .fm-text:focus,.fm-textarea:focus,.fm-select:focus{border-color:#ff0042;}
 .fm-error{color:#ff0042;margin-left:8px;}
-.fm-textarea{height:auto;resize:none;overflow-y:auto;}
+.fm-textarea{height:auto;resize:none;}
 .fm-need{color:#ff0042;display:inline-block;width:20px;text-align:center;vertical-align:middle;}
 .fm-check{vertical-align:-2px;}
 label .fm-check{margin-right:5px;}
 .fm-select{width:auto;}
-.fm-wrapper .fm-item{padding:5px 0;display:block;}
+.fm-wrapper{padding:5px 0;display:block;}
+.fm-item{padding:5px 0;display:block;}
 .fm-label{display:inline-block;zoom:1;*display:inline;width:30%;padding:0 10px;height:32px;line-height:32px;text-align:right;vertical-align:middle;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;}
 .table-list{width:100%;border-spacing:0;border-collapse:collapse;empty-cells:show;margin-top:-1px;}
 .table-list th{background:#f6f6f6;height:32px;line-height:32px;padding:0 12px;border-top:1px solid #dfdfdf;}

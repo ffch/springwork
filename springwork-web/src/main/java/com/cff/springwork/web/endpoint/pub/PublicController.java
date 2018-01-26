@@ -1,5 +1,6 @@
 package com.cff.springwork.web.endpoint.pub;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
@@ -7,9 +8,12 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.methods.GetMethod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +23,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cff.springwork.common.constant.Constant;
 import com.cff.springwork.model.security.AppUser;
 import com.cff.springwork.mybatis.service.AppUserService;
+import com.cff.springwork.web.endpoint.service.PublicService;
 
+import net.sf.json.JSONException;
 import net.sf.json.JSONObject;
 
 @RestController("publicController")
@@ -28,6 +34,8 @@ public class PublicController {
 	protected Logger logger = LoggerFactory.getLogger(getClass());
 	@Autowired
 	AppUserService appUserService;
+	@Autowired
+	PublicService publicService;
 
 	@RequestMapping("/register")
 	public String register(@RequestBody AppUser appUser){
@@ -80,5 +88,10 @@ public class PublicController {
 	public List<AppUser> getSpecialUser(@RequestParam String userType){
 		List<AppUser> users = appUserService.findByType(userType);
 		return users;	
+	}
+	
+	@RequestMapping("/getLocation")
+	public String getLocation(@RequestParam String lng,@RequestParam String lat){
+		return publicService.getLocation(lng, lat);
 	}
 }

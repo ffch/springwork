@@ -52,11 +52,9 @@ protected Logger logger = LoggerFactory.getLogger(getClass());
 	public void genTask(ProductTask userTask){
 		ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("productAdvice");
 		Task tmp = taskService.createTaskQuery().processInstanceId(processInstance.getProcessInstanceId()).singleResult();
-		String tmpTaskType = convertType(userTask.getTasktype());
 		
 		String userid = UserInfoManager.getInstance().getUserName();
 		userTask.setTaskid(processInstance.getProcessInstanceId());
-		userTask.setTasktype(tmpTaskType);
 		userTask.setType("01");
 		tmp.setAssignee(userid);
 	    taskService.complete(tmp.getId());
@@ -68,11 +66,7 @@ protected Logger logger = LoggerFactory.getLogger(getClass());
 	public List<ProductTask> applyList() throws Exception{
 		String userid = UserInfoManager.getInstance().getUserName();
 		List<ProductTask> tasks = productMapper.getUserTask(userid);
-		for(int i =0 ;i < tasks.size();i++){
-			ProductTask tmp = tasks.get(i);
-			tmp.setTasktype(convertToType(tmp.getTasktype()));
-			tmp.setCurviewer(tmp.getCurviewer() == null ? "" : tmp.getCurviewer());
-		}
+		
 		return tasks;
 	}
 	
@@ -125,43 +119,6 @@ protected Logger logger = LoggerFactory.getLogger(getClass());
 			}
 		}
 		return null;
-	}
-
-	
-	public String convertType(String type){
-		if("基础服务".equals(type)){
-			return "01";
-		}
-		if("技术支持".equals(type)){
-			return "02";
-		}
-		if("产品申请".equals(type)){
-			return "03";
-		}
-		if("会议申请".equals(type)){
-			return "04";
-		}
-		else
-			return "05";
-		
-	}
-	
-	public String convertToType(String name){
-		if("01".equals(name)){
-			return "基础服务";
-		}
-		if("02".equals(name)){
-			return "技术支持";
-		}
-		if("03".equals(name)){
-			return "产品申请";
-		}
-		if("04".equals(name)){
-			return "会议申请";
-		}
-		else
-			return "其他";
-		
 	}
 
 	public List<ProductTask> manageList() {

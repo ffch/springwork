@@ -46,7 +46,7 @@
 	</menu>
 	
 	
-<section class="content" id="content">
+<section class="umcontent" id="umcontent">
 <aside class="left_con">
 <!--背景层--> 
 <section class="content1" id="content1">

@@ -58,7 +58,7 @@ var passportUrl = '${ctx}';
 			});
 	}
 	
-	function taskDetail(taskid,tasktype,content,name,email,mobile,title,curviewer,status,money){
+	function taskDetail(taskid,tasktype,content,name,email,mobile,title,curviewer,status){
 		//alert(taskid+tasktype+content+name+email+mobile+title+curviewer+status);
 		var contentReult = "<table border=\"1\" style=\"margin:20px;margin-left: 27px;border-collapse: collapse;border:1px solid #E0E0E0\">";
 		var contentReultInline = contentReult;
@@ -72,7 +72,27 @@ var passportUrl = '${ctx}';
 		+ "</td></tr><tr><td width=\"120px\">手机号</td><td width=\"400px\">"+ mobile 
 		+ "</td></tr><tr><td width=\"120px\">内容</td><td width=\"400px\">"+ content 
 		+ "</td></tr><tr><td width=\"120px\">标题</td><td width=\"400px\">" + title 
-		+ "</td></tr><tr><td width=\"120px\">其他/td><td width=\"400px\">" + money 
+		+ "</td><tr></table></td></tr>";
+		contentReult +="</table><a href=\"javascript:closeDetailWindows();\">确定</a>";
+		$("#resultdivDetail").html(contentReult);
+		document.getElementById("resultdivDetail").style.display="";
+	}
+	
+	function taskServiceDetail(taskid,tasktype,content,name,email,mobile,title,curviewer,status,address,money){
+		var contentReult = "<table border=\"1\" style=\"margin:20px;margin-left: 27px;border-collapse: collapse;border:1px solid #E0E0E0\">";
+		var contentReultInline = contentReult;
+		contentReult += "<tr><td width=\"120px\">任务id</td><td width=\"400px\">"+ taskid 
+		+ "</td></tr><tr><td width=\"120px\">处理人</td><td width=\"400px\">" + curviewer
+		+ "</td></tr><tr><td width=\"120px\">任务类型</td><td width=\"400px\">" + tasktype
+		+ "</td></tr><tr><td width=\"120px\">任务状态</td><td width=\"400px\">" + status
+		+ "</td></tr><tr><td width=\"120px\">内容</td><td width=\"400px\">"+ contentReultInline 
+		+ "<tr><td width=\"120px\">姓名</td><td width=\"400px\">"+ name 
+		+ "</td></tr><tr><td width=\"120px\">邮箱</td><td width=\"400px\">"+ email 
+		+ "</td></tr><tr><td width=\"120px\">手机号</td><td width=\"400px\">"+ mobile 
+		+ "</td></tr><tr><td width=\"120px\">内容</td><td width=\"400px\">"+ content 
+		+ "</td></tr><tr><td width=\"120px\">标题</td><td width=\"400px\">" + title 
+		+ "</td></tr><tr><td width=\"120px\">出价</td><td width=\"400px\">" + money
+		+ "</td></tr><tr><td width=\"120px\">地址</td><td width=\"400px\">" + address
 		+ "</td><tr></table></td></tr>";
 		contentReult +="</table><a href=\"javascript:closeDetailWindows();\">确定</a>";
 		$("#resultdivDetail").html(contentReult);
@@ -101,7 +121,7 @@ var passportUrl = '${ctx}';
 								tmp.curviewer + "</td><td>" + tmp.tasktype + "</td><td><a href='javascript:taskDetail(\""+tmp.taskid+"\",\""
 								+ tmp.tasktype+"\",\"" + tmp.content+"\",\"" + tmp.name+"\",\""
 								+ tmp.email+"\",\""+ tmp.mobile+"\",\""+ tmp.title+"\",\""+ tmp.curviewer+"\",\""
-								+ tmp.status + "\",0);'>查看</a>&nbsp<a href=''>删除</a></td></tr>";
+								+ tmp.status + "\");'>查看</a>&nbsp<a href=''>删除</a></td></tr>";
 					}
 					$("#applytable").append(content)
 				}
@@ -129,10 +149,10 @@ var passportUrl = '${ctx}';
 					for (var i = 0; i < size; i++) {
 						var tmp = taskList[i];
 						content += "<tr><td>"+ tmp.taskid + "</td><td>" + tmp.title + "</td><td>" + 
-								tmp.curviewer + "</td><td>" + tmp.tasktype + "</td><td><a href='javascript:taskDetail(\""+tmp.taskid+"\",\""
+								tmp.curviewer + "</td><td>" + tmp.tasktype + "</td><td><a href='javascript:taskServiceDetail(\""+tmp.taskid+"\",\""
 								+ tmp.tasktype+"\",\"" + tmp.content+"\",\"" + tmp.name+"\",\""
 								+ tmp.email+"\",\""+ tmp.mobile+"\",\""+ tmp.title+"\",\""+ tmp.curviewer+"\",\""
-								+ tmp.status + "\",\""+tmp.money+");'>查看</a>&nbsp<a href=''>删除</a></td></tr>";
+								+ tmp.status + "\",\""+ tmp.address + "\",\""+tmp.money+"\");'>查看</a>&nbsp<a href=''>删除</a></td></tr>";
 					}
 					$("#applytable").append(content)
 				}
@@ -202,7 +222,7 @@ td { text-align:center; background-color: #FFFFFF; height:40px; }
 		</tr>
 	</table>
 	<div id="resultdivDetail"
-		style="display: none; POSITION: absolute; left: 50%; top: 10%; width: 600px; height: 500px; margin-left: -232px; margin-top: -12x; border: 1px solid #888; background-color: #edf; text-align: center">
+		style="display: none; POSITION: absolute; left: 50%; top: 10%; width: 600px; margin-left: -232px; margin-top: -12x; border: 1px solid #888; background-color: #edf; text-align: center">
 		详细信息<br> <br>
 		<br> <a href="javascript:closewindows();">确定</a>
 	</div>

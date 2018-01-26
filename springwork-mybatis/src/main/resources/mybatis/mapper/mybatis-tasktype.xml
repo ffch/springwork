@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >  
+<mapper namespace="com.cff.springwork.mybatis.mapper.TaskTypeMapper">  
+    <resultMap id="BaseResultMap" type="com.cff.springwork.model.activi.TaskType">  
+        <result column="tasktype" property="tasktype" />  
+        <result column="name" property="name" /> 
+        <result column="type" property="type" />
+    </resultMap>  
+  	<sql id="Base_Column_List" >  
+    	tasktype, name, type
+  	</sql>  
+	<select id="getTaskByType" resultMap="BaseResultMap">  
+	   select   
+	   <include refid="Base_Column_List" />  
+	   from se_task_type  
+	   where tasktype = #{0} and type=#{1} 
+	</select>  
+	<select id="getTaskByName" resultMap="BaseResultMap" >  
+	   select   
+	   <include refid="Base_Column_List" />  
+	   from se_task_type  
+	   where name = #{0} and type=#{1} 
+	</select>
+</mapper>  

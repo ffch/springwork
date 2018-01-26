@@ -254,7 +254,7 @@ var passportUrl = '${ctx}';
 			}
 		},
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
-				alert(errorThrown);
+// 				alert(errorThrown);
 		}
 	});
     console.log(loginflag);

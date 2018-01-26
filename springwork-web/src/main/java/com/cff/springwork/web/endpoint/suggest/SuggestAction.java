@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cff.springwork.activiti.service.SuggestService;
 import com.cff.springwork.common.constant.Constant;
 import com.cff.springwork.model.activi.UserTask;
+import com.cff.springwork.web.cache.TaskTypeCache;
 
 import net.sf.json.JSONObject;
 
@@ -37,10 +38,14 @@ public class SuggestAction {
 	
 	@Autowired
 	private SuggestService suggestService;
-	
+	@Autowired
+	private TaskTypeCache taskTypeCache;
 	
 	@RequestMapping(value="/createtask")
 	public String createTask(@RequestBody UserTask userTask) throws Exception{
+		String tmpTaskType = convertToType(userTask.getTasktype());
+		userTask.setTasktype(tmpTaskType);
+
 		suggestService.genTask(userTask);
 		
 		return Constant.RESPONSE_OK;
@@ -48,7 +53,13 @@ public class SuggestAction {
 	
 	@RequestMapping(value="/applylist")
 	public List<UserTask> applyList() throws Exception{
-		return suggestService.applyList();
+		List<UserTask> tasks = suggestService.applyList();
+		for(int i =0 ;i < tasks.size();i++){
+			UserTask tmp = tasks.get(i);
+			tmp.setTasktype(convertToName(tmp.getTasktype()));
+			tmp.setCurviewer(tmp.getCurviewer() == null ? "" : tmp.getCurviewer());
+		}
+		return tasks;
 	}
 	
 	@RequestMapping(value="/waitlist")
@@ -79,39 +90,12 @@ public class SuggestAction {
 		return Constant.RESPONSE_OK;
 	}
 
-	public String convertType(String type){
-		if("基础服务".equals(type)){
-			return "01";
-		}
-		if("技术支持".equals(type)){
-			return "02";
-		}
-		if("产品申请".equals(type)){
-			return "03";
-		}
-		if("会议申请".equals(type)){
-			return "04";
-		}
-		else
-			return "05";
-		
+	public String convertToName(String type){
+		return taskTypeCache.getTaskByType(type, "0").getName();
 	}
 	
 	public String convertToType(String name){
-		if("01".equals(name)){
-			return "基础服务";
-		}
-		if("02".equals(name)){
-			return "技术支持";
-		}
-		if("03".equals(name)){
-			return "产品申请";
-		}
-		if("04".equals(name)){
-			return "会议申请";
-		}
-		else
-			return "其他";
+		return taskTypeCache.getTaskByName(name, "0").getTasktype();
 		
 	}
 }

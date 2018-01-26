@@ -16,11 +16,11 @@
           memoryStoreEvictionPolicy="LRU"/>
 
   <!-- userCache缓存 -->
-  <cache name="paramCache"
+  <cache name="taskCache"
          maxElementsInMemory="1000"
          eternal="false"
          timeToIdleSeconds="0"
-         timeToLiveSeconds="600"
+         timeToLiveSeconds="1000"
          overflowToDisk="false"
          memoryStoreEvictionPolicy="LRU"/>
 </ehcache>

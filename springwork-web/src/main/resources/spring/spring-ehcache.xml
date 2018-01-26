@@ -17,7 +17,7 @@
     <property name="cacheManager" ref="ehcache"/>
   </bean>
   
-  <bean id="paramInfoCache" class="com.ump.cache.ParamInfoCache"/>
+  <bean id="taskTypeCache" class="com.cff.springwork.web.cache.TaskTypeCache"/>
   
   <cache:annotation-driven cache-manager="cacheManager"/>
 </beans>
