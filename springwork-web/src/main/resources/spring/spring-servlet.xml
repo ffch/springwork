@@ -34,7 +34,7 @@
 				<bean
 					class="org.springframework.http.converter.StringHttpMessageConverter" />
 				<bean
-					class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+					class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
 					<property name="supportedMediaTypes">
 						<list>
 							<value>application/json;charset=UTF-8</value>
@@ -50,7 +50,7 @@
 	<mvc:annotation-driven>
 		<mvc:message-converters>
 			<bean
-				class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+				class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
 			</bean>
 		</mvc:message-converters>
 	</mvc:annotation-driven>
