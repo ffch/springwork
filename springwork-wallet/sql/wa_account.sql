@@ -7,9 +7,9 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `wa_account`;
 CREATE TABLE `wa_account` (
-  `acc_no` varchar(20) NOT NULL,
+  `acc_no` varchar(16) NOT NULL,
   `user_no` varchar(16) NOT NULL,
-  `item_no` varchar(12) ,
+  `item_no` varchar(8) ,
   `product_no` varchar(4),
   `bal` int NOT NULL,
   `passwd` varchar(64),

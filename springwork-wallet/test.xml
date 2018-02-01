@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<bookstore>  
+    <book id="1" name="book1">  
+        <name>懂得生活</name>  
+        <author>Mr Azzan</author>  
+        <year>2017</year>  
+        <price>100.00</price>  
+    </book>  
+    <book id="2">  
+        <name>热爱生活</name>  
+        <author>Miss Sun</author>  
+        <year>2017</year>  
+        <price>121.00</price>  
+    </book>  
+</bookstore> 

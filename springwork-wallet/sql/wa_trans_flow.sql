@@ -1,17 +1,4 @@
-/*
-Navicat MySQL Data Transfer
 
-Source Server         : 阿里云mysql
-Source Server Version : 50718
-Source Host           : rm-uf664wu2lfctsrtczo.mysql.rds.aliyuncs.com:3306
-Source Database       : cff
-
-Target Server Type    : MYSQL
-Target Server Version : 50718
-File Encoding         : 65001
-
-Date: 2017-12-26 13:44:13
-*/
 
 SET FOREIGN_KEY_CHECKS=0;
 
@@ -20,22 +7,22 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `wa_trans_flow`;
 CREATE TABLE `wa_trans_flow` (
-  `acc_no` varchar(20) NOT NULL,
-  `user_no` varchar(16) NOT NULL,
-  `item_no` varchar(12) ,
-  `product_no` varchar(4),
-  `bal` int NOT NULL,
-  `passwd` varchar(64),
-  `frz_bal` int,
-  `loan_bal` int,
-  `ava_bal` int NOT NULL,
-  `frz_flag` varchar(2),
-  `lock_flag` varchar(2),
-  `bal_dir` varchar(2) NOT NULL,
-  `dac` varchar(16) ,
-  `open_time` varchar(14) ,
-  `close_time` varchar(14),
-  `last_time` varchar(14) ,
-  `status` varchar(2) NOT NULL,
-  PRIMARY KEY (`acc_no`)
+  trans_flow     VARCHAR(20) not null,
+  trans_date     VARCHAR(8) not null,
+  trancode  	 VARCHAR(6) not null,
+  trans_time  	 VARCHAR(6) not null,
+  trans_acct     VARCHAR(16) not null,
+  trans_item     VARCHAR(6) not null,
+  opp_acct       VARCHAR(16),
+  opp_item       VARCHAR(6),
+  trans_amt      int default 0 not null,
+  cancel_flag    CHAR(1) default '0' not null,
+  refund_flag    CHAR(1) default '0' not null,
+  tran_status    CHAR(1) default '1' not null,
+  refund_total   int default 0 not null,
+  ret_code       CHAR(8) not null,
+  ret_remark     VARCHAR(64),
+  order_no       CHAR(18),
+  remark         VARCHAR(256),
+  PRIMARY KEY (`trans_flow`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

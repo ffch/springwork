@@ -7,22 +7,16 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `wa_product`;
 CREATE TABLE `wa_product` (
-  `acc_no` varchar(20) NOT NULL,
-  `user_no` varchar(16) NOT NULL,
-  `item_no` varchar(12) ,
-  `product_no` varchar(4),
-  `bal` int NOT NULL,
-  `passwd` varchar(64),
-  `frz_bal` int,
-  `loan_bal` int,
-  `ava_bal` int NOT NULL,
-  `frz_flag` varchar(2),
-  `lock_flag` varchar(2),
-  `bal_dir` varchar(2) NOT NULL,
-  `dac` varchar(16) ,
-  `open_time` varchar(14) ,
-  `close_time` varchar(14),
-  `last_time` varchar(14) ,
-  `status` varchar(2) NOT NULL,
-  PRIMARY KEY (`acc_no`)
+  product_no      VARCHAR(3) not null,
+  item_no         VARCHAR(8) not null,
+  prduct_name     VARCHAR(256) not null,
+  product_curr    VARCHAR(3) not null,
+  product_type    CHAR(1) not null,
+  is_repeat       CHAR(1) COMMENT '是否允许同一用户有多账户（0. 否1.是）',
+  min_draw_amt    int,
+  max_draw_amt    int,
+  tran_mode       VARCHAR(3) COMMENT '交易方式（账户内互转）',
+  lst_mdfdate     CHAR(8) not null,
+  valid_flag      CHAR(1) not null,
+  PRIMARY KEY (`product_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

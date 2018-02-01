@@ -7,22 +7,17 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `wa_account_flow`;
 CREATE TABLE `wa_account_flow` (
-  `acc_no` varchar(20) NOT NULL,
-  `user_no` varchar(16) NOT NULL,
-  `item_no` varchar(12) ,
-  `product_no` varchar(4),
-  `bal` int NOT NULL,
-  `passwd` varchar(64),
-  `frz_bal` int,
-  `loan_bal` int,
-  `ava_bal` int NOT NULL,
-  `frz_flag` varchar(2),
-  `lock_flag` varchar(2),
+  `acc_flow` varchar(20) NOT NULL,
+  `tran_flow` varchar(20) NOT NULL,
+  `trans_date` varchar(8) ,
+  `trans_time` varchar(6),
+  `trans_item` varchar(8),
+  `opp_item` varchar(8),
+  `trans_accno` varchar(16),
+  `opp_accno` varchar(16) ,
+  `trans_amt` int,
+  `opp_amt` int,
+  `trans_bal` int,
   `bal_dir` varchar(2) NOT NULL,
-  `dac` varchar(16) ,
-  `open_time` varchar(14) ,
-  `close_time` varchar(14),
-  `last_time` varchar(14) ,
-  `status` varchar(2) NOT NULL,
-  PRIMARY KEY (`acc_no`)
+  `flag` varchar(2)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

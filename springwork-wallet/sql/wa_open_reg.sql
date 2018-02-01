@@ -6,22 +6,11 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `wa_open_reg`;
 CREATE TABLE `wa_open_reg` (
-  `acc_no` varchar(20) NOT NULL,
-  `user_no` varchar(16) NOT NULL,
-  `item_no` varchar(12) ,
-  `product_no` varchar(4),
-  `bal` int NOT NULL,
-  `passwd` varchar(64),
-  `frz_bal` int,
-  `loan_bal` int,
-  `ava_bal` int NOT NULL,
-  `frz_flag` varchar(2),
-  `lock_flag` varchar(2),
-  `bal_dir` varchar(2) NOT NULL,
-  `dac` varchar(16) ,
-  `open_time` varchar(14) ,
-  `close_time` varchar(14),
-  `last_time` varchar(14) ,
-  `status` varchar(2) NOT NULL,
-  PRIMARY KEY (`acc_no`)
+  seq_no     VARCHAR(20) not null,
+  acc_date   CHAR(8) not null,
+  tran_time  VARCHAR(14) ,
+  acc_type   VARCHAR(3) not null,
+  user_no    VARCHAR(19) not null,
+  item_no    VARCHAR(8) not null,
+  acc_no     VARCHAR(16) not null
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
