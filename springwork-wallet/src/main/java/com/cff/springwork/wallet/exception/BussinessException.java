@@ -11,6 +11,7 @@ public class BussinessException extends Exception{
 
 	String errorCode;
 	String errorMsg;
+	String errorName;
 	public String getErrorCode() {
 		return errorCode;
 	}
@@ -29,6 +30,16 @@ public class BussinessException extends Exception{
 		this.errorMsg = errorMsg;
 	}
 	
+	public BussinessException(String errorName) {
+		this.errorName = errorName;
+	}
+	
+	public String getErrorName() {
+		return errorName;
+	}
+	public void setErrorName(String errorName) {
+		this.errorName = errorName;
+	}
 	public BussinessException(ErrorCode errorCode) {
 		super(errorCode.getErrMsg());
 		this.errorCode = errorCode.getErrCode();

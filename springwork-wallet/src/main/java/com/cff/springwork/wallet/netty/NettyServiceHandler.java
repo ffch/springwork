@@ -34,9 +34,6 @@ public class NettyServiceHandler extends ChannelInboundHandlerAdapter {
 	
 	@Autowired
 	ErrorCodeService errorCodeService;
-	
-	@Autowired
-	WaTransFlowService waTransFlowService;
 
 	@Override
 	public void channelActive(ChannelHandlerContext ctx) throws Exception {
@@ -60,14 +57,6 @@ public class NettyServiceHandler extends ChannelInboundHandlerAdapter {
 				try{
 					BusiNessService busiNessService = (BusiNessService) springBeansService.getBean(msg.get("beans").toString());
 					
-					//产生流水
-					WaTransFlow wtf = new WaTransFlow();
-					wtf.setTrancode(msg.getTransCode());
-					wtf.setTransDate(DateUtil.formatNow8());
-					wtf.setTransTime(DateUtil.formatNowTime6());
-					wtf.setUserNo(msg.get("userNo") == null ? "" : msg.get("userNo").toString());
-					wtf.setTranStatus("1");
-					waTransFlowService.save(wtf);
 					TransactionMapData tm = busiNessService.trans(msg);
 					log.info(tm.toString());
 					ctx.channel().writeAndFlush(tm);

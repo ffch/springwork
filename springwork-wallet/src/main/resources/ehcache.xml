@@ -33,6 +33,15 @@
          overflowToDisk="false"
          memoryStoreEvictionPolicy="LRU"/>
          
+  <!-- waProduct缓存 -->
+  <cache name="waLiqAccount"
+         maxElementsInMemory="1000"
+         eternal="false"
+         timeToIdleSeconds="0"
+         timeToLiveSeconds="3600"
+         overflowToDisk="false"
+         memoryStoreEvictionPolicy="LRU"/>
+         
   <!-- transCode缓存 -->
   <cache name="transCodeCache"
          maxElementsInMemory="1000"

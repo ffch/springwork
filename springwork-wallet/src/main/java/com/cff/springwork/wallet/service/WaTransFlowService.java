@@ -21,4 +21,8 @@ public class WaTransFlowService {
 		waTransFlow.setTransFlow(seq);
 		waTransFlowDao.save(waTransFlow);
 	}
+	
+	public WaTransFlow findByTransFlow(String transFlow){
+		return waTransFlowDao.findByTransFlow(transFlow);
+	}
 }

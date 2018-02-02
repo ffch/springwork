@@ -13,10 +13,11 @@ import com.cff.springwork.wallet.dao.WaAccountDao;
 import com.cff.springwork.wallet.domain.WaAccount;
 import com.cff.springwork.wallet.domain.WaItem;
 import com.cff.springwork.wallet.domain.WaProduct;
+import com.cff.springwork.wallet.exception.BussinessException;
 import com.cff.springwork.wallet.trans.data.TransactionMapData;
 
 @Service
-public class OpenAccountService implements BusiNessService{
+public class OpenAccountService extends BusiNessService{
 	private final static Logger log = LoggerFactory.getLogger(OpenAccountService.class);
 	@Autowired
 	ErrorCodeService errorCodeService;
@@ -35,7 +36,7 @@ public class OpenAccountService implements BusiNessService{
 	
 	@Override
 	@Transactional
-	public TransactionMapData trans(TransactionMapData tm) {
+	public void doTrans(TransactionMapData tm) throws BussinessException {
 		log.info("进入OpenAccountService业务层");
 		WaAccount waAccount = new WaAccount();
 		waAccount.setUserNo(tm.get("userNo").toString());
@@ -44,6 +45,7 @@ public class OpenAccountService implements BusiNessService{
 		
 		//查询科目号
 		WaItem wi = waItemService.getItem(waAccount.getAccType());
+		if(wi == null)throw new BussinessException(Constant.ACCOUNT_ITEM_ERROR);
 		waAccount.setItemNo(wi.getItemNo());
 		waAccount.setBalDir(wi.getBalDir());
 		//查询产品号
@@ -57,9 +59,9 @@ public class OpenAccountService implements BusiNessService{
 		waAccountDao.save(waAccount);
 		
 		tm.put(Constant.ACC_NO, waAccount.getAccNo());
-		
 		errorCodeService.genErrorReturn(tm, Constant.TRANS_SUCCESS);
-		return tm;
+		tm.put("transStatus", "0");
+
 	}
 	
 	public String genAccNo(WaAccount waAccount){
