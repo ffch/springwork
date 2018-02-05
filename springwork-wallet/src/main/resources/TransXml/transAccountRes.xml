@@ -15,4 +15,18 @@
     <feild varname="errMsg" serials="2" default=""/> 
     <feild varname="SysMac" serials="3" default=""/> 
 </trans> 
+
+<trans transcode="100001" name="accountQueryService" delimiter="`" listdelimiter="#" paradelimiter=",">  
+    <feild varname="userNo" serials="0" default=""/> 
+    <feild varname="totalNum" serials="1" default="0"/> 
+    <feild varname="accDetails" serials="2" default="" hasChild=""> 
+    	<feild varname="accNo" serials="0" default=""/>
+    	<feild varname="bal" serials="1" default="0"/>
+    	<feild varname="frzBal" serials="2" default="0"/>
+    	<feild varname="loanBal" serials="3" default="0"/>
+    </feild>
+    <feild varname="errCode" serials="3" default="0000"/> 
+    <feild varname="errMsg" serials="4" default=""/> 
+    <feild varname="SysMac" serials="5" default=""/> 
+</trans> 
 </wallet>

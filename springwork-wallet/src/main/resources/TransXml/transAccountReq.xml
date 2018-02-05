@@ -14,4 +14,8 @@
     <feild varname="passwdJudge" serials="3" default="0"/> 
     <feild varname="SysRemark" serials="4" default=""/> 
 </trans> 
+<trans transcode="100001" name="accountQueryService" delimiter="`">  
+    <feild varname="userNo" serials="0" default=""/>
+    <feild varname="SysRemark" serials="1" default=""/> 
+</trans> 
 </wallet>

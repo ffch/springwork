@@ -58,6 +58,8 @@ public class TransXmlParser {
 				Node transCodeNode = bookmap.getNamedItem("transcode");
 				Node transNameNode = bookmap.getNamedItem("name");
 				Node delimiterNode = bookmap.getNamedItem("delimiter");
+				Node listDelimiterNode = bookmap.getNamedItem("listDelimiter");
+				Node paramDelimiterNode = bookmap.getNamedItem("paramDelimiter");
 				if (transCodeNode == null) {
 					throw new BussinessException(errorCodeService.getErrCode(Constant.XML_NONODE));
 				}
@@ -67,6 +69,12 @@ public class TransXmlParser {
 
 				if (delimiterNode != null) {
 					tf.setDelimiter(delimiterNode.getNodeValue());
+				}
+				if (listDelimiterNode != null) {
+					tf.setListDelimiter(listDelimiterNode.getNodeValue());
+				}
+				if (paramDelimiterNode != null) {
+					tf.setParamDelimiter(paramDelimiterNode.getNodeValue());
 				}
 				String transCode = transCodeNode.getNodeValue();
 				tf.setTransCode(transCode);
@@ -82,12 +90,14 @@ public class TransXmlParser {
 						Node varnameNode = bookmap2.getNamedItem("varname");
 						Node serialsNode = bookmap2.getNamedItem("serials");
 						Node defaultNode = bookmap2.getNamedItem("default");
+						Node hasChildNode = bookmap2.getNamedItem("hasChild");
 						if (varnameNode == null) {
 							throw new BussinessException(errorCodeService.getErrCode(Constant.XML_NONODE));
 						}
 						if (serialsNode == null) {
 							throw new BussinessException(errorCodeService.getErrCode(Constant.XML_NONODE));
 						}
+						
 						String varname = varnameNode.getNodeValue();
 						String serials = serialsNode.getNodeValue();
 						String defaultValue = null;
@@ -95,7 +105,38 @@ public class TransXmlParser {
 							defaultValue = defaultNode.getNodeValue();
 
 						}
-						tf.putParams(varname, Integer.parseInt(serials), defaultValue);		
+						if (hasChildNode != null) {
+							tf.putParams(varname, Integer.parseInt(serials), defaultValue,true);
+							NodeList childParamList = booktmp.getChildNodes();
+							for (int cpl = 0; cpl < childParamList.getLength(); cpl++) {
+								// 循环遍历获取每一个book
+								if (childParamList.item(cpl).getNodeType() == Node.ELEMENT_NODE) {
+									Node childParam = childParamList.item(cpl);
+									NamedNodeMap childParamMap = childParam.getAttributes();
+									Node childVarnameNode = childParamMap.getNamedItem("varname");
+									Node childSerialsNode = childParamMap.getNamedItem("serials");
+									Node childDefaultNode = childParamMap.getNamedItem("default");
+									
+									if (childVarnameNode == null) {
+										throw new BussinessException(errorCodeService.getErrCode(Constant.XML_NONODE));
+									}
+									if (childSerialsNode == null) {
+										throw new BussinessException(errorCodeService.getErrCode(Constant.XML_NONODE));
+									}
+									
+									String childVarname = childVarnameNode.getNodeValue();
+									String childSerials = childSerialsNode.getNodeValue();
+									String childDefaultValue = null;
+									if (childDefaultNode != null) {
+										childDefaultValue = childDefaultNode.getNodeValue();
+									}
+									tf.putParamsMap(varname, childVarname, Integer.parseInt(childSerials), childDefaultValue);
+								}
+							}
+						}else{
+							tf.putParams(varname, Integer.parseInt(serials), defaultValue);	
+						}
+						
 					}
 				}
 

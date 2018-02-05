@@ -13,7 +13,8 @@ public class Constant {
 	public final static String AMT_ILLEGAL = "AMT_ILLEGAL";
 	public final static String EXP_ACCOUNT_ERROR = "EXP_ACCOUNT_ERROR";
 	public final static String EXP_ACCOUNT_LOCK = "EXP_ACCOUNT_LOCK";
-
+	public final static String EXP_PARAM_ERROR = "PARAM_ERROR";
+	
 	public final static String SUCCESS_CODE = "00000000";
 
 	public final static String TRANS_STATUS_SUCCESS = "0";

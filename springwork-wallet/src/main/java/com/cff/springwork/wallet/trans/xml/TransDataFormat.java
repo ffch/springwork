@@ -2,19 +2,27 @@ package com.cff.springwork.wallet.trans.xml;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 
 public class TransDataFormat {
 
-	private List<KeyValue> params = new ArrayList<KeyValue>();;
+	private List<KeyValue> params = new ArrayList<KeyValue>();
+	
+	private Map<String,List<KeyValue>> paramsMap = new HashMap<String,List<KeyValue>>();
 
 	private String transCode = null;
 
 	private String transName = null;
 
 	private String delimiter = "`";
+	
+	private String listDelimiter = "#";
+	
+	private String paramDelimiter = ",";
 
 	public TransDataFormat() {
 
@@ -44,11 +52,80 @@ public class TransDataFormat {
 		this.delimiter = delimiter;
 	}
 
+	public String getListDelimiter() {
+		return listDelimiter;
+	}
+
+	public void setListDelimiter(String listDelimiter) {
+		this.listDelimiter = listDelimiter;
+	}
+
+	public String getParamDelimiter() {
+		return paramDelimiter;
+	}
+
+	public void setParamDelimiter(String paramDelimiter) {
+		this.paramDelimiter = paramDelimiter;
+	}
+
 	public void putParams(String varname, int serials, String defaultValue) {
 		KeyValue kv = new KeyValue();
 		kv.setKey(varname);
 		kv.setValue(defaultValue);
 		kv.setSerials(serials);
+		kv.setHasChild(false);
+		params.add(kv);
+		if (serials < params.size()) {
+			params.sort(new Comparator<KeyValue>() {
+				@Override
+				public int compare(KeyValue s1, KeyValue s2) {
+					return Integer.compare(s1.getSerials(), s2.getSerials());
+				}
+			});
+		}
+
+	}
+	
+	public void putParamsMap(String paras, String varname, int serials, String defaultValue) {
+		KeyValue kv = new KeyValue();
+		kv.setKey(varname);
+		kv.setValue(defaultValue);
+		kv.setSerials(serials);
+		kv.setHasChild(false);
+		
+		List<KeyValue> lkv = null;
+		if(paramsMap.get(paras) != null){
+			lkv = paramsMap.get(paras);
+			lkv.add(kv);
+			if (serials < lkv.size()) {
+				lkv.sort(new Comparator<KeyValue>() {
+					@Override
+					public int compare(KeyValue s1, KeyValue s2) {
+						return Integer.compare(s1.getSerials(), s2.getSerials());
+					}
+				});
+			}
+		}else{
+			lkv = new ArrayList<KeyValue>();
+			lkv.add(kv);
+			paramsMap.put(paras, lkv);
+			if (serials < lkv.size()) {
+				lkv.sort(new Comparator<KeyValue>() {
+					@Override
+					public int compare(KeyValue s1, KeyValue s2) {
+						return Integer.compare(s1.getSerials(), s2.getSerials());
+					}
+				});
+			}
+		}
+	}
+	
+	public void putParams(String varname, int serials, String defaultValue,Boolean hasChild) {
+		KeyValue kv = new KeyValue();
+		kv.setKey(varname);
+		kv.setValue(defaultValue);
+		kv.setSerials(serials);
+		kv.setHasChild(hasChild);
 		params.add(kv);
 		if (serials < params.size()) {
 			params.sort(new Comparator<KeyValue>() {
@@ -63,6 +140,10 @@ public class TransDataFormat {
 	
 	public List<KeyValue> getParams(){
 		return params;
+	}
+	
+	public List<KeyValue> getParamsMap(String key){
+		return paramsMap.get(key);
 	}
 	
 	public int getParamsSize(){
@@ -81,6 +162,7 @@ public class TransDataFormat {
 		public String key;
 		public String value;
 		public int serials;
+		public Boolean hasChild = false;
 
 		public String getKey() {
 			return key;
@@ -106,9 +188,18 @@ public class TransDataFormat {
 			this.serials = serials2;
 		}
 
+		public Boolean getHasChild() {
+			return hasChild;
+		}
+
+		public void setHasChild(Boolean hasChild) {
+			this.hasChild = hasChild;
+		}
+
 		@Override
 		public String toString() {
-			return "KeyValue [key=" + key + ", value=" + value + ", serials=" + serials + "]";
+			return "KeyValue [key=" + key + ", value=" + value + ", serials=" + serials + ", hasChild=" + hasChild
+					+ "]";
 		}
 
 	}

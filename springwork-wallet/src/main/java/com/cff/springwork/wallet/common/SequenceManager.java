@@ -24,6 +24,8 @@ public class SequenceManager {
 	@PostConstruct
 	public void init(){
 		fillTransFlowSeq();
+		fillAccountFlowSeq();
+		fillAccNoSeq();
 	}
 	
 	@Autowired
@@ -43,7 +45,7 @@ public class SequenceManager {
 	public synchronized void fillTransFlowSeq(){
 		int size = maxSeqSize - transFlowSeq.size();
 		int para = sequenceDao.findEnoughBySequenceNameAndSize(Constant.TRAN_FLOW_SEQ, size);
-		log.error("获取到seq:" + para);
+		log.info("获取到seq:" + para);
 		for(int i=0;i<size;i++){
 			transFlowSeq.add(para++);
 		}
@@ -63,7 +65,7 @@ public class SequenceManager {
 	public synchronized void fillAccountFlowSeq(){
 		int size = maxSeqSize - accountFlowSeq.size();
 		int para = sequenceDao.findEnoughBySequenceNameAndSize(Constant.ACCOUNT_FLOW_SEQ, size);
-		log.error("获取到seq:" + para);
+		log.info("获取到seq:" + para);
 		for(int i=0;i<size;i++){
 			accountFlowSeq.add(para++);
 		}
@@ -83,7 +85,7 @@ public class SequenceManager {
 	public synchronized void fillAccNoSeq(){
 		int size = maxSeqSize - accNoSeq.size();
 		int para = sequenceDao.findEnoughBySequenceNameAndSize(Constant.ACC_NO_SEQ, size);
-		log.error("获取到seq:" + para);
+		log.info("获取到seq:" + para);
 		for(int i=0;i<size;i++){
 			accNoSeq.add(para++);
 		}
