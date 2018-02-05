@@ -33,8 +33,17 @@
          overflowToDisk="false"
          memoryStoreEvictionPolicy="LRU"/>
          
-  <!-- waProduct缓存 -->
+  <!-- waLiqAccount缓存 -->
   <cache name="waLiqAccount"
+         maxElementsInMemory="1000"
+         eternal="false"
+         timeToIdleSeconds="0"
+         timeToLiveSeconds="3600"
+         overflowToDisk="false"
+         memoryStoreEvictionPolicy="LRU"/>
+   
+  <!-- waDrcrControl缓存 -->
+  <cache name="waDrcrControl"
          maxElementsInMemory="1000"
          eternal="false"
          timeToIdleSeconds="0"

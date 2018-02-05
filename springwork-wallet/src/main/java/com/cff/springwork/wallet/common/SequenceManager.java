@@ -17,6 +17,7 @@ public class SequenceManager {
 
 	private ConcurrentLinkedQueue<Integer> transFlowSeq = new ConcurrentLinkedQueue<Integer>();
 	private ConcurrentLinkedQueue<Integer> accNoSeq = new ConcurrentLinkedQueue<Integer>();
+	private ConcurrentLinkedQueue<Integer> accountFlowSeq = new ConcurrentLinkedQueue<Integer>();
 	private static int maxSeqSize = 10;
 	private static int dengerSeqSize = 5;
 	
@@ -45,6 +46,26 @@ public class SequenceManager {
 		log.error("获取到seq:" + para);
 		for(int i=0;i<size;i++){
 			transFlowSeq.add(para++);
+		}
+	}
+	
+	public int offerAccountFlowSeq(){
+		if(accountFlowSeq.size()< dengerSeqSize){
+			fillAccountFlowSeq();
+		}
+		Integer el = accountFlowSeq.poll();
+		if(el == null){
+			return offerAccountFlowSeq();
+		}
+		return el;
+	}
+	
+	public synchronized void fillAccountFlowSeq(){
+		int size = maxSeqSize - accountFlowSeq.size();
+		int para = sequenceDao.findEnoughBySequenceNameAndSize(Constant.ACCOUNT_FLOW_SEQ, size);
+		log.error("获取到seq:" + para);
+		for(int i=0;i<size;i++){
+			accountFlowSeq.add(para++);
 		}
 	}
 	

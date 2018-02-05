@@ -60,8 +60,6 @@ public class OpenAccountService extends BusiNessService{
 		
 		tm.put(Constant.ACC_NO, waAccount.getAccNo());
 		errorCodeService.genErrorReturn(tm, Constant.TRANS_SUCCESS);
-		tm.put("transStatus", "0");
-
 	}
 	
 	public String genAccNo(WaAccount waAccount){

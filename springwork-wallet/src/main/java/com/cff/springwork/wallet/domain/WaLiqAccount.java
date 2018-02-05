@@ -32,15 +32,6 @@ public class WaLiqAccount implements Serializable {
 
 	@Column(name="up_itemno")
 	private String upItemno;
-	
-	@Transient
-	private String balDir;
-	
-	@Transient
-	private String accNo;
-	
-	@Transient
-	private int transAmt;
 
 
 	public WaLiqAccount() {
@@ -50,36 +41,12 @@ public class WaLiqAccount implements Serializable {
 		return this.itemNo;
 	}
 
-	public String getBalDir() {
-		return balDir;
-	}
-
-	public void setBalDir(String balDir) {
-		this.balDir = balDir;
-	}
-
-	public String getAccNo() {
-		return accNo;
-	}
-
-	public void setAccNo(String accNo) {
-		this.accNo = accNo;
-	}
-
 	public void setItemNo(String itemNo) {
 		this.itemNo = itemNo;
 	}
 
 	public String getLiqLevel() {
 		return this.liqLevel;
-	}
-
-	public int getTransAmt() {
-		return transAmt;
-	}
-
-	public void setTransAmt(int transAmt) {
-		this.transAmt = transAmt;
 	}
 
 	public void setLiqLevel(String liqLevel) {

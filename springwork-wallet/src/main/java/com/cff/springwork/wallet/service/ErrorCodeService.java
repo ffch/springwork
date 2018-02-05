@@ -45,6 +45,11 @@ public class ErrorCodeService {
 			tm.put("errMsg", "未知错误");
 		}else{
 			ErrorCode ec = errMap.get(errorName);
+			if(ec == null){
+				tm.put("errCode", "11111111");
+				tm.put("errMsg", "未知错误");
+				return;
+			}
 			tm.put("errCode", ec.getErrCode());
 			tm.put("errMsg", ec.getErrMsg());
 		}

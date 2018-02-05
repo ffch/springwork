@@ -1,6 +1,5 @@
 package com.cff.springwork.wallet.service;
 
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +8,7 @@ import com.cff.springwork.wallet.domain.WaTransFlow;
 import com.cff.springwork.wallet.exception.BussinessException;
 import com.cff.springwork.wallet.trans.data.TransactionMapData;
 import com.cff.springwork.wallet.util.DateUtil;
+import com.cff.springwork.wallet.util.StringUtil;
 
 @Service
 public abstract class BusiNessService {
@@ -39,19 +39,18 @@ public abstract class BusiNessService {
 		wtf.setUserNo(tm.get("userNo") == null ? "" : tm.get("userNo").toString());
 		wtf.setTranStatus("1");
 		waTransFlowService.save(wtf);
-		tm.put("transFlow", wtf.getTransFlow());
+		tm.put("transFlow", wtf);
 	}
 	
 	public void aftTrans(TransactionMapData tm) throws BussinessException{
-		String transFlow = "";
-		transFlow = tm.get("transFlow") == null ? "" : tm.get("").toString();
-		if(StringUtils.isNotEmpty(transFlow)){
-			WaTransFlow wtf = waTransFlowService.findByTransFlow(transFlow);
-			wtf.setRetCode(tm.get("errCode") == null ? "": tm.get("errCode").toString());
-			wtf.setRetRemark(tm.get("errMsg") == null ? "": tm.get("errMsg").toString());
-			wtf.setTranStatus(tm.get("transStatus") == null ? "": tm.get("transStatus").toString());
-			waTransFlowService.save(wtf);
+		WaTransFlow wtf = (WaTransFlow) tm.get("transFlow");
+		wtf.setRetCode(tm.get("errCode") == null ? "": tm.get("errCode").toString());
+		wtf.setRetRemark(tm.get("errMsg") == null ? "": tm.get("errMsg").toString());
+		wtf.setTranStatus(Constant.TRANS_STATUS_SUCCESS);
+		if(!Constant.SUCCESS_CODE.equals(wtf.getRetCode())){
+			wtf.setTranStatus(Constant.TRANS_STATUS_UNSUCCESS);
 		}
+		waTransFlowService.save(wtf);
 	}
 	
 	public abstract void doTrans(TransactionMapData tm) throws BussinessException;

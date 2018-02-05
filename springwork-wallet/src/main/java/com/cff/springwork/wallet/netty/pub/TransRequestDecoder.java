@@ -2,7 +2,6 @@ package com.cff.springwork.wallet.netty.pub;
 
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,6 +10,7 @@ import com.cff.springwork.wallet.trans.data.DictData;
 import com.cff.springwork.wallet.trans.data.TransactionMapData;
 import com.cff.springwork.wallet.trans.xml.TransDataFormat;
 import com.cff.springwork.wallet.util.IPUtil;
+import com.cff.springwork.wallet.util.StringUtil;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
@@ -75,7 +75,7 @@ public class TransRequestDecoder extends ByteToMessageDecoder{
 		for(int i=0;i<params.length;i++){
 			String key = transDataFormat.getParamKey(i);
 			String value = params[i];
-			if(StringUtils.isEmpty(value)){
+			if(StringUtil.isEmpty(value)){
 				value = transDataFormat.getParamValue(i);
 			}
 			tm.put(key, value);

@@ -6,8 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import org.springframework.util.StringUtils;
-
 
 /**
  * 日期工具类
@@ -560,7 +558,7 @@ public class DateUtil {
 	 */
 	public static Date parse(String strDate, String pattern)
 			throws ParseException {
-		return StringUtils.isEmpty(strDate) ? null : new SimpleDateFormat(
+		return StringUtil.isEmpty(strDate) ? null : new SimpleDateFormat(
 				pattern).parse(strDate);
 	}
 	
