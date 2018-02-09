@@ -4,5 +4,8 @@
 	<select id="getNextSeq" resultType="java.lang.Integer" parameterType="java.lang.String">
 		select nextval(#{seqName});
 	</select>
+	<select id="getNextSeqWithSize" resultType="java.lang.Integer">
+		select nextval_copy(#{0},#{1});
+	</select>
 	
 </mapper>  
