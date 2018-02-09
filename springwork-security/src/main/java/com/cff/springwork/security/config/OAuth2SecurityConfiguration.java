@@ -54,7 +54,7 @@ public class OAuth2SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
     	SimpleUrlAuthenticationFailureHandler hander = new SimpleUrlAuthenticationFailureHandler();
     	hander.setUseForward(true);
-    	hander.setDefaultFailureUrl("/authlogin.jsp");
+    	hander.setDefaultFailureUrl("/login_v2.jsp");
 
 		http
 		.exceptionHandling().authenticationEntryPoint(new UnauthorizedEntryPoint())
@@ -63,7 +63,7 @@ public class OAuth2SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	  	.authorizeRequests()
 	  	.antMatchers("/oauth/token")
 	  	.permitAll().and()
-	  	.formLogin().loginPage("/authlogin.jsp")
+	  	.formLogin().loginPage("/login_v2.jsp")
 	  	.usernameParameter("userName").passwordParameter("userPwd")
 	  	.authenticationDetailsSource(authenticationDetailsSource)
 	  	.loginProcessingUrl("/login")
@@ -75,6 +75,7 @@ public class OAuth2SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	  	.and().logout().logoutUrl("/logout").logoutSuccessHandler(new AjaxLogoutSuccessHandler());
 
 		http.authorizeRequests().antMatchers("/user/**").authenticated();
+		http.authorizeRequests().antMatchers("/product/**").authenticated();
     }
 
     @Override
