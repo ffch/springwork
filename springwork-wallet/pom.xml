@@ -56,6 +56,11 @@
 			<artifactId>netty-all</artifactId>
 			<version>4.1.17.Final</version>
 		</dependency>
+		<dependency>
+			<groupId>com.cff</groupId>
+			<artifactId>springwork-network</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>springwork-wallet</finalName>

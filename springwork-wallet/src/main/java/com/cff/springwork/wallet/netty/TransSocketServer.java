@@ -4,16 +4,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.cff.springwork.wallet.netty.pub.NettyServiceTemplate;
-import com.cff.springwork.wallet.netty.pub.TransRequestDecoder;
-import com.cff.springwork.wallet.netty.pub.TransResponseEncoder;
+import com.cff.springwork.network.tcp.coder.TransRequestDecoder;
+import com.cff.springwork.network.tcp.coder.TransResponseEncoder;
+import com.cff.springwork.network.tcp.server.NettyServerTemplate;
 
 import io.netty.channel.ChannelHandler;
 import io.netty.handler.codec.DelimiterBasedFrameDecoder;
 import io.netty.handler.codec.Delimiters;
 
 @Component
-public class TransSocketServer extends NettyServiceTemplate{
+public class TransSocketServer extends NettyServerTemplate{
 	@Value("${transport}")
 	private int port = 8888;
 	@Autowired
@@ -27,7 +27,7 @@ public class TransSocketServer extends NettyServiceTemplate{
 	@Override
 	public ChannelHandler[] createHandlers() {
 		return new ChannelHandler[]{
-				new DelimiterBasedFrameDecoder(8192, Delimiters.lineDelimiter()),
+//				new DelimiterBasedFrameDecoder(8192, Delimiters.lineDelimiter()),
 				new TransRequestDecoder(),
 				nettyServerHandler,
 				

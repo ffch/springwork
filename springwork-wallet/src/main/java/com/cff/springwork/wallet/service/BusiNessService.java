@@ -3,12 +3,11 @@ package com.cff.springwork.wallet.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cff.springwork.network.common.DateUtil;
+import com.cff.springwork.network.tcp.data.TransactionMapData;
 import com.cff.springwork.wallet.common.Constant;
 import com.cff.springwork.wallet.domain.WaTransFlow;
 import com.cff.springwork.wallet.exception.BussinessException;
-import com.cff.springwork.wallet.trans.data.TransactionMapData;
-import com.cff.springwork.wallet.util.DateUtil;
-import com.cff.springwork.wallet.util.StringUtil;
 
 @Service
 public abstract class BusiNessService {
@@ -25,6 +24,7 @@ public abstract class BusiNessService {
 		} catch (BussinessException e) {
 			String errorName = e.getErrorName();
 			errorCodeService.genErrorReturn(tm, errorName);
+			aftTrans(tm);
 		}
 		
 		return tm;
@@ -42,7 +42,7 @@ public abstract class BusiNessService {
 		tm.put("transFlow", wtf);
 	}
 	
-	public void aftTrans(TransactionMapData tm) throws BussinessException{
+	public void aftTrans(TransactionMapData tm) {
 		WaTransFlow wtf = (WaTransFlow) tm.get("transFlow");
 		wtf.setRetCode(tm.get("errCode") == null ? "": tm.get("errCode").toString());
 		wtf.setRetRemark(tm.get("errMsg") == null ? "": tm.get("errMsg").toString());

@@ -9,9 +9,9 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cff.springwork.network.tcp.data.TransactionMapData;
 import com.cff.springwork.wallet.dao.ErrorCodeDao;
 import com.cff.springwork.wallet.domain.ErrorCode;
-import com.cff.springwork.wallet.trans.data.TransactionMapData;
 
 @Service
 public class ErrorCodeService {

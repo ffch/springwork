@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>  
 <wallet>
+<head type="var" delimiter="'">
+	<feild varname="transDate" serials="0" length="4"/> 
+    <feild varname="reqTransFlow" serials="2" length="16"/> 
+</head>
 <trans transcode="000001" name="openAccountService" delimiter="`">  
     <feild varname="userNo" serials="0" default=""/> 
     <feild varname="passwd" serials="1" default=""/> 
-    <feild varname="accountType" serials="2" default="100"/> 
+    <feild varname="accountType" serials="2" default="1001"/> 
     <feild varname="SysMac" serials="3" default=""/> 
 </trans> 
 

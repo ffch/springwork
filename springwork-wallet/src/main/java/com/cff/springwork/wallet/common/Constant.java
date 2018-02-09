@@ -7,6 +7,7 @@ public class Constant {
 	public final static String TRANS_NOBEAN = "TRANS_NOBEAN";
 	public final static String TRANS_SUCCESS = "TRANS_SUCCESS";
 	public final static String ACCOUNT_NOT_EXIST = "ACCOUNT_NOT_EXIST";
+	public final static String ACCOUNT_ALREADY_EXIST = "ACCOUNT_EXIST";
 	public final static String ACCOUNT_ITEM_ERROR = "ACCOUNT_ITEM_ERROR";
 	public final static String ACCOUNT_PARAM_NOT_EXIST = "PARAM_NOT_EXIST";
 	public final static String PASSWD_NOT_MATCH = "PASSWD_NOT_MATCH";

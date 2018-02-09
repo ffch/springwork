@@ -7,6 +7,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cff.springwork.network.common.DateUtil;
+import com.cff.springwork.network.common.StringUtil;
+import com.cff.springwork.network.tcp.data.TransactionMapData;
 import com.cff.springwork.wallet.common.Constant;
 import com.cff.springwork.wallet.common.SequenceManager;
 import com.cff.springwork.wallet.dao.WaAccountDao;
@@ -19,9 +22,6 @@ import com.cff.springwork.wallet.domain.WaLiqAccount;
 import com.cff.springwork.wallet.domain.WaTransFlow;
 import com.cff.springwork.wallet.exception.BussinessException;
 import com.cff.springwork.wallet.service.WaLiqAccountService;
-import com.cff.springwork.wallet.trans.data.TransactionMapData;
-import com.cff.springwork.wallet.util.DateUtil;
-import com.cff.springwork.wallet.util.StringUtil;
 
 @Service
 public class LiqAccountManager {

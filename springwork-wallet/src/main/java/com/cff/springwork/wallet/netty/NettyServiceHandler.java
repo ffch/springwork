@@ -12,14 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.cff.springwork.network.tcp.data.TransactionMapData;
 import com.cff.springwork.wallet.common.Constant;
 import com.cff.springwork.wallet.common.SpringBeansManager;
 import com.cff.springwork.wallet.domain.WaTransFlow;
 import com.cff.springwork.wallet.service.BusiNessService;
 import com.cff.springwork.wallet.service.ErrorCodeService;
 import com.cff.springwork.wallet.service.WaTransFlowService;
-import com.cff.springwork.wallet.trans.data.TransactionMapData;
-import com.cff.springwork.wallet.util.DateUtil;
 
 import io.netty.channel.ChannelHandler.Sharable;
 
@@ -58,7 +57,7 @@ public class NettyServiceHandler extends ChannelInboundHandlerAdapter {
 					BusiNessService busiNessService = (BusiNessService) springBeansService.getBean(msg.get("beans").toString());
 					
 					TransactionMapData tm = busiNessService.trans(msg);
-					log.info(tm.toString());
+					log.info("传输数据为：{}",tm.toString());
 					ctx.channel().writeAndFlush(tm);
 					return;
 				}catch(BeansException e){
@@ -70,6 +69,9 @@ public class NettyServiceHandler extends ChannelInboundHandlerAdapter {
 			}
 			errorCodeService.genErrorReturn(msg,Constant.TRANS_NOBEAN);
 			ctx.channel().writeAndFlush(msg);
+		}else{
+			log.info("信息非法");
+			ctx.channel().writeAndFlush("哈哈哈哈");
 		}
 	}
 

@@ -14,6 +14,7 @@ public interface WaAccountDao extends CrudRepository<WaAccount, String>{
 	WaAccount findByAccNoAndStatus(String accNo,String status);
 	
 	List<WaAccount> findByUserNo(String userNo);
+	WaAccount findByUserNoAndAccType(String userNo,String accType);
 	
 	@Lock(value = LockModeType.PESSIMISTIC_WRITE) 
 	WaAccount findWaAccountLockedByAccNo(String accNo);

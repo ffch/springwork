@@ -16,7 +16,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import com.cff.springwork.wallet.trans.xml.TransDataFormat;
+import com.cff.springwork.network.tcp.format.TransDataFormat;
+
 
 public class TestXmlApi {
 	@Test
