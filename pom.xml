@@ -231,5 +231,6 @@
         <module>springwork-test</module>
         <module>springwork-mail</module>
     <module>springwork-wallet</module>
+    <module>springwork-network</module>
   </modules>
 </project>

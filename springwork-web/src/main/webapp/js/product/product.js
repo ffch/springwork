@@ -1,7 +1,7 @@
 function gotoJiuwei(){
-	window.location.href= passportUrl + "/jsp_v2/product_jiuwei/jwservice.jsp";
+	window.location.href= passportUrl + "/product/product_jiuwei/jwservice.jsp";
 }
 
 function gotoQinyou(){
-	window.location.href= passportUrl + "/jsp_v2/product_jiuwei/jwservice.jsp";
+	window.location.href= passportUrl + "/product/product_qyd/qydservice.jsp";
 }

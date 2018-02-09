@@ -45,6 +45,11 @@
 			<artifactId>springwork-websocket</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.cff</groupId>
+			<artifactId>springwork-network</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 <!-- 		<dependency> -->
 <!-- 			<groupId>com.cff</groupId> -->
 <!-- 			<artifactId>springwork-dubbo-produce</artifactId> -->

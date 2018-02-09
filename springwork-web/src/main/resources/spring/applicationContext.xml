@@ -34,6 +34,24 @@
 		<property name="gdAppKey" value="${gdAppKey}" />
 	</bean>
 	
+	<bean id="transSocketClient" class="com.cff.springwork.web.client.tcp.TransSocketClient" init-method="init" destroy-method="stop">
+		<property name="port" value="${port}" />
+		<property name="domain" value="${domain}" />
+	</bean>
+	
+	<bean id="transDataCoderConfiguration" class="com.cff.springwork.network.tcp.xml.TransDataCoderConfiguration" init-method="init">
+		<property name="xmlReqFiles">
+			<list>
+				<value>classpath:TransXml/transAccountRes.xml</value>
+			</list>
+		</property>
+		<property name="xmlResFiles">
+			<list>
+				<value>classpath:TransXml/transAccountReq.xml</value>
+			</list>
+		</property>
+	</bean>
+	
 	<import resource="classpath*:spring-db.xml"/>
 	<import resource="classpath*:spring-security.xml"/>
 	<import resource="classpath*:spring-activiti.xml"/>

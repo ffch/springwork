@@ -15,8 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cff.springwork.activiti.service.ProductService;
 import com.cff.springwork.common.constant.Constant;
+import com.cff.springwork.common.user.UserInfoManager;
 import com.cff.springwork.model.activi.ProductTask;
+import com.cff.springwork.model.security.AppUser;
+import com.cff.springwork.network.common.TransConstant;
+import com.cff.springwork.network.tcp.data.TransactionMapData;
 import com.cff.springwork.web.cache.TaskTypeCache;
+import com.cff.springwork.web.service.AccountOpenService;
+import com.cff.springwork.web.service.PublicService;
 
 @RestController("productController")
 @RequestMapping("/product")
@@ -27,6 +33,10 @@ public class ProductAction {
 	private ProductService productService;
 	@Autowired
 	private TaskTypeCache taskTypeCache;
+	@Autowired
+	AccountOpenService accountOpenService;
+	@Autowired
+	PublicService publicService;
 	
 	@RequestMapping(value="/createtask")
 	public String createTask(@RequestBody ProductTask userTask) throws Exception{
@@ -77,6 +87,32 @@ public class ProductAction {
 			return Constant.RESPONSE_FAIL;
 		}
 		return Constant.RESPONSE_OK;
+	}
+	
+	@RequestMapping(value="/openAccount")
+	public String openAccount(HttpServletRequest request, HttpServletResponse response) {
+		String name = request.getParameter("name");
+		String passwd = request.getParameter("passwd");
+		logger.info("申请开户："+name + "-------"+passwd);
+		String userNo = publicService.getUserInfo(request).getUserNo();
+		if(userNo == null)return "1111";
+		
+		TransactionMapData tm = new TransactionMapData();
+		tm.put(TransConstant.PASSWD, passwd);
+		tm.put("SysMac", name);
+		tm.put(TransConstant.USER_NO, userNo);
+		String msg = "0000";
+
+		try {
+			TransactionMapData res = accountOpenService.trans(tm);
+			if(!TransConstant.SUCCESS_CODE.equals(res.get("errCode").toString())){
+				msg = res.get("errMsg").toString();
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return msg;
 	}
 
 	public String convertToName(String type){

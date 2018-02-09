@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cff.springwork.common.constant.Constant;
 import com.cff.springwork.model.security.AppUser;
 import com.cff.springwork.mybatis.service.AppUserService;
-import com.cff.springwork.web.endpoint.service.PublicService;
+import com.cff.springwork.web.service.PublicService;
 
 import net.sf.json.JSONException;
 import net.sf.json.JSONObject;

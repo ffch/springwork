@@ -113,6 +113,8 @@
 			}
 		});
 	}
+	
+	
 </script>
 <body>
 	Hello World
@@ -123,6 +125,8 @@
 	<button type="button" onclick="window.location.href='auth.jsp?clientId=bXktdHJ1c3RlZC1jbGllbnQ6c2VjcmV0'">用户名密码模式</button><br><br>
 	<button type="button" onclick="ajaxTest3()">授权码模式</button>
 	<button type="button" onclick="ajaxTest4()">拿token</button>
+	<br><br>
+	<input id="nettyvalue" type="text" value=""><input type="submit" onclick="nettySubmit()">
 	<br>
 	<p>主页跳转</p>
 	<table>
@@ -153,6 +157,21 @@
 			}
 			
 		});
+		function nettySubmit() {
+			var value = $("#nettyvalue").val();
+			$.ajax({
+				type : "post",
+				url : "/test/netty",
+				data : {"value" : value,"type":"0"},
+				dataType : "text",
+				success : function(data) {
+					$("#div2").html("已发送");
+				},
+				error : function(XMLHttpRequest, textStatus, errorThrown) {
+					alert(errorThrown);
+				}
+			});
+		}
 	</script>
 </body>
 </html>

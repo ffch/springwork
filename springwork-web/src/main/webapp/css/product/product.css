@@ -1,0 +1,14 @@
+@charset "utf-8"; 
+.protocol a:link,a:visited{
+	color:#149def;
+	text-decoration:none; 
+}
+.protocol a:hover{
+ text-decoration:underline;  /*鼠标放上去有下划线*/
+}
+
+.error{
+	color: red;
+	margin-left: 250px;
+    margin-top: 50px;
+}

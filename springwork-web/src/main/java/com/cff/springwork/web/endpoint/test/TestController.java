@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cff.springwork.common.util.DateUtil;
+import com.cff.springwork.network.tcp.data.TransactionMapData;
+import com.cff.springwork.web.client.tcp.TransSocketClient;
 import com.cff.springwork.web.entity.WelEntity;
 
 
@@ -28,7 +30,8 @@ public class TestController {
 //	
 //	@Autowired
 //	ParamInfoCache paramInfoCache;
-	
+	@Autowired
+	TransSocketClient transSocketClient;
 	@RequestMapping("/welCome")
 	public WelEntity welCome(@RequestParam String reqType){
 		String uuid = UUID.randomUUID().toString();
@@ -84,5 +87,21 @@ public class TestController {
 		System.out.println(imgtoken);
 		request.getSession().setAttribute("imgtoken", imgtoken);
 		return imgtoken;
+	}
+	
+	@RequestMapping("/netty")
+	public String imgtoken(@RequestParam String value,@RequestParam String type) throws Exception{
+		if(type==null)type="1";
+		TransactionMapData tm = new TransactionMapData();
+		tm.put("heartBit", value);
+		tm.setType(1);
+		if("1".equals(type)){
+			transSocketClient.sendAndWaitResult(tm);
+			String requestId = UUID.randomUUID().toString();
+			tm.put("reqTransFlow",requestId);
+		}else{
+			transSocketClient.sendRequest(tm);
+		}
+		return "0000";
 	}
 }

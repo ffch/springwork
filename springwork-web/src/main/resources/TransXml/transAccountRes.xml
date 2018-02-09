@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<wallet>
+<head type="var" delimiter="'">
+	<feild varname="reqTransFlow" serials="0" length="16" default=""/> 
+	<feild varname="errCode" serials="1" default="00000000"/> 
+    <feild varname="errMsg" serials="2" default=""/> 
+</head>
+<trans transcode="000001" name="openAccountService" delimiter="`">  
+    <feild varname="userNo" serials="0" default="00001"/> 
+    <feild varname="accNo" serials="1" default="10001"/> 
+    <feild varname="accountType" serials="2" default="00"/> 
+    <feild varname="SysMac" serials="3" default=""/> 
+</trans> 
+
+<trans transcode="000002" name="accountRechargeService" delimiter="`">  
+    <feild varname="bal" serials="0" default="0"/> 
+    <feild varname="SysMac" serials="3" default=""/> 
+</trans> 
+
+<trans transcode="100001" name="accountQueryService" delimiter="`" listdelimiter="#" paradelimiter=",">  
+    <feild varname="userNo" serials="0" default=""/> 
+    <feild varname="totalNum" serials="1" default="0"/> 
+    <feild varname="accDetails" serials="2" default="" hasChild=""> 
+    	<feild varname="accNo" serials="0" default=""/>
+    	<feild varname="bal" serials="1" default="0"/>
+    	<feild varname="frzBal" serials="2" default="0"/>
+    	<feild varname="loanBal" serials="3" default="0"/>
+    </feild>
+    <feild varname="SysMac" serials="5" default=""/> 
+</trans> 
+</wallet>
