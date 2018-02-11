@@ -83,7 +83,7 @@ public class TransSocketClient extends NettyClientTemplate{
 	}
 
 	public TransactionMapData sendAndWaitResult(TransactionMapData req) throws Exception {
-		if(!channel.isActive()){
+		if(channel == null || !channel.isActive()){
 			logger.info("断线重连中。。。");
 			connect();
 		}

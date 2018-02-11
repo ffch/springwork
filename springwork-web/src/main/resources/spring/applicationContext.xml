@@ -34,7 +34,7 @@
 		<property name="gdAppKey" value="${gdAppKey}" />
 	</bean>
 	
-	<bean id="transSocketClient" class="com.cff.springwork.web.client.tcp.TransSocketClient" init-method="init" destroy-method="stop">
+	<bean id="transSocketClient" class="com.cff.springwork.web.client.tcp.TransSocketClient" destroy-method="stop">
 		<property name="port" value="${port}" />
 		<property name="domain" value="${domain}" />
 	</bean>

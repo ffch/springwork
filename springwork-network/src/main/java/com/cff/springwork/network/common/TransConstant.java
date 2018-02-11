@@ -28,5 +28,13 @@ public class TransConstant {
 	public final static String ACCOUNT_STATUS_NORMAL = "0";
 
 	public final static String ACCOUNT_STATUS_UNACTIVE = "1";
-
+	
+	/**
+	 * 判断密码
+	 */
+	public final static String ACCOUNT_PASSWD_JUDGE = "1";
+	/**
+	 * 不判断密码
+	 */
+	public final static String ACCOUNT_PASSWD_NOTJUDGE = "0";
 }

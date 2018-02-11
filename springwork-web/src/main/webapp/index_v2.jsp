@@ -14,11 +14,16 @@
 <link href="${ctx}/css/bootstrap/bootstrap.css" type="text/css"
 	rel="stylesheet" />
 <link href="${ctx}/css/style.css" type="text/css" rel="stylesheet" />
+<link href="${ctx}/css/account/account.css" type="text/css" rel="stylesheet" />
 
 <script type="text/javascript"
 	src="${ctx}/js/jquery/jquery-3.2.1.min.js"></script>
 <script type="text/javascript"
 	src="${ctx}/js/product/product.js"></script>
+<script type="text/javascript"
+	src="${ctx}/js/account/account.js"></script>	
+<script type="text/javascript"
+	src="${ctx}/js/common.js"></script>
 <title>模板网站</title>
 <script type="text/javascript">
 var passportUrl = '${ctx}';	
@@ -74,7 +79,11 @@ var passportUrl = '${ctx}';
 			<div class="nav-con-close">
 				<span class="glyphicon glyphicon-chevron-left"></span>
 			</div>
-			<div>资产</div>
+			<div style="margin-left: 35%;">我的资产</div>
+			<div id="assetInfo" class="assetInfo">您还没开通钱包功能</div>
+			<div id="config"  class="assetconfig">
+				<a id="openAccount" href="#" onclick="openAccount()">开通</a>
+			</div>
 		</div>
 		<div class="nav-content" id="brand-content">
 			<div class="nav-con-close">
@@ -163,7 +172,7 @@ var passportUrl = '${ctx}';
 				</div>
 				<div>
 					<img class="registerfront" alt="" src="${ctx}/img/register.png"
-						onclick="register();">
+						onclick="register(passportUrl)">
 				</div>
 				<div>
 					<img class="bgfront" alt="" src="${ctx}/img/index1001.png">
@@ -208,7 +217,26 @@ var passportUrl = '${ctx}';
 		</div>
 		
 	</div>
-
+	<div id="rechargeAccount" class="rechargeAccount">
+		<div id="rechargeAccountContent" style="margin-top: 20px;">
+			<span style="font-size: 20px;font-weight:bold;">请充值</span>
+			<div style="margin-top: 25px;">
+				<span>金额：</span>
+				<input id="rechAmt" type="text" >
+			</div>
+			
+			<div style="margin-top: 35px;margin-bottom: 20px;">
+				<span>密码：</span>
+				<input id="rechPwd" type="text" >
+			</div>
+			<div style="margin-bottom: 20px;">
+				<span id="rechError" >&nbsp;</span>
+			</div>
+		</div>
+		<br>
+		<input type="button" class="accountbtn" onclick="rechargeAccount()" value="充值"/>
+		<input type="button" class="accountbtn" onclick="closeDivWindows('rechargeAccount')" value="取消"/>
+	</div>
 	<script type="text/javascript" src="${ctx}/js/sidebar.js"></script>
 </body>
 
@@ -250,7 +278,11 @@ var passportUrl = '${ctx}';
 						clearTimeout(t_delay);
 						lr_menu.fadeOut("slow");
 					});
+					
+					queryAccount();
 				}
+				
+				
 			}
 		},
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
@@ -268,10 +300,6 @@ var passportUrl = '${ctx}';
     	$("#loginRemide").text(loginRemide);
     	$("#loginRemide").attr("href",loginUrl);
     }
-    
-	function register(){
-		window.location.href="${ctx}/login_v2.jsp";
-	}
 	
 	if(loginflag){
 		var lr_systembtn = $("#lr_systembtn");

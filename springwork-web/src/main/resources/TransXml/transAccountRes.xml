@@ -22,9 +22,10 @@
     <feild varname="totalNum" serials="1" default="0"/> 
     <feild varname="accDetails" serials="2" default="" hasChild=""> 
     	<feild varname="accNo" serials="0" default=""/>
-    	<feild varname="bal" serials="1" default="0"/>
-    	<feild varname="frzBal" serials="2" default="0"/>
-    	<feild varname="loanBal" serials="3" default="0"/>
+    	<feild varname="accType" serials="1" default="1001"/>
+    	<feild varname="bal" serials="2" default="0"/>
+    	<feild varname="frzBal" serials="3" default="0"/>
+    	<feild varname="loanBal" serials="4" default="0"/>
     </feild>
     <feild varname="SysMac" serials="5" default=""/> 
 </trans> 

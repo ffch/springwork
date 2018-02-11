@@ -37,48 +37,12 @@ public abstract class NettyClientTemplate {
 	/**
 	 * 共享IO线程
 	 **/
-	public NioEventLoopGroup workerGroup ;
+	public NioEventLoopGroup workerGroup;
 
-	@PostConstruct
 	public void init() throws Exception {
-		Bootstrap bootstrap = new Bootstrap();
-		workerGroup = new NioEventLoopGroup();
-		bootstrap.group(workerGroup)//
-				.option(ChannelOption.SO_KEEPALIVE, true)
-				.option(ChannelOption.TCP_NODELAY, true) 
-				.channel(NioSocketChannel.class)//
-				.handler(new ChannelInitializer<NioSocketChannel>() {
-					@Override
-					protected void initChannel(NioSocketChannel ch) throws Exception {
-						ChannelHandler[] handlers = createHandlers();
-						for (ChannelHandler handler : handlers) {
-							ch.pipeline().addLast(handler);
-						}
-					}
-
-				});
-		int connectTimeout = getConnectionTimeout();
-		if (connectTimeout < 1000) {
-			bootstrap.option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 3000);
-		} else {
-			bootstrap.option(ChannelOption.CONNECT_TIMEOUT_MILLIS, connectTimeout);
-		}
-
-		String targetIP = getDomain();
-		int targetPort = getPort();
-		logger.info("准备连接到{}的{}端口",targetIP,targetPort);
-		future = bootstrap.connect(new InetSocketAddress(targetIP, targetPort)).sync();
-		if (future.isSuccess()) {
-			channel = future.channel();
-			
-		} else {
-			future.cancel(true);
-			future.channel().close();
-			throw new Exception(targetIP);
-		}
+		connect();
 	}
 
-	@PreDestroy
 	public void stop() {
 		if (null == channel) {
 			System.out.println("server channel is null");
@@ -109,7 +73,7 @@ public abstract class NettyClientTemplate {
 		if (timeout <= 0) {
 			throw new IllegalArgumentException("timeout <= 0");
 		}
-		logger.info("reqTransFlow为{}",request.get("reqTransFlow"));
+		logger.info("reqTransFlow为{}", request.get("reqTransFlow"));
 		WriteFuture<TransactionMapData> future = new SyncWriteFuture(request.get("reqTransFlow").toString());
 		SyncWriteMap.syncKey.put(request.get("reqTransFlow").toString(), future);
 
@@ -144,17 +108,21 @@ public abstract class NettyClientTemplate {
 		}
 		return response;
 	}
-	
+
 	public void connect() throws Exception {
-		workerGroup.shutdownGracefully();
-		channel.closeFuture().syncUninterruptibly();
-		workerGroup = null;
-		channel = null;
+		if (workerGroup != null) {
+			workerGroup.shutdownGracefully();
+			workerGroup = null;
+		}
+		if (channel != null) {
+			channel.closeFuture().syncUninterruptibly();
+			channel = null;
+		}
+
 		Bootstrap bootstrap = new Bootstrap();
 		workerGroup = new NioEventLoopGroup();
 		bootstrap.group(workerGroup)//
-				.option(ChannelOption.SO_KEEPALIVE, true)
-				.option(ChannelOption.TCP_NODELAY, true) 
+				.option(ChannelOption.SO_KEEPALIVE, true).option(ChannelOption.TCP_NODELAY, true)
 				.channel(NioSocketChannel.class)//
 				.handler(new ChannelInitializer<NioSocketChannel>() {
 					@Override
@@ -175,11 +143,11 @@ public abstract class NettyClientTemplate {
 
 		String targetIP = getDomain();
 		int targetPort = getPort();
-		logger.info("准备连接到{}的{}端口",targetIP,targetPort);
+		logger.info("准备连接到{}的{}端口", targetIP, targetPort);
 		future = bootstrap.connect(new InetSocketAddress(targetIP, targetPort)).sync();
 		if (future.isSuccess()) {
 			channel = future.channel();
-			
+
 		} else {
 			future.cancel(true);
 			future.channel().close();
