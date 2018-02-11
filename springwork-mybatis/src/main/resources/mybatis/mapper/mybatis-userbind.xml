@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cff.springwork.mybatis.mapper.UserBindMapper">
+	<resultMap id="BaseResultMap" type="com.cff.springwork.model.user.UserBind">
+		<result column="user_no" property="userNo" />
+		<result column="name" property="name" />
+		<result column="sex" property="sex" />
+		<result column="cert_no" property="certNo" />
+		<result column="has_account" property="hasAccount" />
+		<result column="acc_no" property="accNo" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		user_no, name, sex, cert_no,has_account,acc_no
+	</sql>
+	<select id="getUserBind" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from se_user_bind
+		where user_no = #{userNo}
+	</select>
+	
+	<insert id="save" parameterType="com.cff.springwork.model.user.UserBind">
+		insert into se_user_bind(user_no, name, sex, cert_no,has_account,acc_no) 
+			value(
+			#{userNo},
+			#{name},
+			#{sex},
+			#{certNo},
+			#{hasAccount},
+			#{accNo}
+			)
+	</insert>
+	
+	<update id="modify" parameterType="com.cff.springwork.model.user.UserBind">
+		update se_user_bind
+		<set>
+			<if test="name != null">name=#{name}</if>
+			<if test="sex != null">sex=#{sex}</if>
+			<if test="certNo != null">cert_no=#{certNo}</if>
+			<if test="hasAccount != null">has_account=#{hasAccount}</if>
+			<if test="accNo != null">acc_no=#{accNo}</if>
+		</set>
+		where user_no=#{userNo}
+	</update>
+
+</mapper>  
