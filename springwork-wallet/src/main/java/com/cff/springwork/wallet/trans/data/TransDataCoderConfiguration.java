@@ -2,11 +2,18 @@ package com.cff.springwork.wallet.trans.data;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ResourceUtils;
 
@@ -27,7 +34,7 @@ public class TransDataCoderConfiguration {
 	public String commonTag = "trans";
 	
 	@PostConstruct
-	public void init() throws BussinessException, FileNotFoundException{
+	public void init() throws BussinessException, IOException{
 		if(xmlReqFiles == null || xmlReqFiles.size() < 1){
 			throw new BussinessException(XmlErrorConstant.EXP_XMLFILE_NOTEXIST,XmlErrorConstant.EXP_XMLFILE_NOTEXIST_MSG);
 		}
@@ -42,23 +49,30 @@ public class TransDataCoderConfiguration {
 		}
 		if(xmlTags == null || xmlTags.size() < 1){
 			for(int i =0; i< xmlReqFiles.size(); i++){
-				File transFile = ResourceUtils.getFile(xmlReqFiles.get(i));
+				InputStream transFile = getFileInputStream(xmlReqFiles.get(i));
 				DictData.transFormatDataReq.putAll(transXmlParser.parse(transFile, commonTag));
 			}
 			for(int i =0; i< xmlResFiles.size(); i++){
-				File transFile = ResourceUtils.getFile(xmlResFiles.get(i));
+				InputStream transFile = getFileInputStream(xmlResFiles.get(i));
 				DictData.transFormatDataRes.putAll(transXmlParser.parse(transFile, commonTag));
 			}
 		}else{
 			for(int i =0; i< xmlReqFiles.size(); i++){
-				File transFile = ResourceUtils.getFile(xmlReqFiles.get(i));
+				InputStream transFile = getFileInputStream(xmlReqFiles.get(i));
 				DictData.transFormatDataReq = transXmlParser.parse(transFile, xmlTags.get(i));
 			}
 			for(int i =0; i< xmlResFiles.size(); i++){
-				File transFile = ResourceUtils.getFile(xmlResFiles.get(i));
+				InputStream transFile = getFileInputStream(xmlResFiles.get(i));
 				DictData.transFormatDataRes.putAll(transXmlParser.parse(transFile, xmlTags.get(i)));
 			}
 		}
+	}
+	
+	public static InputStream getFileInputStream(String locationName) throws IOException {
+		 ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+		 Resource resource = resolver.getResource(locationName);
+		 InputStream stream = resource.getInputStream();
+		 return stream;
 	}
 	
 	

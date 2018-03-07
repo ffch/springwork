@@ -1,7 +1,10 @@
 package com.cff.springwork.network.tcp.xml;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,7 +13,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ResourceUtils;
@@ -27,13 +29,21 @@ import com.cff.springwork.network.tcp.format.TransHeadFormat;
 
 public class TransXmlParser {
 
-	@Test
 	public void test() throws BussinessException {
 		parse(new File("D:\\Document\\NewWork\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp3\\wtpwebapps\\springwork-web\\WEB-INF\\classes\\TransXml\\transAccountReq.xml"),
 				"trans");
 	}
-
+	
 	public Map<String, TransDataFormat> parse(File fileName, String fileTag) throws BussinessException {
+		try {
+			return parse(new FileInputStream(fileName),fileTag);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public Map<String, TransDataFormat> parse(InputStream fileName, String fileTag) throws BussinessException {
 		DocumentBuilderFactory a = DocumentBuilderFactory.newInstance();
 		Map<String, TransDataFormat> transData = new HashMap<String, TransDataFormat>();
 		try {

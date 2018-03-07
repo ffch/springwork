@@ -6,9 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.Test;
-
 import com.cff.springwork.network.common.StringUtil;
+
 
 public class TransDataFormat {
 
@@ -223,7 +222,6 @@ public class TransDataFormat {
 				+ ", paramDelimiter=" + paramDelimiter + ", transHeadFormat=" + transHeadFormat + "]";
 	}
 
-	@Test
 	public void test(){
 		String cha = "12as'asdasd''we'wqe''";
 		String[] params = cha.split("'");

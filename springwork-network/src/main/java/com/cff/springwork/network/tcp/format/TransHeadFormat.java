@@ -6,8 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.Test;
-
 import com.cff.springwork.network.tcp.format.TransDataFormat.KeyValue;
 
 public class TransHeadFormat {	

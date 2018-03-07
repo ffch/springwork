@@ -232,5 +232,6 @@
         <module>springwork-mail</module>
     <module>springwork-wallet</module>
     <module>springwork-network</module>
+    <module>springwork-ocr</module>
   </modules>
 </project>
