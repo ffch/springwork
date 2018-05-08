@@ -15,6 +15,6 @@ public interface SequenceDao extends CrudRepository<Sequence, String>{
 	
 	Sequence findBySequenceName(String sequenceName);
 	
-	@Query(value = "select nextval_copy(?1,?2)",nativeQuery = true) 
+	@Query(value = "select nextsizedval(?1,?2)",nativeQuery = true) 
 	public int findEnoughBySequenceNameAndSize(@Param("seq_name") String seqName, @Param("size") int size);  
 }
