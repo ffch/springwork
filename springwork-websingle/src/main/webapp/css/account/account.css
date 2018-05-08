@@ -1,0 +1,21 @@
+.rechargeAccount {
+	display: none;
+	POSITION: absolute;
+	left: 50%;
+	top: 20%;
+	width: 500px;
+	margin-left: -180px;
+	margin-top: -12x;
+	border: 1px solid #888;
+	background-color: #f0ffff;
+	text-align: center
+}
+
+.accountbtn{
+	margin-right: 10px;
+	margin-left: 10px;
+	margin-bottom: 35px;
+	font-size: 20px;
+	width: 100px;
+	background-color: #f9edaa;
+}

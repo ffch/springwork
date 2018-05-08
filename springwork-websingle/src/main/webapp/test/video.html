@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src='/js/jquery-3.2.1.min.js'></script>
+<script type="text/javascript" src='/js/jquery.cookie.js'></script>
+<script type="text/javascript" src='/js/base64.js'></script>
+<title>Video</title>
+</head>
+<script type="text/javascript">
+	$(document).ready(function() {
+
+	});
+
+	function ajaxTest() {
+		var type = "1001";
+		$.ajax({
+			type : "post",
+			url : "test/welCome",
+			dataType : "json",
+			data : {
+				reqType : type
+			},
+			success : function(data) {
+				$("#div1").html(
+						data.uuid + "<br>" + data.welMsg + "<br>"
+								+ data.dateTime);
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				alert(errorThrown);
+			}
+		});
+	}
+</script>
+<body>
+	Hello World
+	<div id="div1"></div>
+	<div id="div2"></div>
+	<button type="button" onclick="ajaxTest()">Welcome</button>
+	<br>
+	<video width="80%" height="80%" autoplay="autoplay" controls poster="/img/video.jpg" >
+		<source src="/download/超能陆战队.HD1280超清中英双字.mp4" type="video/mp4">
+	</video>
+</body>
+
+</html>
