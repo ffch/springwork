@@ -1,2 +1,6 @@
 /target/
 /springwork-wallet.rar
+/springwork-common/
+/springwork-model/
+/.classpath
+/.gitignore

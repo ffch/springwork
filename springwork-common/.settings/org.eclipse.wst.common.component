@@ -2,6 +2,8 @@
     <wb-module deploy-name="springwork-common">
         <wb-resource deploy-path="/" source-path="/src/main/java"/>
         <wb-resource deploy-path="/" source-path="/src/main/resources"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
         <property name="context-root" value="springwork-common"/>
         <property name="java-output-path" value="/springwork-common/target/classes"/>
     </wb-module>
