@@ -1,0 +1,20 @@
+/* CSS Document */
+
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,p,blockquote,th,td{margin:0;padding:0;border:none;}
+body{font-size:12px;font-family:simsun,arial,helvetica,clean,sans-serif;background:#fff;color:#2b2b2b;}
+address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}
+ol,ul{list-style:none;}
+select,input,img{vertical-align:middle;}
+table{border-collapse:collapse;border-spacing:0;}
+table,td,tr,th{font-size:12px;}
+a{text-decoration:none;cursor:pointer;}
+a:link{color:#555555;}
+a:visited{color:#555555;}
+a:hover{text-decoration:none;}
+fieldset,img{border:0;}
+h1,h2,h3,h4,h5,h6{font-size:12px;font-weight:normal;}
+q:before,q:after{content:'';}
+a:focus{outline:none;}
+.clear{clear:both;height:0;line-height:0;font-size:0;overflow:hidden;}
+.left{float:left;}
+.right{float:right;}

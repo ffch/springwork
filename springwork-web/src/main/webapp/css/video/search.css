@@ -1,0 +1,94 @@
+@charset "utf-8";
+/* 浮动及定位样式 */
+.fc:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+.fc{display:inline-block;*zoom:1;}
+/* Hides from IE-mac */ 
+* html .fc{height:1%;}
+.fc{display: block;} 
+/* End hide from IE-mac */
+.fl{float:left;display:inline;}
+.fr{float:right;}
+.pos_a{position:absolute;}
+.pos_r{position:relative;}
+.ft14{font:normal 14px "微软雅黑";}
+.ft16{font:normal 16px "微软雅黑";}
+.fwb{font-weight:bold;}
+.white a,.white a:link,.white a:visited,.white a:active,a.white,a.white:link,a.white:visited,a.white:active{color:#fff;}
+a.green_hover:hover,.green_hover a:hover{color:#0DBBA1;} /*经过绿色*/
+.search2014_bgs,.search2014_snav_ico,.search2014_arrow_ico{background:url(/img/video/bgs_gb.png) no-repeat;_background:url(/img/video/bgs.gif) no-repeat;}
+.search2014_icobx,.search2014_snav_ico,.search2014_arrow_ico{display:inline-block;overflow:hidden;vertical-align:middle;}
+/*第一部分样式*/
+.search2014_logo{padding:29px 0 34px;}
+.search2014_search_t{height:39px;border:2px solid #0DBBA1;border-right:none;}
+.search2014_search_ico{width:18px;height:19px;margin:10px 15px;background-position:-226px -94px;}
+.search2014_search_t input{height:22px;border:none 0px;line-height:22px;color:#b6b6b6;vertical-align:middle;}
+.search2014_search_btn{position:absolute;right:0;top:0;:0height:43px;margin:-2px 0 0 0;background-color:#0DBBA1;line-height:43px; font:bold 16px/43px "微软雅黑";text-align:center;}
+.search2014_search_btn:hover{background-color:#268b0a;text-decoration:none;}
+.search2014_search_b a{line-height:28px;padding-right:6px;font-size:12px;font-family:"宋体";}
+.search2014_search_b a.active_btn{padding-right:22px; no-repeat right center;}
+.search2014_search_b a.active_btn:hover{color:#FD8712;}
+.search2014_hrtel{margin-top:42px;}
+/* 第一部分主导航 */
+.search2014_navwp{width:100%;height:40px;background:#0DBBA1;}
+#search2014_nav{margin:0 auto;}
+#search2014_nav a{display:inline-block;height:40px;line-height:40px;}
+#search2014_nav a:hover{background:#0B9F89;text-decoration:none;}
+/* 侧导航 */
+.search2014_brwp{z-index:99;}
+.search2014_snav{position:absolute;z-index:99;left:0;top:-39px;width:218px;background:#fff;}
+.search2014_snav h2{position:relative;z-index:99;width:220px;height:40px;_height:32px;_padding-top:8px;margin:-1px 0 0 -1px;background:#0B9F89;color:#fff;line-height:40px; background:#0B9F89 url(/img/video/arr1.png) no-repeat 195px 18px;}
+.search2014_snav h2.h2bgs{background:#0B9F89 url(/img/video/arr2.png) no-repeat 195px 18px;}
+.search2014_snavbx{display:none;position:relative;z-index:99;width:202px;padding:10px 8px 0;margin-top:-1px;line-height:22px;}
+.search2014_snavsel{width:202px;border-left:2px solid #0DBBA1;margin-left:-1px;padding-left:7px;background-color:#eafbe5;}
+.search2014_snavbx h3{padding:0 4px;}
+.search2014_snavbx p{padding:3px 4px 4px;border-bottom:1px dotted #e1e1e1;font-size:12px;}
+.search2014_snavbx p a,.search2014_snavbx h3 a{display:inline-block;padding-right:6px;font-family:"微软雅黑",Arial;}
+.search2014_snavbx p a{font-family:Arial,"宋体";}
+.search2014_snavbx p span{color:#d8d8d8;}
+.search2014_snavbx h3{font-size:14px;font-family:"微软雅黑";}
+.search2014_snavbx p a.pr0{padding-right:0;}
+.search2014_snav_icox{width:14px;height:17px;margin:0 10px 0 14px;_margin-top:4px;background-position:-373px -94px;}
+.search2014_snav_ico{width:18px;height:20px;margin-right:5px;}
+.search2014_snav_ico1{background-position:0 -57px;}
+.search2014_snav_ico2{background-position:-34px -57px;}
+.search2014_snav_ico3{background-position:-68px -57px;}
+.search2014_snav_ico4{background-position:-102px -57px;}
+.search2014_snav_ico5{background-position:-136px -57px;}
+.search2014_snav_ico6{background-position:-170px -57px;}
+.search2014_snav_ico7{background-position:-204px -57px;}
+.search2014_snav_ico8{background-position:-238px -57px;}
+.search2014_snav_child{position:absolute;z-index:95;left:218px;top:0;width:495px;padding:5px 20px 5px 27px;background:#fff;border:1px solid #e5e5e5;box-shadow:0 0 8px #ccc;}
+.search2014_snav_child dt{height:40px;margin-bottom:5px;border-bottom:1px solid #d8d8d8;line-height:40px;_height:30px;_padding-top:10px;_line-height:30px;}
+.search2014_snav_child dt a{padding-right:23px;}
+.search2014_snav_child dd a,.search2014_snav_child dd span{padding-right:15px;}
+.search2014_snav_child dd{padding:8px 0;border-bottom:1px dotted #e1e1e1;}
+.search2014_arrow_ico{width:9px;height:11px;margin-right:5px;background-position:-254px -94px;}
+.search2014_snav_child p{border:none;padding:0;}
+.search2014_snav_child em{font-style:normal;font-weight:bold;line-height:22px;color:#575757;}
+.search2014_snavbx p.nobr,.search2014_snav_child dd.nobr,.search2014_snavsel p{border-color:#fff;}
+.search2014_hotico{height:18px;padding:0 5px 0 8px;margin-left:5px;background:url(/img/video/ico1.png) no-repeat left top;font:normal 12px/16px "宋体";color:#fff;}
+.search2014_hotico a,.search2014_hotico a:link,.search2014_hotico a:visited,.search2014_hotico a:active{padding-right:0;color:#fff;font-family:"宋体";}
+.search2014_sidebtn1{width:45px;}
+a.search2014_topbtn1,a.search2014_topbtn2,a.search2014_topbtn3{width:45px;height:45px;margin-bottom:10px;background-color:#676767;background-position:-444px -42px;display:block;opacity:0.9;filter:alpha(opacity=90);}
+a.search2014_topbtn2{background-position:-339px -120px;}
+a.search2014_topbtn3{width:41px;height:38px;padding:7px 0 0 4px;color:#fff;line-height:16px;letter-spacing:3px;}
+a.search2014_topbtn1:hover,a.search2014_topbtn2:hover,a.search2014_topbtn3:hover{opacity:1;filter:alpha(opacity=100);text-decoration:none;}
+
+/* 1200屏样式 */
+#search2014_hr,.search2014_brwp{width:1200px;margin:0 auto;}
+.search2014_search{width:481px;margin:43px 0 0 100px;}
+.search2014_search_t{width:606px;}
+.search2014_search_t input{width:448px;}
+.search2014_search_btn{width:98px;}
+#search2014_nav{width:960px;padding-left:240px;}
+#search2014_nav a{padding:0 13px;}
+/* 1000屏样式 */
+@media(max-width:1200px){
+    #search2014_hr,.search2014_brwp{width:1000px;margin:0 auto;}
+    .search2014_search{width:481px;margin:43px 0 0 87px;}
+    .search2014_search_t{width:470px;}
+    .search2014_search_t input{width:312px;}
+    .search2014_search_btn{width:98px;}
+    #search2014_nav{width:775px;padding-left:225px;}
+    #search2014_nav a{padding:0 7px;}
+}
