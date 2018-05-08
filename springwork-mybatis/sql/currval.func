@@ -1,4 +1,4 @@
-CREATE DEFINER = `cff`@`%` FUNCTION `NewProc`(sequence_name VARCHAR(50))
+CREATE DEFINER = `cff`@`%` FUNCTION `currval`(sequence_name VARCHAR(50))
  RETURNS int(11)
 BEGIN  
   DECLARE value INTEGER;  
