@@ -28,15 +28,15 @@
 			</list>
 		</property>
 	</bean>
-	
-	
-	<bean id="configParam" class="com.cff.springwork.web.param.ConfigParam">
-		<property name="gdAppKey" value="${gdAppKey}" />
-	</bean>
+
 	
 	<bean id="transSocketClient" class="com.cff.springwork.web.client.tcp.TransSocketClient" destroy-method="stop">
 		<property name="port" value="${port}" />
 		<property name="domain" value="${domain}" />
+	</bean>
+	
+	<bean id="configParam" class="com.cff.springwork.web.param.ConfigParam">
+		<property name="gdAppKey" value="${gdAppKey}" />
 	</bean>
 	
 	<bean id="transDataCoderConfiguration" class="com.cff.springwork.network.tcp.xml.TransDataCoderConfiguration" init-method="init">

@@ -45,7 +45,7 @@
 		</property>
 	</bean>
 	<mvc:resources mapping="/resources/**" location="/resources/" />
-
+	<mvc:resources mapping="/download/**" location="file:D:/download/" />
 
 	<mvc:annotation-driven>
 		<mvc:message-converters>

@@ -438,7 +438,7 @@ li.prodli{
 .item_bg_02 {
     width: 1200px;
     height: 560px;
-    margin: 0 auto;
+    margin: 115px auto;
 }
 .bs_item-bg_02 {
     background: none !important;
@@ -447,7 +447,7 @@ li.prodli{
 
 .bs-s1-bg {
     float:left;
-	width:50%;
+	width:33%;
     display: inline;
 }
 
@@ -459,6 +459,6 @@ li.prodli{
 }
 .bs-s2-bg_btn{
 	float: left;
-	width:50%;
+	width:33%;
 	display: inline;
 }

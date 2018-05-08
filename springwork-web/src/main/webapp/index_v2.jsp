@@ -182,7 +182,7 @@ var passportUrl = '${ctx}';
 				
 				<div id= "solutionPage" class="item_bg_02 bs_item-bg_02">
 					<div class="bs-s1-bg">
-						<span class="textsolution">就位</span>
+						<span class="textsolution">需求发布</span>
 						<ul >
 							<li>这是一个it服务站。</li>
 							<li>这是一个全方位的服务站。</li>
@@ -192,25 +192,31 @@ var passportUrl = '${ctx}';
 							<li></li>
 							<li></li>
 						</ul>
+						<div class="bs-s2-bg_btn">
+							<a href="javascript:;" onmouseover="this.style.textDecoration='none';" class="s1 experience-btn_2 bs-btn-blue" onclick="gotoJiuwei()">立即体验</a>
+						</div>
 					</div>
-					<div class="bs-s2-bg">
-						<span class="textsolution">亲友贷</span>
+					<div class="bs-s1-bg">
+						<span class="textsolution">钱包</span>
 						<ul >
-							<li>服务大众，解决您的资金问题。</li>
-							<li>不低于余额宝的收益。</li>
-							<li>您的钱，只会给有需要的亲朋。</li>
 							<li>我们不是第三方支付，我们只是大自然的搬运工。</li>
-							<li>留下您的需求，我们会为你们牵线搭桥。</li>
 							<li></li>
 							<li></li>
 						</ul>
+						<div class="bs-s2-bg_btn">
+							<a href="javascript:;" onmouseover="this.style.textDecoration='none';" class="s2 experience-btn_2 bs-btn-green" onclick="gotoQinyou()">立即体验</a>
+						</div>
 					</div>
-					<br/><br/>
-					<div class="bs-s2-bg_btn">
-						<a href="javascript:;" onmouseover="this.style.textDecoration='none';" class="s1 experience-btn_2 bs-btn-blue" onclick="gotoJiuwei()">立即体验</a>
-					</div>
-					<div class="bs-s2-bg_btn">
-						<a href="javascript:;" onmouseover="this.style.textDecoration='none';" class="s2 experience-btn_2 bs-btn-green" onclick="gotoQinyou()">立即体验</a>
+					<div class="bs-s1-bg">
+						<span class="textsolution">视频中心</span>
+						<ul >
+							<li>这里是国内一流讲师遗留的课程。</li>
+							<li></li>
+							<li></li>
+						</ul>
+						<div class="bs-s2-bg_btn">
+							<a href="javascript:;" onmouseover="this.style.textDecoration='none';" class="s2 experience-btn_2 bs-btn-green" onclick="gotoVideo()">立即体验</a>
+						</div>
 					</div>
 				</div>
 		</div>
