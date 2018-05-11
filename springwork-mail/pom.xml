@@ -9,7 +9,7 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>springwork-mail</artifactId>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>springwork-mail</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
