@@ -55,7 +55,7 @@
 
     });
     function toIndex(){
-    	window.location.href= "${ctx}/index_v2.jsp";
+    	window.location.href= "${ctx}/index.jsp";
     }
    
 </script>

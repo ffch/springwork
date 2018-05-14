@@ -246,7 +246,7 @@ function ChatSend(obj) {
 	}
 
 	function toIndex() {
-		window.location.href = contextPath + "/index_v2.jsp";
+		window.location.href = contextPath + "/index.jsp";
 	}
 
 	$(

@@ -37,6 +37,7 @@
 	<import resource="classpath*:spring-db.xml"/>
 	<import resource="classpath*:spring-security.xml"/>
 	<import resource="classpath*:spring-activiti.xml"/>
+	<import resource="classpath*:spring-mail.xml"/>
 <!-- 	<import resource="classpath*:spring-jms.xml"/> -->
 <!-- 	<import resource="classpath*:spring-dubbo.xml"/> -->
 	<import resource="classpath:spring/spring-ehcache.xml"/>

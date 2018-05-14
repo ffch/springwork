@@ -248,7 +248,7 @@ var passportUrl = '${ctx}';
 
 <script type="text/javascript">
 	var appUrl = '${ctx}';
-    var loginUrl = appUrl + "/login_v2.jsp?operatype=login";
+    var loginUrl = appUrl + "/login.jsp?operatype=login";
     var loginflag = false;
     var loginRemide = "已有账号？登陆";
     var typeUser ="0000";
@@ -268,7 +268,7 @@ var passportUrl = '${ctx}';
 			    	$("#loginRemide").text(loginRemide);
 			    	$("#loginRemide").attr("href",loginUrl);
 			    }else{
-			    	loginUrl = appUrl + "/index_v2.jsp";
+			    	loginUrl = appUrl + "/index.jsp";
 			    	$("#loginRemide").text(loginRemide);
 			    	$("#loginRemide").attr("href",loginUrl);
 			    }
@@ -302,7 +302,7 @@ var passportUrl = '${ctx}';
     	$("#loginRemide").text(loginRemide);
     	$("#loginRemide").attr("href",loginUrl);
     }else{
-    	loginUrl = appUrl + "/index_v2.jsp";
+    	loginUrl = appUrl + "/index.jsp";
     	$("#loginRemide").text(loginRemide);
     	$("#loginRemide").attr("href",loginUrl);
     }
@@ -335,7 +335,7 @@ var passportUrl = '${ctx}';
 					    	$("#loginRemide").text(loginRemide);
 					    	$("#loginRemide").attr("href",loginUrl);
 					    }else{
-					    	loginUrl = appUrl + "/index_v2.jsp";
+					    	loginUrl = appUrl + "/index.jsp";
 					    	$("#loginRemide").text(loginRemide);
 					    	$("#loginRemide").attr("href",loginUrl);
 					    }

@@ -12,7 +12,7 @@
 <script type="text/javascript">
 var passportUrl = '${ctx}';
 	function toIndex(){
-		window.location.href= passportUrl + "/index_v2.jsp";
+		window.location.href= passportUrl + "/index.jsp";
 	}
 	function closewindows(){
     	document.getElementById("resultdiv").style.display="none";

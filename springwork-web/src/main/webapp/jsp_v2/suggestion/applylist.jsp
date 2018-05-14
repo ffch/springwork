@@ -16,7 +16,7 @@
 <script type="text/javascript">
 var passportUrl = '${ctx}';
 	function toIndex(){
-		window.location.href= passportUrl + "/index_v2.jsp";
+		window.location.href= passportUrl + "/index.jsp";
 	}
 	
 	function closeDetailWindows(){
@@ -37,7 +37,7 @@ var passportUrl = '${ctx}';
 					    	$("#loginRemide").text(loginRemide);
 					    	$("#loginRemide").attr("href",loginUrl);
 					    }else{
-					    	loginUrl = appUrl + "/index_v2.jsp";
+					    	loginUrl = appUrl + "/index.jsp";
 					    	$("#loginRemide").text(loginRemide);
 					    	$("#loginRemide").attr("href",loginUrl);
 					    }

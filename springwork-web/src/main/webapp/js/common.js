@@ -4,5 +4,5 @@ function closeDivWindows(id) {
 }
 
 function register(baseurl){
-	window.location.href= baseurl + "/login_v2.jsp";
+	window.location.href= baseurl + "/login.jsp";
 }

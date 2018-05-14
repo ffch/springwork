@@ -52,7 +52,7 @@ public class UserControllor {
 		logger.info(passwordnew+"----" + passwordconfirm);
 		if(!passwordnew.equals(passwordconfirm)){
 			logger.info("两次密码不一致");
-			return "/jsp/user/userManager.jsp?type=101";
+			return "/jsp_v2/user/userManager.jsp?type=101";
 		}
 		if(StringUtils.isEmpty(loginId)){
 			logger.info("无登陆id");

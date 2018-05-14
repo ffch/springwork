@@ -22,7 +22,7 @@ var sideBar = {} 会造成全局污染，sideBar赋给Windows，作为windows的
                 var menuContentEl = document.getElementById(e.currentTarget.id +'-content');
                 var targetId = e.currentTarget.id;
                 if(targetId=="prof" && !loginflag){
-                	window.location.href= appUrl + "/login_v2.jsp?operatype=login";
+                	window.location.href= appUrl + "/login.jsp?operatype=login";
                 	return;
                 }
                 if(targetId=="webchat" && typeUser == "2001"){
@@ -31,7 +31,7 @@ var sideBar = {} 会造成全局污染，sideBar赋给Windows，作为windows的
                 }
                 if(targetId=="asset" ){
                 	if(!loginflag){
-                		window.location.href= appUrl + "/login_v2.jsp?operatype=login";
+                		window.location.href= appUrl + "/login.jsp?operatype=login";
                 		return;
                 	}
                 }

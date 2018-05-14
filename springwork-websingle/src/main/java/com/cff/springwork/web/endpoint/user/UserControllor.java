@@ -66,12 +66,12 @@ public class UserControllor {
 			user.setPassword(passwordnew);
 			logger.info("密码正确");
 			if(appUserService.modify(user)){
-				return "/jsp_v2/user/userManager.jsp?type=200";
+				return "/jsp/user/userManager.jsp?type=200";
 			}
-			return "/jsp_v2/user/userManager.jsp?type=102";
+			return "/jsp/user/userManager.jsp?type=102";
 		}
 		
-		return "/jsp_v2/user/userManager.jsp?type=100";
+		return "/jsp/user/userManager.jsp?type=100";
 	}
 	
 	

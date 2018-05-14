@@ -22,21 +22,21 @@ var sideBar = {} 会造成全局污染，sideBar赋给Windows，作为windows的
                 var menuContentEl = document.getElementById(e.currentTarget.id +'-content');
                 var targetId = e.currentTarget.id;
                 if(targetId=="prof" && !loginflag){
-                	window.location.href= appUrl + "/login_v2.jsp?operatype=login";
+                	window.location.href= appUrl + "/login.jsp?operatype=login";
                 	return;
                 }
                 if(targetId=="webchat" && typeUser == "2001"){
-                	window.location.href= appUrl + "/jsp_v2/websocket/websocketchat.jsp";
+                	window.location.href= appUrl + "/jsp/websocket/websocketchat.jsp";
                 	return;
                 }
                 if(targetId=="asset" ){
                 	if(!loginflag){
-                		window.location.href= appUrl + "/login_v2.jsp?operatype=login";
+                		window.location.href= appUrl + "/login.jsp?operatype=login";
                 		return;
                 	}
                 }
                 if(targetId=="suggest"){
-                	window.location.href= appUrl + "/jsp_v2/suggestion/suggestion.jsp";
+                	window.location.href= appUrl + "/jsp/suggestion/suggestion.jsp";
                 	return;
                 }
                 if(self.state === 'allClosed'){ 

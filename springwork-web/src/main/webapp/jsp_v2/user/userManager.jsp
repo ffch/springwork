@@ -36,7 +36,7 @@
 		<div class="w1170">
 			<ul>
 		  		<li>
-		  			<a href="${ctx}/index_v2.jsp">首页</a>
+		  			<a href="${ctx}/index.jsp">首页</a>
 		  		</li>   
 				<li class="on">  
 	                <a href="#">系统管理</a>

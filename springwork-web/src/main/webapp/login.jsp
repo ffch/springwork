@@ -1,53 +1,70 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<%@ page language="java" pageEncoding="UTF-8"%> 
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ include file="/common/head.jsp"%>
+<html>
 <head>
-<%
-	String baseUrl = request.getContextPath();
-	String clientId = request.getParameter("clientId");
-	String clientPwd = request.getParameter("clientPwd");
-	System.out.println(clientId + "+++" +clientPwd );
-%>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="text/javascript" src="<%=baseUrl%>/js/jquery-3.2.1.min.js"></script>
-<title>SkyNet</title>
-</head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="${ctx}/css/page.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="${ctx}/js/jquery/jquery-3.2.1.min.js" ></script>
+<script type="text/javascript" src="${ctx}/js/jquery/jquery.validate.min.js" ></script>
+<script type="text/javascript" src="${ctx}/js/login-regis.js" ></script>
 <script type="text/javascript">
-	function ajaxTest() {
-		var type = "1";
-		$.ajax({
-			type : "post",
-			url : "<%=baseUrl%>/test/welCome",
-			dataType : "json",
-			data : {reqType : type} ,
-			success : function(data) {
-				$("#div1").html(data.uuid + "<br>" + 
-						data.welMsg + "<br>"+
-						data.dateTime);
-			},
-			error : function(XMLHttpRequest, textStatus, errorThrown) {
-				alert(errorThrown);
-			}
-		});
-	}
+var passportUrl = '${ctx}';
+var operatype = "<%=request.getParameter("operatype")%>"; 
+function toIndex(){
+	window.location.href= passportUrl + "/index.jsp";
+}
 </script>
+<title>注册/登陆</title>
+</head>
 <body>
-	这里是htm1 
-	<div id="div1"></div>
-	<button type="button" onclick="ajaxTest()">Welcome</button>
-	<form action="<%=baseUrl%>/page/login" method="post">
-<input type="hidden" name="clientId" value="<%=clientId%>">
-First name:<br>
-<input type="text" name="userName">
-<br>
-Last name:<br>
-<input type="text" name="userPwd">
-<input type="submit" value="Submit" />
-</form>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$("#div1").html("呵呵");
-		});
-	</script>
+<div class="bglogin">
+		<div>
+			<div style="display:inline;">
+				<img class="imglogocm" alt="" src="${ctx}/img/logo.png" onclick="toIndex()">
+			</div>
+			<div style="display:inline;float:right">
+				<img class="imglogoright" alt="" src="${ctx}/img/logoright.png">
+			</div>
+		</div>
+	<div class="loginSection">
+		<p class="title" id="titlebar">使用手机注册</p>
+		<form id="login-regis" novalidate="novalidate">
+		    <input type="hidden" name="inviterId" value="">
+			<ul>
+				<li>
+					<input class="account" operatype="register" id="loginId" name="loginId" type="text" autocomplete="off" placeholder="请输入常用手机号">
+					<p class="error_mess"> &nbsp</p>
+				</li>
+				<li>
+					<input class="passw" id="password" name="password" type="password" autocomplete="off" placeholder="请输入密码">
+					<p class="error_mess"> &nbsp</p>
+					<span class="eye"></span>
+					<div style="clear: both;"></div>
+				</li>
+				
+			</ul>
+			<div class="text-center clearB"><a href="javascript:void(0);" class="agreen-regis" id="regisBtn">同意并注册</a></div>
+		</form>
+		<div class="already"><a id="anotherBtn" href="${ctx}/login.jsp?operatype=login">已有账号，点击登录</a></div>
+	</div>
+</div>
 </body>
+<script type="text/javascript">
+var operatype = "<%=request.getParameter("operatype")%>"; 
+if(operatype=='login'){
+	$("#titlebar").text("登陆");
+	$("#regisBtn").text("登陆");
+	$("#anotherBtn").text("没有账号？点击注册 ");
+	$("#anotherBtn").attr("href","${ctx}/login.jsp");
+	$("#loginId").attr("operaType","login");
+}else{
+	$("#titlebar").text("使用手机注册");
+	$("#regisBtn").text("同意并注册");
+	$("#anotherBtn").text("已有账号，点击登录");
+	$("#anotherBtn").attr("href","${ctx}/login.jsp?operatype=login");
+	$("#loginId").attr("operaType","register");
+}
+</script>
 </html>

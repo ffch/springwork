@@ -66,7 +66,7 @@ $(function() {
 						dataType : "text",
 						data : params,
 						success : function(data) {
-							location.assign(passportUrl + '/index_v2.jsp');
+							location.assign(passportUrl + '/index.jsp');
 						},
 						error : function(XMLHttpRequest, textStatus, errorThrown) {
 							alert(errorThrown);
@@ -84,7 +84,7 @@ $(function() {
 							dataType : "json",
 							data : "{\"userName\":\""+userName+"\",\"password\":\""+password+"\"}",
 							success : function(data) {
-								location.assign(passportUrl + '/index_v2.jsp'); // 注册成功后跳转企业选择页面
+								location.assign(passportUrl + '/index.jsp'); // 注册成功后跳转企业选择页面
 							},
 							error : function(XMLHttpRequest, textStatus, errorThrown) {
 								alert(errorThrown);
@@ -93,7 +93,7 @@ $(function() {
 						
 //						requestAjax("post", passportUrl + "/pub/register", params, function(data) {
 //							if (data.status == 200) { //注册成功
-//								location.assign(passportUrl + '/index_v2.jsp'); // 注册成功后跳转企业选择页面
+//								location.assign(passportUrl + '/index.jsp'); // 注册成功后跳转企业选择页面
 //							} else { //注册失败
 //								alert("注册失败");
 //							}
