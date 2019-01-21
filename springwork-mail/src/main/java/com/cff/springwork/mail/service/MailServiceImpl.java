@@ -1,4 +1,4 @@
-package com.cff.springwork.mail.upgrade;
+package com.cff.springwork.mail.service;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -21,6 +21,12 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.parser.Feature;
+import com.cff.springwork.mail.entity.AttachFile;
+import com.cff.springwork.mail.entity.InlineFile;
+import com.cff.springwork.mail.entity.JsonTable;
+import com.cff.springwork.mail.entity.MailMessage;
+import com.cff.springwork.mail.entity.MailType;
+import com.cff.springwork.mail.entity.TextString;
 
 @Component
 public class MailServiceImpl implements MailService {
@@ -30,7 +36,7 @@ public class MailServiceImpl implements MailService {
 	@Autowired
 	private JavaMailSender mailSender;
 
-	@Value("${mail.fromMail.addr}")
+	@Value("${mail.fromAddress}")
 	private String from;
 
 	MailMessage mailMessage;

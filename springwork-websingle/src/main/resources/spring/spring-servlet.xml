@@ -45,7 +45,10 @@
 		</property>
 	</bean>
 	<mvc:resources mapping="/resources/**" location="/resources/" />
-	<mvc:resources mapping="/${mappingPath}/**" location="file:${localPath}/" />    
+	<mvc:resources mapping="/download/**" location="file:D:/download/" />   
+<!-- 	<mvc:resources mapping="/${mappingImgPath}/**" location="file:${localImgPath}/" />    -->
+<!-- 	<mvc:resources mapping="/${mappingVideoPath}/**" location="file:${localVideoPath}/" />    -->
+	
 
 	<mvc:annotation-driven>
 		<mvc:message-converters>

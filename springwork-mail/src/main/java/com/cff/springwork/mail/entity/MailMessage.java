@@ -1,4 +1,4 @@
-package com.cff.springwork.mail.upgrade;
+package com.cff.springwork.mail.entity;
 
 public class MailMessage {
 	private String from;

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang='zh-cn'>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <meta name="renderer" content="webkit"> 
+  <title>用户登录 - 禅道</title>
+<script language='Javascript'>var config={"webRoot":"\/","appName":"","cookieLife":30,"requestType":"PATH_INFO","requestFix":"-","moduleVar":"m","methodVar":"f","viewVar":"t","defaultView":"html","themeRoot":"\/theme\/","currentModule":"user","currentMethod":"login","clientLang":"zh-cn","requiredFields":"","router":"\/index.php","save":"\u4fdd\u5b58","runMode":"","timeout":30000,"pingInterval":""};
+var lang={"submitting":"\u7a0d\u5019...","save":"\u4fdd\u5b58","timeout":"\u8fde\u63a5\u8d85\u65f6\uff0c\u8bf7\u68c0\u67e5\u7f51\u7edc\u73af\u5883\uff0c\u6216\u91cd\u8bd5\uff01"};
+
+</script>
+<script src='http://cdn.zentaopm.com/9.8/js/all.js?v=pro6.7' type='text/javascript'></script>
+<link rel='stylesheet' href='http://cdn.zentaopm.com/9.8/theme/default/zh-cn.default.css?v=pro6.7' type='text/css' media='screen' />
+<style>#featurebar ul.nav li .chosen-container a.chosen-single{background:#F8FAFE; border:none; -webkit-box-shadow:none;box-shadow:none; padding-top:5px;}
+#featurebar ul.nav li .chosen-container .chosen-drop {min-width: 200px;!important}
+#dept_chosen.chosen-container .chosen-drop {min-width: 400px;!important}
+body{background-color: #036}
+#container{margin: 10% auto 0 auto}
+#login-panel{margin: 0 auto;width: 540px;min-height: 280px;background-color: #fff;border: 1px solid #dfdfdf;-moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px;-moz-box-shadow:0px 0px 30px rgba(0,0,0,0.75); -webkit-box-shadow:0px 0px 30px rgba(0,0,0,0.75); box-shadow:0px 0px 30px rgba(0,0,0,0.75)}
+#login-panel .panel-head{min-height: 70px;background-color: #edf3fe;border-bottom: 1px solid #dfdfdf;position: relative}
+#login-panel .panel-head h4{margin: 0 0 0 20px;padding: 0;line-height: 70px; font-size: 14px}
+#login-panel .panel-actions{float: right;position: absolute;right: 15px;top: 18px;padding: 0}
+#login-panel .panel-actions .dropdown {display: inline-block; margin-right: 2px}
+#mobile {font-size: 28px; padding: 1px 12px; line-height: 28px}
+#mobile i {font-size: 28px;}
+#login-panel .panel-content{padding-left: 150px;background:url('theme/default/images/main/zt-logo.png') 50px top no-repeat; min-height: 161px}
+#login-panel .panel-content table{border: none;width: 300px;margin: 20px auto}
+#login-panel .panel-content .button-s{width: 80px}
+#login-panel .panel-content .button-c{width: 88px;margin-right: 0}
+#login-panel .panel-foot{text-align: center;padding: 15px;line-height: 2em;background-color: #e5e5e5;border-top: 1px solid #dfdfdf}
+#poweredby{float: none; color: #eee;text-align: center;margin: 10px auto}
+#poweredby a{color: #fff}
+#keeplogin label {font-weight: normal}
+.popover {max-width: 500px}
+.popover-content {padding: 0; width: 297px}
+.btn-submit {min-width: 70px}
+
+.body-modal #container {margin: 0;}
+.body-modal {padding: 40px 0 25px;}
+</style><link rel='icon' href='/favicon.ico' type='image/x-icon' />
+<link rel='shortcut icon' href='/favicon.ico' type='image/x-icon' />
+<!--[if lt IE 9]>
+<script src='http://cdn.zentaopm.com/9.8/js/html5shiv/min.js?v=pro6.7' type='text/javascript'></script>
+<script src='http://cdn.zentaopm.com/9.8/js/respond/min.js?v=pro6.7' type='text/javascript'></script>
+<link href="http://cdn.zentaopm.com/9.8/js/respond/cross-domain/respond-proxy.html" id="respond-proxy" rel="respond-proxy" /><link href="/js/respond/cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" /><script src='/js/respond/cross-domain/respond.proxy.js?v=pro6.7' type='text/javascript'></script>
+<![endif]-->
+<!--[if lt IE 10]>
+<script src='http://cdn.zentaopm.com/9.8/js/jquery/placeholder/min.js?v=pro6.7' type='text/javascript'></script>
+<![endif]-->
+</head>
+<body>
+<div id='container'>
+  <div id='login-panel'>
+    <div class='panel-head'>
+      <h4>北京尚佳崇业教育科技有限公司项目管理系统</h4>
+      <div class='panel-actions'>
+        <div class='dropdown' id='langs'>
+          <button class='btn' data-toggle='dropdown' title='Change Language/更换语言/更換語言'>简体 <span class="caret"></span></button>
+          <ul class='dropdown-menu'>
+                        <li class="active"><a href="###" data-value="zh-cn">简体</a></li>
+                        <li class=""><a href="###" data-value="zh-tw">繁體</a></li>
+                        <li class=""><a href="###" data-value="en">English</a></li>
+                      </ul>
+        </div>
+      </div>
+    </div>
+    <div class="panel-content" id="login-form">
+            <form method='post' target='hiddenwin' class='form-condensed'>
+        <table class='table table-form'>
+          <tr>
+            <th>用户名</th>
+            <td><input class='form-control' type='text' name='account' id='account' /></td>
+          </tr>
+          <tr>
+            <th>密码</th>
+            <td><input class='form-control' type='password' name='password' /></td>
+          </tr>
+          <tr>
+            <th></th>
+            <td id="keeplogin"><label class='checkbox-inline'><input type='checkbox' name='keepLogin[]' value='on'  checked ='checked' id='keepLoginon' /> 保持登录</label></td>
+          </tr>
+          <tr>
+            <th></th>
+            <td>
+             <button type='submit' id='submit' class='btn btn-primary'  data-loading='稍候...'>登录</button><input type='hidden' name='referer' id='referer' value='http://pm.shangdejigou.cn/my/'  />
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+
+      
+  </div>
+  <div id="poweredby">
+        <iframe id='updater' class='hidden' frameborder='0' width='100%' scrolling='no' allowtransparency='true' src="http://api.zentao.net/updater-isLatest-pro6.7-add39d7419682e12c7916c61db850124.html?lang=zh_cn"></iframe>
+      </div>
+</div>
+<script type='text/javascript'>
+$(document).ready(function()
+{
+                        $('#https').change(function(){
+        if($(this).attr('checked'))
+        {
+            $('form').attr('action', "https:\/\/pm.shangdejigou.cn\/user-login.html");
+            var referer = $('#referer').val();
+            $('#referer').val(referer.replace(/^http:\/\//, 'https://'));
+        }
+        else
+        {
+            $('form').attr('action', "http:\/\/pm.shangdejigou.cn\/user-login.html");
+            var referer = $('#referer').val();
+            $('#referer').val(referer.replace(/^https:\/\//, 'http://'));
+        }
+    })
+})
+</script>
+<iframe frameborder='0' name='hiddenwin' id='hiddenwin' scrolling='no' class='debugwin hidden'></iframe>
+<script laguage='Javascript'>
+/**
+ * Switch account 
+ * 
+ * @param  string $account 
+ * @param  string $method 
+ * @access public
+ * @return void
+ */
+$(document).ready(function()
+{
+    $('#dataform').submit(function()
+    {
+        var password = $('input#verifyPassword').val();
+        var rand = $('input#verifyRand').val();
+        $('input#verifyPassword').val(md5(md5(password) + rand));
+    });
+});
+
+function switchAccount(account, method)
+{
+    if(method == 'dynamic')
+    {
+        link = createLink('user', method, 'period=' + period + '&account=' + account);
+    }
+    else if(method == 'todo')
+    {
+        link = createLink('user', method, 'account=' + account + '&type=' + type);
+    }
+    else
+    {
+        link = createLink('user', method, 'account=' + account);
+    }
+    location.href=link;
+}
+
+var mailsuffix = '';
+var account    = new Array();
+function setDefaultEmail(num)
+{
+    var mailValue = $('.email_' + num).val();
+    if(mailValue.indexOf('@') <= 0) return;
+    if(mailValue.indexOf('@') > 0) mailValue = mailValue.substr(mailValue.indexOf('@'));
+    mailsuffix = mailValue;
+}
+
+function changeEmail(num)
+{
+    var mailValue = $('.email_' + num).val();
+    if(mailsuffix != '' && (mailValue == '' || mailValue == account[num] + mailsuffix)) $('.email_' + num).val($('.account_' + num).val() + mailsuffix);
+    account[num] = $('.account_' + num).val();
+}
+
+function checkPassword(password)
+{
+    $('#passwordStrength').html(password == '' ? '' : passwordStrengthList[computePasswordStrength(password)]);
+    $('#passwordStrength').css('display', password == '' ? 'none' : 'table-cell');
+}
+// Prevent login page show in a iframe modal
+if(window.self !== window.top) window.top.location.href = window.location.href;
+
+function setForm(){}
+$(document).ready(function()
+{
+    $('#account').focus();
+
+    $("#langs li > a").click(function() 
+    {
+        selectLang($(this).data('value'));
+    });
+
+    var mBtn = $('#mobile');
+    mBtn.popover({html: true, container: 'body'}).click(function(event)
+    {
+        event.stopPropagation();
+        $(document).one('click', function(){$('#mobile').popover('hide');});
+    });
+    mBtn.attr('title', mBtn.attr('data-original-title'));
+    $('#login-form form').submit(function()
+    {
+        var password = $('input:password').val();
+        var rand = $('input#verifyRand').val();
+        if(password.length != 32 && typeof(md5) == 'function') $('input:password').val(md5(md5(password) + rand));
+    });
+})
+function setFeedback(obj)
+{
+    $(obj).closest('label').find('input:hidden[name^="feedback"]').val($(obj).prop('checked') ? '1' : '0');
+}
+
+function appendFeedback(obj, feedback, feedbackName, feedbackNotice)
+{
+    if(typeof('feedback') == 'undefined') feedback = '0';
+    if(typeof('feedbackName') == 'undefined') feedbackName = '';
+    if(typeof('feedbackNotice') == 'undefined') feedbackNotice = '';
+    $(obj).wrap("<div class='input-group'></div>");
+    $(obj).after("<span class='input-group-addon'><label class='checkbox-inline' for='feedback' title='" + feedbackNotice + "'><input type='hidden' name='feedback' id='realFeedback' value='" + feedback + "' /><input type='checkbox' id='feedback'" + (feedback == '1' ? ' checked ' : '') + "onchange='setFeedback(this)'/> " + feedbackName + "</label></span>");
+}
+</script>
+</body>
+</html>
+<script>
+$(function()
+{
+    $('#poweredby').append("");
+})
+</script>

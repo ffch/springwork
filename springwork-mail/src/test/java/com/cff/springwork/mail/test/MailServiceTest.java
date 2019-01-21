@@ -11,11 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.cff.springwork.mail.upgrade.InlineFile;
-import com.cff.springwork.mail.upgrade.JsonTable;
-import com.cff.springwork.mail.upgrade.MailMessage;
-import com.cff.springwork.mail.upgrade.MailService;
-import com.cff.springwork.mail.upgrade.TextString;
+import com.cff.springwork.mail.entity.InlineFile;
+import com.cff.springwork.mail.entity.JsonTable;
+import com.cff.springwork.mail.entity.MailMessage;
+import com.cff.springwork.mail.entity.TextString;
+import com.cff.springwork.mail.service.MailService;
 
 @RunWith(SpringJUnit4ClassRunner.class)  
 @ContextConfiguration(locations={"classpath:spring-test.xml"}) 

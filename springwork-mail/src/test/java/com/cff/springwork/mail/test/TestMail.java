@@ -15,12 +15,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.cff.springwork.mail.entity.Mail;
 import com.cff.springwork.mail.service.MailService;
 
-@RunWith(SpringJUnit4ClassRunner.class)  
-@ContextConfiguration(locations={"classpath:spring-test.xml"}) 
+//@RunWith(SpringJUnit4ClassRunner.class)  
+//@ContextConfiguration(locations={"classpath:spring-test.xml"}) 
 public class TestMail {
 	@Autowired
 	MailService mailService;
-	@Test
+//	@Test
 	public void testMail() throws MessagingException, IOException {
 		List<String> to = new ArrayList<String>();
 		to.add("xxx@qq.com");
