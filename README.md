@@ -31,7 +31,7 @@ SpringWork项目整合了Spring常用的一些关键性技术，使用组件化�
 
 ##### 技术方案
 
-[查看详情](springwork-web/Web.md)
+[查看详情](springwork-web/README.md)
 
 #### Spring + Mail
 
@@ -41,7 +41,7 @@ SpringWork项目整合了Spring常用的一些关键性技术，使用组件化�
 
 ##### 技术方案
 
-[查看详情](springwork-mail/Mail.md)
+[查看详情](springwork-mail/README.md)
 
 #### Spring + Mybatis
 
@@ -51,7 +51,9 @@ SpringWork项目整合了Spring常用的一些关键性技术，使用组件化�
 
 ##### 技术方案
 
-[查看详情](springwork-mybatis/Mybatis.md)
+[查看详情](springwork-mybatis/README.md)
+
+#### 文档继续维护中
 
 ### 快速构建项目
 [Spring组件化构建](https://www.pomit.cn/java/spring/spring.html)
