@@ -1,32 +1,57 @@
-springwork，在spring中整合关键技术。
+## SpringWork技术整合
 
-目前已有： （后面慢慢加）
-1.springwork-common
-	仅作为通用类存储项目
-	
-2.springwork-model
-	实体类项目
-	
-3.springwork-security
-	oauth2单点登录及授权码模式等
-	
-4.springwork-mybatis
-	整合mybatis
-	
-5.springwork-web
-	web项目，简单提供了个页面。
-	
-6.springwork-dubbo-produce
-	dubbo提供方
-	
-7.springwork-dubbo-consume
-	dubbo-consume
-	
-8.springwork-activemq
-	activemq接收处理项目
-	
-9.springwork-netty
-	netty服务器，配置启动，责任链handler。
+### 技术指南
 
-10.springwork-hibernate
-    一个简单的hibernate demo
+Spring的一个最大的目的就是使JAVA EE开发更加容易。同时，Spring之所以与Struts、Hibernate等单层框架不同，是因为Spring致力于提供一个以统一的、高效的方式构造整个应用，并且可以将单层框架以最佳的组合揉和在一起建立一个连贯的体系。
+
+Maven多模块项目,适用于一些比较大的项目，通过合理的模块拆分，实现代码的复用，便于维护和管理。尤其是一些开源框架，也是采用多模块的方式，提供插件集成，用户可以根据需要配置指定的模块。
+
+这里，我们可以使用maven多模块功能组织项目，将不同的组件使用Spring统一管理。
+
+#### 概览
+
+SpringWork项目整合了Spring常用的一些关键性技术，使用组件化的方式自动装配，可以快速生成基础项目框架。
+
+源码为初始源代码，部分组件提供了易用性整合，提高了可读性和易用性，部分仍需继续改造。
+
+项目包含
+	- Spring基本功能。
+	- Spring Mvc，Spring系列视图控制层
+	- Mail， 邮件服务，组件进行了易用性整合，统一了邮件内文本、图片、附件等的发送方式，简单易用。
+	- WebSocket, HTML5定义了WebSocket协议, 这里做了服务端简单的IM聊天功能。
+	- ... 
+
+#### Spring + SpringMvc
+
+##### 官方文档
+
+[Spring](https://docs.spring.io/spring/docs/5.0.12.RELEASE/spring-framework-reference/core.html#spring-core)
+
+[Spring Mvc](https://docs.spring.io/spring/docs/5.0.12.RELEASE/spring-framework-reference/web.html#spring-web)
+
+##### 技术方案
+
+[查看详情](springwork-web/Web.md)
+
+#### Spring + Mail
+
+##### 官方文档
+
+[Spring Email](https://docs.spring.io/spring/docs/5.0.12.RELEASE/spring-framework-reference/integration.html#mail-introduction)
+
+##### 技术方案
+
+[查看详情](springwork-mail/Mail.md)
+
+#### Spring + Mybatis
+
+##### 官方文档
+
+[Spring Mybatis](http://www.mybatis.org/mybatis-3/zh/index.html)
+
+##### 技术方案
+
+[查看详情](springwork-mybatis/Mybatis.md)
+
+### 快速构建项目
+[Spring组件化构建](https://www.pomit.cn/java/spring/spring.html)
