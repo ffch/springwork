@@ -239,5 +239,6 @@
 	    <module>springwork-order</module>
 	    <module>springwork-oauth</module>
 	    <module>springwork-form-security</module>
+	    <module>springwork-token</module>
   </modules>
 </project>
