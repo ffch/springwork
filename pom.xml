@@ -238,5 +238,6 @@
 	    <module>springwork-ocr</module>
 	    <module>springwork-order</module>
 	    <module>springwork-oauth</module>
+	    <module>springwork-form-security</module>
   </modules>
 </project>
