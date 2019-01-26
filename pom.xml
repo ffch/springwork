@@ -231,6 +231,7 @@
         <module>springwork-hibernate</module>
         <module>springwork-test</module>
         <module>springwork-mail</module>
+        <module>springwork-redis</module>
         <module>springwork-websingle</module>
 	    <module>springwork-wallet</module>
 	    <module>springwork-network</module>
