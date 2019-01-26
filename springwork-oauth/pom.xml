@@ -8,16 +8,11 @@
 		<artifactId>springwork</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>springwork-security</artifactId>
+	<artifactId>springwork-oauth</artifactId>
 	<packaging>jar</packaging>
-	<name>springwork-security</name>
+	<name>springwork-oauth</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
-		<dependency>
-			<groupId>com.cff</groupId>
-			<artifactId>springwork-model</artifactId>
-			<version>${project.version}</version>
-		</dependency>
 		<dependency>
 			<groupId>com.cff</groupId>
 			<artifactId>springwork-mybatis</artifactId>
@@ -47,6 +42,6 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>springwork-security</finalName>
+		<finalName>springwork-oauth</finalName>
 	</build>
 </project>
