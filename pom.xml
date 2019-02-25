@@ -8,7 +8,7 @@
     <name>springwork</name>
     <url>http://maven.apache.org</url>
     <properties>
-        <spring.version>4.3.10.RELEASE</spring.version>
+        <spring.version>4.3.22.RELEASE</spring.version>
         <jsonlib.version>2.4</jsonlib.version>
         <spring.security.version>4.0.1.RELEASE</spring.security.version>
     </properties>
@@ -149,17 +149,17 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
-            <version>2.9.0</version>
+            <version>2.9.8</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
-            <version>2.9.0</version>
+            <version>2.9.8</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.9.0</version>
+            <version>2.9.8</version>
         </dependency>
         <!-- end of Json -->
 
