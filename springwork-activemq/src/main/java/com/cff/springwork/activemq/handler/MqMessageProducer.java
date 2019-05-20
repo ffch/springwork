@@ -1,7 +1,5 @@
 package com.cff.springwork.activemq.handler;
 
-import java.util.Map;
-
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.Session;
@@ -10,16 +8,14 @@ import javax.jms.TextMessage;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 
-import com.cff.springwork.activemq.JmsMessage;
+import com.cff.springwork.activemq.model.JmsMessage;
 
 import net.sf.json.JSONObject;
 
-public class JmsMsgHander implements Handler{
-	private Handler nextHandler;
+public class MqMessageProducer{
 	private JmsTemplate jmsTemplate;
 	public static String RETCODESUCCESS="200";
 	
-	@Override
 	public void hander(JmsMessage msg) {
 		JSONObject jSONObject = new JSONObject();
 		jSONObject.put("msgType", msg.getMsgType());
@@ -35,18 +31,7 @@ public class JmsMsgHander implements Handler{
 				return textmsg;
 			}
 		});
-		if(nextHandler!=null){
-			nextHandler.hander(msg);
-		}
-	}
-	
-
-	public Handler getNextHandler() {
-		return nextHandler;
-	}
-
-	public void setNextHandler(Handler nextHandler) {
-		this.nextHandler = nextHandler;
+		
 	}
 
 	public JmsTemplate getJmsTemplate() {

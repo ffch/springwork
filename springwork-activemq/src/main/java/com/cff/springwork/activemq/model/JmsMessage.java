@@ -1,4 +1,4 @@
-package com.cff.springwork.activemq;
+package com.cff.springwork.activemq.model;
 
 public class JmsMessage<T> {
 	public String time;

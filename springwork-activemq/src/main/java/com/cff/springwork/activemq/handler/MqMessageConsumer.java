@@ -1,14 +1,14 @@
-package com.cff.springwork.activemq.listener;
+package com.cff.springwork.activemq.handler;
 
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.TextMessage;
 
-import com.cff.springwork.activemq.JmsMessage;
-import com.cff.springwork.activemq.handler.Handler;
+import com.cff.springwork.activemq.handler.bussiness.Handler;
+import com.cff.springwork.activemq.model.JmsMessage;
 
-public class MqMessageListener implements MessageListener{
+public class MqMessageConsumer implements MessageListener{
 	private Handler handler;
 	public void onMessage(Message message) {
 		TextMessage textMsg = (TextMessage) message;   

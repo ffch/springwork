@@ -1,7 +1,7 @@
 package com.cff.springwork.activemq.parser;
 
-import com.cff.springwork.activemq.DefaultMqModel;
-import com.cff.springwork.activemq.JmsMessage;
+import com.cff.springwork.activemq.model.DefaultMqModel;
+import com.cff.springwork.activemq.model.JmsMessage;
 
 import net.sf.json.JSONObject;
 

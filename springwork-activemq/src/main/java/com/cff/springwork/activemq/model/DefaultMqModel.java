@@ -1,4 +1,4 @@
-package com.cff.springwork.activemq;
+package com.cff.springwork.activemq.model;
 
 public class DefaultMqModel {
 	public String title;

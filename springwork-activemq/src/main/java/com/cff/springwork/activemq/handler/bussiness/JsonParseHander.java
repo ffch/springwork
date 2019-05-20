@@ -1,8 +1,8 @@
-package com.cff.springwork.activemq.handler;
+package com.cff.springwork.activemq.handler.bussiness;
 
 import java.util.Map;
 
-import com.cff.springwork.activemq.JmsMessage;
+import com.cff.springwork.activemq.model.JmsMessage;
 import com.cff.springwork.activemq.parser.JsonParser;
 
 import net.sf.json.JSONObject;

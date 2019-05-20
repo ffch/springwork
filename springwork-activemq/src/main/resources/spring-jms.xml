@@ -56,14 +56,14 @@
 		<property name="defaultDestination" ref="defaultQueueDestination" />
 	</bean>
 
-	<bean id="mqMessageListener" class="com.cff.springwork.activemq.listener.MqMessageListener">
+	<bean id="mqMessageListener" class="com.cff.springwork.activemq.handler.MqMessageConsumer">
 		<property name="handler" ref="jsonParseHander" />
 	</bean>
 	
 	<bean id="jsonParse1001" class="com.cff.springwork.activemq.parser.JsonParse1001">
 	</bean>
 
-	<bean id="jsonParseHander" class="com.cff.springwork.activemq.handler.JsonParseHander">
+	<bean id="jsonParseHander" class="com.cff.springwork.activemq.handler.bussiness.JsonParseHander">
 		<property name="nextHandler" ref="bussiNessHander" />
 		<property name="parsers">
 			<map>
@@ -72,12 +72,11 @@
 		</property>
 	</bean>
 	
-	<bean id="bussiNessHander" class="com.cff.springwork.activemq.handler.BussiNessHander">
-		<property name="nextHandler" ref="jmsMsgHander" />
+	<bean id="bussiNessHander" class="com.cff.springwork.activemq.handler.bussiness.BussiNessHander">
+		<property name="nextHandler" ref="mqMessageProducer" />
 	</bean>
 	
-	<bean id="jmsMsgHander" class="com.cff.springwork.activemq.handler.JmsMsgHander">
-		<property name="nextHandler"><null/></property>
+	<bean id="mqMessageProducer" class="com.cff.springwork.activemq.handler.MqMessageProducer">
 		<property name="jmsTemplate" ref="jmsTemplate" />
 	</bean>
 	<!-- 消息监听容器 -->
