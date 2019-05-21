@@ -8,11 +8,12 @@ import javax.jms.TextMessage;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 
+import com.cff.springwork.activemq.handler.bussiness.Handler;
 import com.cff.springwork.activemq.model.JmsMessage;
 
 import net.sf.json.JSONObject;
 
-public class MqMessageProducer{
+public class MqMessageProducer implements Handler{
 	private JmsTemplate jmsTemplate;
 	public static String RETCODESUCCESS="200";
 	
